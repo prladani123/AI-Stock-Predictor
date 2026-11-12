@@ -1,0 +1,42 @@
+[
+  {
+    "instrument_token": 260105,
+    "exchange_token": "1016",
+    "tradingsymbol": "NIFTY BANK",
+    "name": "NIFTY BANK",
+    "expiry": null,
+    "strike": 0,
+    "tick_size": 0.05,
+    "lot_size": 1,
+    "instrument_type": "EQ",
+    "segment": "INDICES",
+    "exchange": "NSE"
+  },
+  {
+    "instrument_token": 1100001,
+    "exchange_token": "42968",
+    "tradingsymbol": "BANKNIFTY24JULFUT",
+    "name": "BANKNIFTY",
+    "expiry": "2024-07-25",
+    "strike": 0,
+    "tick_size": 0.05,
+    "lot_size": 15,
+    "instrument_type": "FUT",
+    "segment": "NFO-FUT",
+    "exchange": "NFO"
+  },
+  {
+    "instrument_token": 408065,
+    "exchange_token": "1594",
+    "tradingsymbol": "INFY",
+    "name": "INFOSYS",
+    "expiry": null,
+    "strike": 0,
+    "tick_size": 0.05,
+    "lot_size": 1,
+    "instrument_type": "EQ",
+    "segment": "NSE",
+    "exchange": "NSE"
+  }
+]
+

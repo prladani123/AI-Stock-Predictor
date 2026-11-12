@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "banknifty-research-foundation"
+version = "0.7.0"
+description = "BANKNIFTY Big Move V2 research, live market-data, and internal product API service"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi==0.116.1",
+  "httpx==0.28.1",
+  "beautifulsoup4==4.13.5",
+  "kiteconnect==5.2.0",
+  "joblib==1.5.2",
+  "lightgbm==4.6.0",
+  "numpy==2.2.6",
+  "psycopg[binary]>=3.2,<4",
+  "scikit-learn==1.7.2",
+  "tzdata>=2025.2",
+  "uvicorn[standard]==0.35.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "uv==0.9.5"]
+
+[project.scripts]
+banknifty-foundation = "banknifty_foundation.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]

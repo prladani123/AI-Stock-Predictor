@@ -1,0 +1,64 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Frontend
+node_modules/
+dist/
+build/
+frontend/.vite/
+*.tsbuildinfo
+
+# PHP/Symfony
+vendor/
+backend/var/
+
+# Runtime material
+logs/
+*.log
+*.pid
+*.tmp
+*.temp
+
+# Model artifacts and caches (weights are downloaded explicitly, never committed)
+model_artifacts/*
+!model_artifacts/.gitkeep
+artifacts/*.json
+!artifacts/.gitkeep
+.cache/
+hf_cache/
+huggingface/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# External reference clones and regenerated research output
+refs/
+.reference/
+external-repos/
+research/.cache/
+research/kronos/.cache/
+research-output/
+
+# IDE / OS noise
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

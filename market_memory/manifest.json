@@ -1,0 +1,785 @@
+{
+  "dataset": "BANKNIFTY_50_DAY_MARKET_MEMORY_V2",
+  "target_sessions": 50,
+  "completed_sessions": 50,
+  "start": "2026-07-10",
+  "end": "2026-09-18",
+  "excluded_trading_holiday": [
+    "2026-09-14 Ganesh Chaturthi"
+  ],
+  "special_calendar_notes": [
+    "2026-08-26 settlement holiday; equity trading open"
+  ],
+  "files": [
+    {
+      "date": "2026-07-10",
+      "file": "daily/2026-07-10.md",
+      "checksum_sha256": "6a3b63c9ada7a86a12524951bb56660a62facfde00189f4b7997139264cb8ddd",
+      "close": 58045.9,
+      "change_pct": 1.386,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "broad-risk-on",
+        "banking-strength",
+        "positive-global-cues"
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "file": "daily/2026-07-13.md",
+      "checksum_sha256": "f71d500d9d2e8c2f3132f5dffcbba6d6bcb468ff7eb91379e76a63cc290e1b2a",
+      "close": 58131.45,
+      "change_pct": 0.147,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "early-loss-recovery",
+        "value-buying",
+        "geopolitical-overhang"
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "file": "daily/2026-07-14.md",
+      "checksum_sha256": "6da6ae2d3f9e155eb9d1a3110612a73644ba3b05d3ef2712634066e56fa26a2e",
+      "close": 57462.3,
+      "change_pct": -1.151,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude-surge",
+        "middle-east",
+        "rupee-weakness",
+        "bank-selling"
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "file": "daily/2026-07-15.md",
+      "checksum_sha256": "7236dd396d3ada031a654924b52424244fc9da20665948b56ac1ab2e8922f306",
+      "close": 57757.85,
+      "change_pct": 0.514,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "profit-booking",
+        "firm-crude",
+        "psu-bank-strength",
+        "relative-strength"
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "file": "daily/2026-07-16.md",
+      "checksum_sha256": "28595e956149f402efe70f81b08e54f8ab31aa6140767b03a583be2d9891edf6",
+      "close": 57582.25,
+      "change_pct": -0.304,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "late-selloff",
+        "profit-booking",
+        "weak-global-cues",
+        "bank-consolidation"
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "file": "daily/2026-07-17.md",
+      "checksum_sha256": "533ee74ff4dd385b708c225838220618b01442f846d4887915271462736c5d40",
+      "close": 58521.4,
+      "change_pct": 1.631,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "bank-rally",
+        "value-buying",
+        "earnings-optimism",
+        "trend-day"
+      ]
+    },
+    {
+      "date": "2026-07-20",
+      "file": "daily/2026-07-20.md",
+      "checksum_sha256": "5e82e2857a85183c4294f3a04b3e5a6dcec29befe618357267d586ef6db275ff",
+      "close": 57945.0,
+      "change_pct": -0.985,
+      "evidence_grade": "A+",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "private-bank-results",
+        "hdfc-bank",
+        "axis-bank",
+        "crude",
+        "intraday-reversal",
+        "timed-news"
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "file": "daily/2026-07-21.md",
+      "checksum_sha256": "dfef00ed63f83c7257c62265b5f4119272e90c6dd07cceb46599e5d9b55530de",
+      "close": 57835.35,
+      "change_pct": -0.189,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "private-bank-weakness",
+        "high-crude",
+        "fii-selling",
+        "late-buying"
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "file": "daily/2026-07-22.md",
+      "checksum_sha256": "13fde3702531db7dcaaaf9a294db3ec028f34fcd482dc48b075ae32a634581c5",
+      "close": 57126.8,
+      "change_pct": -1.225,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude",
+        "rupee-weakness",
+        "bank-selling",
+        "hdfc-margin-overhang"
+      ]
+    },
+    {
+      "date": "2026-07-23",
+      "file": "daily/2026-07-23.md",
+      "checksum_sha256": "6e5b00cc2239ebba7f8d4fc5f45e58bde20c8a93b3a6f533f0bb5acfabf516ef",
+      "close": 56592.0,
+      "change_pct": -0.936,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "oil-near-100",
+        "middle-east",
+        "risk-off",
+        "gap-down"
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "file": "daily/2026-07-24.md",
+      "checksum_sha256": "8a6deed5312f0af1b69c8a26146fb26d85af7c4808624613af2a2ba18cf3c2d5",
+      "close": 56693.5,
+      "change_pct": 0.179,
+      "evidence_grade": "A+",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "brent-100",
+        "gap-down",
+        "crude-reversal",
+        "intraday-recovery",
+        "timed-news"
+      ]
+    },
+    {
+      "date": "2026-07-27",
+      "file": "daily/2026-07-27.md",
+      "checksum_sha256": "040191a9000f2eb43ee506db56917e1833f904d3e3028de278d76a82ac09e31e",
+      "close": 57087.2,
+      "change_pct": 0.694,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude-decline",
+        "geopolitical-easing",
+        "rebound",
+        "earnings"
+      ]
+    },
+    {
+      "date": "2026-07-28",
+      "file": "daily/2026-07-28.md",
+      "checksum_sha256": "a7131ab2d69abb2dfd3a674edc251c46c81ff9cd6aa199110ecec8f089c1ba85",
+      "close": 56755.6,
+      "change_pct": -0.581,
+      "evidence_grade": "C",
+      "timing_precision": "SESSION_LEVEL_ONLY",
+      "tags": [
+        "fed-caution",
+        "monthly-expiry-window",
+        "bank-underperformance",
+        "no-clear-trigger"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "file": "daily/2026-07-29.md",
+      "checksum_sha256": "770ccc8a3c12f8851f931cd903518fa5102b79e11caf8ab0c0f31a44467fbf30",
+      "close": 57205.9,
+      "change_pct": 0.793,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "earnings",
+        "fed-optimism",
+        "fii-buying",
+        "broad-rally"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "file": "daily/2026-07-30.md",
+      "checksum_sha256": "92d090ef9d6a913489d955d758b207730542d70f75958ed65e420dd6f9ba08e2",
+      "close": 57147.5,
+      "change_pct": -0.102,
+      "evidence_grade": "C",
+      "timing_precision": "SESSION_LEVEL_ONLY",
+      "tags": [
+        "range-bound",
+        "it-led",
+        "bank-divergence",
+        "no-clear-trigger"
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "file": "daily/2026-07-31.md",
+      "checksum_sha256": "c4f9e02b57578b8e9d1f247235af30a1851b3cb17d326d883469b6bbc1370b86",
+      "close": 57264.85,
+      "change_pct": 0.205,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "earnings",
+        "financial-results",
+        "fii-buying",
+        "final-hour-profit-booking"
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "file": "daily/2026-08-03.md",
+      "checksum_sha256": "ca85071c3b8e2673a0c177e8fd170082493de7c5e27ef932a7fd5c611d610018",
+      "close": 58247.95,
+      "change_pct": 1.717,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude-drop",
+        "geopolitical-easing",
+        "fii-buying",
+        "bank-rally",
+        "cas-era"
+      ]
+    },
+    {
+      "date": "2026-08-04",
+      "file": "daily/2026-08-04.md",
+      "checksum_sha256": "ffd3fe0ba88475f427385da866a3cc182d727aba47d1fd3caed05ed2c8bca87e",
+      "close": 57907.2,
+      "change_pct": -0.585,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "profit-booking",
+        "rbi-eve",
+        "expiry",
+        "cas-distortion"
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "file": "daily/2026-08-05.md",
+      "checksum_sha256": "9b5b4f62edece506546e6f9e3f22275d6362e5f55138311ba4f8caa9d8914199",
+      "close": 57739.95,
+      "change_pct": -0.289,
+      "evidence_grade": "A",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "rbi-policy",
+        "rates-hold",
+        "hormuz-risk",
+        "late-fade",
+        "scheduled-event"
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "file": "daily/2026-08-06.md",
+      "checksum_sha256": "b806dfad7f20b575d24e5c9892c674325e6cc542fe948d3b4f1aad8adae4bde5",
+      "close": 58063.65,
+      "change_pct": 0.561,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "psu-bank-rally",
+        "financial-strength",
+        "mixed-market"
+      ]
+    },
+    {
+      "date": "2026-08-07",
+      "file": "daily/2026-08-07.md",
+      "checksum_sha256": "39a0fbd3984e6fea1d6320ed488de94dc2dbd4f0c0ea5b961a45d9ea4269aab8",
+      "close": 57746.45,
+      "change_pct": -0.546,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "profit-booking",
+        "private-bank-weakness",
+        "higher-yields",
+        "crude"
+      ]
+    },
+    {
+      "date": "2026-08-10",
+      "file": "daily/2026-08-10.md",
+      "checksum_sha256": "49d9f293a0d0a7d0920073b8734f33920ea3b9f719906a8942e3935d429c8794",
+      "close": 57686.95,
+      "change_pct": -0.103,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "range-bound",
+        "softer-us-jobs",
+        "crude-offset",
+        "psu-bank-drag"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "file": "daily/2026-08-11.md",
+      "checksum_sha256": "c7415e6ad43b835b67539ec487b4cd4a1da90d35e1f3be7aeb4fc5cf3e0d1588",
+      "close": 57446.25,
+      "change_pct": -0.417,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "financial-selling",
+        "crude",
+        "geopolitics",
+        "rupee-weakness"
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "file": "daily/2026-08-12.md",
+      "checksum_sha256": "0e097dfcd38e5ec0398860006a39b1eb37b20248a7f0e2edb96878b490e60a9d",
+      "close": 57885.85,
+      "change_pct": 0.765,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "tata-leadership",
+        "bank-relative-strength",
+        "psu-bank-rally",
+        "divergence"
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "file": "daily/2026-08-13.md",
+      "checksum_sha256": "ecb46aa9c3ee9fa1d57afe354c9c1f6bfa1211ff659ab19cc83fbe7ad2403daa",
+      "close": 57635.25,
+      "change_pct": -0.433,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude",
+        "geopolitical-risk",
+        "bank-weakness",
+        "cas-effect"
+      ]
+    },
+    {
+      "date": "2026-08-14",
+      "file": "daily/2026-08-14.md",
+      "checksum_sha256": "b5a42b3e9c3a643cea276976c9fc26f6e52708701428d1079403e64174f82e95",
+      "close": 57491.1,
+      "change_pct": -0.25,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude",
+        "geopolitics",
+        "partial-recovery",
+        "bank-resilience"
+      ]
+    },
+    {
+      "date": "2026-08-17",
+      "file": "daily/2026-08-17.md",
+      "checksum_sha256": "c4f7ae5eedd753dc7e23a39b13bdc4043166af8b4d147d5079fcf88f116ffe67",
+      "close": 57497.8,
+      "change_pct": 0.012,
+      "evidence_grade": "A-",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "afternoon-recovery",
+        "value-buying",
+        "vix-easing",
+        "bank-resilience"
+      ]
+    },
+    {
+      "date": "2026-08-18",
+      "file": "daily/2026-08-18.md",
+      "checksum_sha256": "216590beac5ce46e875d06371b20145ef51f091fed4409d4e61745754a24094b",
+      "close": 57262.4,
+      "change_pct": -0.409,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude-above-91",
+        "iran-us",
+        "gap-down",
+        "rupee-pressure"
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "file": "daily/2026-08-19.md",
+      "checksum_sha256": "2b3d91f41ffdb67774698b1471694293509e59f0e808ac7a100834c4e5acee5d",
+      "close": 57239.75,
+      "change_pct": -0.04,
+      "evidence_grade": "C",
+      "timing_precision": "SESSION_LEVEL_ONLY",
+      "tags": [
+        "bond-yields",
+        "crude",
+        "global-risk",
+        "bank-resilience",
+        "no-clear-bank-trigger"
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "file": "daily/2026-08-20.md",
+      "checksum_sha256": "47591c722302cb20b08eaa5df4d30a01f03dd1300b888d9290a2eb01e7f122f3",
+      "close": 57495.9,
+      "change_pct": 0.448,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "us-yields-ease",
+        "relief-rally",
+        "financial-buying",
+        "gap-up"
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "file": "daily/2026-08-21.md",
+      "checksum_sha256": "f0796df7d85dabcbb141f0a494fbb925c958fc0e8ab709adb4a38be346b260fc",
+      "close": 57761.95,
+      "change_pct": 0.463,
+      "evidence_grade": "B",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "range-bound",
+        "crude",
+        "bond-yields",
+        "bank-relative-strength"
+      ]
+    },
+    {
+      "date": "2026-08-24",
+      "file": "daily/2026-08-24.md",
+      "checksum_sha256": "3cf109676e6d804f0af9a605b61e69290c79a7924a813bf51dfe967b98cf58c8",
+      "close": 57525.95,
+      "change_pct": -0.409,
+      "evidence_grade": "A-",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "iran-sanctions",
+        "crude",
+        "afternoon-reversal",
+        "psu-bank-drag"
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "file": "daily/2026-08-25.md",
+      "checksum_sha256": "fd82177f6836c3228e730b80969d46aae9ce42a9e18052a7e1832cb5e79cacb0",
+      "close": 57514.2,
+      "change_pct": -0.02,
+      "evidence_grade": "A-",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "monthly-expiry",
+        "final-hour-buying",
+        "crude-easing",
+        "rupee-firmer",
+        "bank-flat"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "file": "daily/2026-08-26.md",
+      "checksum_sha256": "5462d70e9a54d2790b806b0291eb0ef9517023afe8b21b03ea2da66d6ae9dce4",
+      "close": 57783.75,
+      "change_pct": 0.469,
+      "evidence_grade": "A-",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "private-bank-strength",
+        "new-fo-series",
+        "settlement-holiday",
+        "divergence"
+      ]
+    },
+    {
+      "date": "2026-08-27",
+      "file": "daily/2026-08-27.md",
+      "checksum_sha256": "8bff39824141508fd2c87e4e7897b8414316829f4061cc1301ae6eb0b90a3991",
+      "close": 57509.95,
+      "change_pct": -0.474,
+      "evidence_grade": "C+",
+      "timing_precision": "SESSION_LEVEL_ONLY",
+      "tags": [
+        "failed-open",
+        "psu-bank-weakness",
+        "broad-selling",
+        "no-single-trigger"
+      ]
+    },
+    {
+      "date": "2026-08-28",
+      "file": "daily/2026-08-28.md",
+      "checksum_sha256": "9156fcf4b9e7cf5b2c922420674f71d5c8e18aa2412f3195384f8a4b3d73b7ee",
+      "close": 57496.3,
+      "change_pct": -0.024,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "positive-global-cues",
+        "jackson-hole",
+        "it-led",
+        "bank-flat"
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "file": "daily/2026-08-31.md",
+      "checksum_sha256": "ab72cf6edd0bc098b7e6082d7df4154f8ff3fdeb05cbf61b6fafe840ecd4b325",
+      "close": 58024.95,
+      "change_pct": 0.919,
+      "evidence_grade": "A+",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "cas-distortion",
+        "msci-rebalance",
+        "auction-flow",
+        "bank-outperformance",
+        "timed-structural-event"
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "file": "daily/2026-09-01.md",
+      "checksum_sha256": "009b45a067e20809c32f636ab20648adabee4dd7c2f8d9be2f49fea6e0ccb22a",
+      "close": 57409.6,
+      "change_pct": -1.06,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "cas-unwind",
+        "bank-selling",
+        "crude",
+        "mechanical-reversal"
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "file": "daily/2026-09-02.md",
+      "checksum_sha256": "2abfa50dd02dba65c8468d8a125e63912953ac2ca06c4e778378d6ee1f0f2ca9",
+      "close": 57172.0,
+      "change_pct": -0.414,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "us-iran",
+        "crude-surge",
+        "gap-down",
+        "cas-recovery"
+      ]
+    },
+    {
+      "date": "2026-09-03",
+      "file": "daily/2026-09-03.md",
+      "checksum_sha256": "8d768825ad0581cadb4a09d066adb71d0832ef0d7f41cf14f44dc27386abb070",
+      "close": 57380.6,
+      "change_pct": 0.365,
+      "evidence_grade": "B-",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "bank-relative-strength",
+        "soft-crude",
+        "rupee-strength",
+        "liquidity-context"
+      ]
+    },
+    {
+      "date": "2026-09-04",
+      "file": "daily/2026-09-04.md",
+      "checksum_sha256": "8154c0d8872cb03745edcd1fdf699b35252984d9b05a60e3442911c134db73ea",
+      "close": 57369.65,
+      "change_pct": -0.019,
+      "evidence_grade": "B-",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "fed-expectations",
+        "broad-rebound",
+        "private-bank-buying",
+        "bank-flat"
+      ]
+    },
+    {
+      "date": "2026-09-07",
+      "file": "daily/2026-09-07.md",
+      "checksum_sha256": "ed2a13313e2c45a51cdc16e517e8ccbbaabbfc6bab1be68e625ff75472abb5e6",
+      "close": 57088.3,
+      "change_pct": -0.49,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude-97",
+        "us-iran",
+        "rate-hike-risk",
+        "trend-down"
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "file": "daily/2026-09-08.md",
+      "checksum_sha256": "e031cf25e2b80a4d9ce8cf26ebade05e277ac4c4532a607ce6e590366a12efc7",
+      "close": 56777.55,
+      "change_pct": -0.544,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "crude",
+        "rupee-weakness",
+        "bank-selling",
+        "failed-pullback"
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "daily/2026-09-09.md",
+      "checksum_sha256": "7ac8625a03a24778fcd3a4225b0b66c135018426594cd99994f9fe3393cfd178",
+      "close": 56295.55,
+      "change_pct": -0.849,
+      "evidence_grade": "A+",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "crude-100",
+        "us-iran",
+        "rupee-weakness",
+        "fii-selling",
+        "failed-recovery"
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "daily/2026-09-10.md",
+      "checksum_sha256": "dfbbb78429dadfa801ae31d177cb4a515f3dc8682dacfbeba451403127611230",
+      "close": 56471.95,
+      "change_pct": 0.313,
+      "evidence_grade": "B",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "financial-buying",
+        "range-bound",
+        "crude-overhang",
+        "relief"
+      ]
+    },
+    {
+      "date": "2026-09-11",
+      "file": "daily/2026-09-11.md",
+      "checksum_sha256": "f6dc8e5588b0fb50e40a2c55aac60bfd87cf3260ab4b31ad20da5ced86a5fa86",
+      "close": 56606.55,
+      "change_pct": 0.238,
+      "evidence_grade": "A+",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "crude-reversal",
+        "bank-reversal",
+        "hdfc-bank",
+        "yes-bank",
+        "timed-news",
+        "900-point-recovery"
+      ]
+    },
+    {
+      "date": "2026-09-15",
+      "file": "daily/2026-09-15.md",
+      "checksum_sha256": "613157144c14bac76615136bd88d27e9850d00cbb5d041ca755057ac76021992",
+      "close": 55794.75,
+      "change_pct": -1.434,
+      "evidence_grade": "A+",
+      "timing_precision": "EXACT_OR_NARROW_WINDOW",
+      "tags": [
+        "oil-108",
+        "fed-hike",
+        "bond-yields",
+        "india-inflation",
+        "financial-selloff",
+        "post-holiday-gap"
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "file": "daily/2026-09-16.md",
+      "checksum_sha256": "e387665f070785f993b3f7087a47a4fa6516ae6324a30f086afdb3a4c121f581",
+      "close": 56292.45,
+      "change_pct": 0.892,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "upi-fee",
+        "financial-buying",
+        "oil-relief",
+        "fomc-eve"
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "file": "daily/2026-09-17.md",
+      "checksum_sha256": "07a50341ec4380b35ebd99b3cf26c2413453b7b6f9413b0d483e64344a8f8e7f",
+      "close": 56055.75,
+      "change_pct": -0.42,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "fed-hike",
+        "hawkish-fed",
+        "profit-booking",
+        "ipo-liquidity",
+        "pre-open-known"
+      ]
+    },
+    {
+      "date": "2026-09-18",
+      "file": "daily/2026-09-18.md",
+      "checksum_sha256": "24d7228fbd93db9ffaff9db1e9ab88f5fab5663f6131cdfc9900133a9a117c0e",
+      "close": 56358.7,
+      "change_pct": 0.54,
+      "evidence_grade": "A",
+      "timing_precision": "SESSION_PHASE",
+      "tags": [
+        "oil-easing",
+        "bargain-buying",
+        "hdfc-bank",
+        "relief-rally",
+        "global-cues"
+      ]
+    }
+  ],
+  "derived": {
+    "numerical_episode_count": 396,
+    "episode_policy_version": "big-move-threshold-v1",
+    "episode_checksum_sha256": "6b0711cf7d62d9aafd82f82fc7de4d1f74789c794f7274a5f3414cb878345a92",
+    "structured_event_count": 52,
+    "reaction_measurable_event_count": 4,
+    "event_checksum_sha256": "b2c208abf51801e4b5b4aae54bf12c2481494051e8175426f5ffdb0f102062a3"
+  }
+}

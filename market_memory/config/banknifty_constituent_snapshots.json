@@ -1,0 +1,12 @@
+[
+  {
+    "snapshotId": "banknifty-tracking-proxy-2026-09-20",
+    "effectiveFrom": "2026-09-20",
+    "effectiveTo": "2026-09-30",
+    "symbols": ["HDFCBANK", "ICICIBANK", "SBIN", "KOTAKBANK", "AXISBANK", "FEDERALBNK", "INDUSINDBK", "AUBANK", "IDFCFIRSTB", "BANKBARODA", "PNB", "YESBANK", "CANBK", "UNIONBANK"],
+    "source": "USER_SUPPLIED_RESEARCH_TRACKING_UNIVERSE; prospectively scoped proxy, not historical membership evidence",
+    "sourceUrl": null,
+    "sourceObservedAt": "2026-09-20T00:00:00+05:30",
+    "sourceQuality": "TRACKING_PROXY"
+  }
+]

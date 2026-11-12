@@ -1,0 +1,3235 @@
+[
+  {
+    "event_id": "3eaa12ca922f7c66d52d6b5c",
+    "session_date": "2026-07-10",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "broad-risk-on",
+      "banking-strength",
+      "positive-global-cues"
+    ],
+    "headline_or_summary": "Broad-based risk-on buying, positive global cues and strength in banking/realty/IT/metal supported the session. Bank Nifty rose strongly and finished well above its open, so the banking move was consistent with the broad recovery rather than a single bank headline.",
+    "known_at": null,
+    "published_at": "2026-07-10T16:11:00+05:30",
+    "first_seen_at": "2026-07-10T16:11:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close +1.386%; intraday range 1.179%.",
+    "source_name": "Taking Stock: Recovery extends for second day; Nifty tops 24,200, Sensex jumps 828 pts — primary contemporaneous market/event source. Published: 2026-07-10 16:11 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-recovery-extends-for-second-day-nifty-tops-24-200-sensex-jumps-828-pts-13970804.html",
+    "special_flags": [],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "6a3b63c9ada7a86a12524951bb56660a62facfde00189f4b7997139264cb8ddd",
+      "sources": [
+        {
+          "title": "Taking Stock: Recovery extends for second day; Nifty tops 24,200, Sensex jumps 828 pts — primary contemporaneous market/event source. Published: 2026-07-10 16:11 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-recovery-extends-for-second-day-nifty-tops-24-200-sensex-jumps-828-pts-13970804.html",
+          "publication_text": "2026-07-10 16:11 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "bf3a87e25c52b05780a0723f67a9c86ace27113811af29a28cd73aef532b4551"
+  },
+  {
+    "event_id": "536accec7ddc6ac2d4243a50",
+    "session_date": "2026-07-13",
+    "event_category": "GEOPOLITICS",
+    "event_tags": [
+      "early-loss-recovery",
+      "value-buying",
+      "geopolitical-overhang"
+    ],
+    "headline_or_summary": "The market recovered from early losses as value buying and IT resilience offset geopolitical concerns. Bank Nifty closed only modestly higher; the available reporting does not identify a bank-specific catalyst, so the banking move is best classified as recovery/positioning rather than news-led.",
+    "known_at": null,
+    "published_at": "2026-07-13T16:04:00+05:30",
+    "first_seen_at": "2026-07-13T16:04:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.147%; intraday range 1.254%.",
+    "source_name": "Taking Stock: Sensex, Nifty end flat after smart recovery; IT, media stocks rally — primary contemporaneous market/event source. Published: 2026-07-13 16:04 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-end-flat-after-smart-recovery-it-media-stocks-rally-13972511.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "f71d500d9d2e8c2f3132f5dffcbba6d6bcb468ff7eb91379e76a63cc290e1b2a",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex, Nifty end flat after smart recovery; IT, media stocks rally — primary contemporaneous market/event source. Published: 2026-07-13 16:04 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-end-flat-after-smart-recovery-it-media-stocks-rally-13972511.html",
+          "publication_text": "2026-07-13 16:04 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "0494d657aef9aad2fb0ecb2c199bb0425eb7ef69bdfe17cc0a7ec3893890f1b4"
+  },
+  {
+    "event_id": "de05b43f853be5b29cc0060b",
+    "session_date": "2026-07-14",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude-surge",
+      "middle-east",
+      "rupee-weakness",
+      "bank-selling"
+    ],
+    "headline_or_summary": "A surge in crude linked to escalating Middle East tensions, weak global cues and a sharply weaker rupee hurt Indian risk assets. Banking was among the selling areas, matching Bank Nifty's sizeable decline.",
+    "known_at": null,
+    "published_at": "2026-07-14T16:04:00+05:30",
+    "first_seen_at": "2026-07-14T16:04:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -1.151%; intraday range 0.952%.",
+    "source_name": "Taking Stock: Nifty ends near 24,050, Sensex slips 561 pts; IT declines, pharma gains — primary contemporaneous market/event source. Published: 2026-07-14 16:04 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-ends-near-24-050-sensex-slips-561-pts-it-declines-pharma-gains-13973495.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "6da6ae2d3f9e155eb9d1a3110612a73644ba3b05d3ef2712634066e56fa26a2e",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty ends near 24,050, Sensex slips 561 pts; IT declines, pharma gains — primary contemporaneous market/event source. Published: 2026-07-14 16:04 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-ends-near-24-050-sensex-slips-561-pts-it-declines-pharma-gains-13973495.html",
+          "publication_text": "2026-07-14 16:04 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "4ffdd60a9fc3f90f212540bfcc38cd6c8f9113c6528c65c7c47471a310538540"
+  },
+  {
+    "event_id": "4b2b67817b5a925303e9a063",
+    "session_date": "2026-07-15",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "profit-booking",
+      "firm-crude",
+      "psu-bank-strength",
+      "relative-strength"
+    ],
+    "headline_or_summary": "Bank Nifty finished higher even though the headline market gave back much of its intraday advance. Profit booking, US-Iran tension, a weaker rupee and firm crude capped the broad market; PSU banks were among the stronger groups, helping explain banking relative strength.",
+    "known_at": null,
+    "published_at": "2026-07-15T15:53:00+05:30",
+    "first_seen_at": "2026-07-15T15:53:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.514%; intraday range 1.050%.",
+    "source_name": "Sensex settles 450 pts lower from day's high, Nifty ends near 24,050: Key reasons behind markets closing nearly flat — primary contemporaneous market/event source. Published: 2026-07-15 15:53 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/sensex-falls-500-pts-from-day-s-high-nifty-near-24-050-key-reasons-behind-markets-turning-flat-13974543.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "7236dd396d3ada031a654924b52424244fc9da20665948b56ac1ab2e8922f306",
+      "sources": [
+        {
+          "title": "Sensex settles 450 pts lower from day's high, Nifty ends near 24,050: Key reasons behind markets closing nearly flat — primary contemporaneous market/event source. Published: 2026-07-15 15:53 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/sensex-falls-500-pts-from-day-s-high-nifty-near-24-050-key-reasons-behind-markets-turning-flat-13974543.html",
+          "publication_text": "2026-07-15 15:53 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "d4c61c9ededa3cf0d9818471fae781b9d9726616553b461a95bdc4b313294aeb"
+  },
+  {
+    "event_id": "ba64a7f12752c085618dea25",
+    "session_date": "2026-07-16",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "late-selloff",
+      "profit-booking",
+      "weak-global-cues",
+      "bank-consolidation"
+    ],
+    "headline_or_summary": "Positive first-half trade gave way to profit booking and weaker global cues. Bank Nifty also ended lower, consistent with a late-session fade rather than a fresh discrete bank headline.",
+    "known_at": null,
+    "published_at": "2026-07-16T15:58:00+05:30",
+    "first_seen_at": "2026-07-16T15:58:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.304%; intraday range 0.885%.",
+    "source_name": "Taking Stock: Sensex, Nifty erase early gains to end flat amid late sell-off — primary contemporaneous market/event source. Published: 2026-07-16 15:58 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-erase-early-gains-to-end-flat-amid-late-sell-off-13975580.html",
+    "special_flags": [],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "28595e956149f402efe70f81b08e54f8ab31aa6140767b03a583be2d9891edf6",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex, Nifty erase early gains to end flat amid late sell-off — primary contemporaneous market/event source. Published: 2026-07-16 15:58 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-erase-early-gains-to-end-flat-amid-late-sell-off-13975580.html",
+          "publication_text": "2026-07-16 15:58 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "7f9a39a45166955c7c0ded56a984d39ba6dfe69875ac1790aed512778612a0c2"
+  },
+  {
+    "event_id": "4e8ceb48bd7cf92449521745",
+    "session_date": "2026-07-17",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "bank-rally",
+      "value-buying",
+      "earnings-optimism",
+      "trend-day"
+    ],
+    "headline_or_summary": "Strong buying in banking, IT and autos plus value buying in large caps and optimism ahead of Reliance results produced a broad risk-on day. Bank Nifty's 1.6%+ jump and close near the high confirm strong financial-sector participation.",
+    "known_at": null,
+    "published_at": "2026-07-17T16:03:00+05:30",
+    "first_seen_at": "2026-07-17T16:03:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close +1.631%; intraday range 1.832%.",
+    "source_name": "Taking Stock: Sensex gains 965 pts, Nifty above 24,300; IT, banks rally; metal, pharma drag — primary contemporaneous market/event source. Published: 2026-07-17 16:03 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-gains-965-pts-nifty-above-24-300-it-banks-rally-metal-pharma-drag-13976665.html",
+    "special_flags": [],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "533ee74ff4dd385b708c225838220618b01442f846d4887915271462736c5d40",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex gains 965 pts, Nifty above 24,300; IT, banks rally; metal, pharma drag — primary contemporaneous market/event source. Published: 2026-07-17 16:03 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-gains-965-pts-nifty-above-24-300-it-banks-rally-metal-pharma-drag-13976665.html",
+          "publication_text": "2026-07-17 16:03 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "f028872ea2b4d9a54af8ad2cf9de3bb7e3210babccde31a239daebedbecf3a69"
+  },
+  {
+    "event_id": "47acce0b8a1ddd6108873d9b",
+    "session_date": "2026-07-20",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "private-bank-results",
+      "hdfc-bank",
+      "axis-bank",
+      "crude",
+      "intraday-reversal",
+      "timed-news"
+    ],
+    "headline_or_summary": "**Intraday structure / timing:** 10:49 IST live update: Bank Nifty was about 700 points lower as banking weakness and West Asia/crude pressure hit",
+    "known_at": "2026-07-20T10:49:00+05:30",
+    "published_at": "2026-07-20T16:09:00+05:30",
+    "first_seen_at": "2026-07-20T10:49:00+05:30",
+    "knowledge_phase": "SCHEDULED_POLICY_WINDOW",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.985%; intraday range 0.988%.",
+    "source_name": "Taking Stock: Sensex down 443 pts, Nifty below 24,250 on private bank sell-off — primary contemporaneous market/event source. Published: 2026-07-20 16:09 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-down-443-pts-nifty-below-24-250-on-private-bank-sell-off-broader-markets-outperform-13978467.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "5e82e2857a85183c4294f3a04b3e5a6dcec29befe618357267d586ef6db275ff",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex down 443 pts, Nifty below 24,250 on private bank sell-off — primary contemporaneous market/event source. Published: 2026-07-20 16:09 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-down-443-pts-nifty-below-24-250-on-private-bank-sell-off-broader-markets-outperform-13978467.html",
+          "publication_text": "2026-07-20 16:09 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol live blog — 10:49 banking sell-off / later recovery context",
+          "url": "https://hindi.moneycontrol.com/news/markets/stock-market-today-live-updates-sensex-nifty-50-reliance-industries-icici-bank-hdfc-bank-natco-pharma-share-prices-20-july-2026-liveblog-2421136.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "7b6bfaddb6c8b31400fd7890896f16830d51bdb0413ad78a4b56ad483fa03bef"
+  },
+  {
+    "event_id": "09c3cd3516255bc646602117",
+    "session_date": "2026-07-20",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "private-bank-results",
+      "hdfc-bank",
+      "axis-bank",
+      "crude",
+      "intraday-reversal",
+      "timed-news"
+    ],
+    "headline_or_summary": "Around 15:05 IST, reports of mediation optimism coincided with crude falling below about $89 and Bank Nifty recovering roughly 400 points from its lows",
+    "known_at": "2026-07-20T15:05:00+05:30",
+    "published_at": "2026-07-20T16:09:00+05:30",
+    "first_seen_at": "2026-07-20T15:05:00+05:30",
+    "knowledge_phase": "FINAL_HOUR",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.985%; intraday range 0.988%.",
+    "source_name": "Taking Stock: Sensex down 443 pts, Nifty below 24,250 on private bank sell-off — primary contemporaneous market/event source. Published: 2026-07-20 16:09 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-down-443-pts-nifty-below-24-250-on-private-bank-sell-off-broader-markets-outperform-13978467.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "5e82e2857a85183c4294f3a04b3e5a6dcec29befe618357267d586ef6db275ff",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex down 443 pts, Nifty below 24,250 on private bank sell-off — primary contemporaneous market/event source. Published: 2026-07-20 16:09 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-down-443-pts-nifty-below-24-250-on-private-bank-sell-off-broader-markets-outperform-13978467.html",
+          "publication_text": "2026-07-20 16:09 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol live blog — 10:49 banking sell-off / later recovery context",
+          "url": "https://hindi.moneycontrol.com/news/markets/stock-market-today-live-updates-sensex-nifty-50-reliance-industries-icici-bank-hdfc-bank-natco-pharma-share-prices-20-july-2026-liveblog-2421136.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "9ed5066fd48cb272a0c88027918d14e5f9f42b6333c05ae6bee582956db3ae16"
+  },
+  {
+    "event_id": "16eacc45b19f5a0674b33881",
+    "session_date": "2026-07-21",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "private-bank-weakness",
+      "high-crude",
+      "fii-selling",
+      "late-buying"
+    ],
+    "headline_or_summary": "Continued private-bank weakness, especially HDFC Bank after margin concerns, plus crude near $90 and FII selling kept financial sentiment cautious. Late buying reduced losses but did not produce a trend reversal.",
+    "known_at": null,
+    "published_at": "2026-07-21T16:02:00+05:30",
+    "first_seen_at": "2026-07-21T16:02:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close -0.189%; intraday range 0.733%.",
+    "source_name": "Taking Stock: Sensex, Nifty end lower for second day; late buying helps trim losses — primary contemporaneous market/event source. Published: 2026-07-21 16:02 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-end-lower-for-second-day-late-buying-helps-trim-losses-13979469.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "dfef00ed63f83c7257c62265b5f4119272e90c6dd07cceb46599e5d9b55530de",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex, Nifty end lower for second day; late buying helps trim losses — primary contemporaneous market/event source. Published: 2026-07-21 16:02 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-end-lower-for-second-day-late-buying-helps-trim-losses-13979469.html",
+          "publication_text": "2026-07-21 16:02 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "ed8a58bc21c4f387979f525d5d543df0b2ba558c3fd917348fe8a43c12eba2d3"
+  },
+  {
+    "event_id": "f87477175e751d82fffd5b2d",
+    "session_date": "2026-07-22",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude",
+      "rupee-weakness",
+      "bank-selling",
+      "hdfc-margin-overhang"
+    ],
+    "headline_or_summary": "Rising crude, a weaker rupee, continued HDFC Bank post-result pressure and selling across banking created a sustained risk-off session. Bank Nifty fell more than 1%, making the macro + bank-specific combination credible.",
+    "known_at": null,
+    "published_at": "2026-07-22T16:00:00+05:30",
+    "first_seen_at": "2026-07-22T16:00:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -1.225%; intraday range 1.476%.",
+    "source_name": "Taking Stock: Sensex slumps 715 pts, Nifty ends below 24,000; media, realty lead losses — primary contemporaneous market/event source. Published: 2026-07-22 16:00 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-slumps-715-pts-nifty-ends-below-24-000-media-realty-lead-losses-13980617.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "13fde3702531db7dcaaaf9a294db3ec028f34fcd482dc48b075ae32a634581c5",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex slumps 715 pts, Nifty ends below 24,000; media, realty lead losses — primary contemporaneous market/event source. Published: 2026-07-22 16:00 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-slumps-715-pts-nifty-ends-below-24-000-media-realty-lead-losses-13980617.html",
+          "publication_text": "2026-07-22 16:00 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "219019ac26b59ddf284921e69aa9d640790514a7b45e6a2cfbd28a642b54df30"
+  },
+  {
+    "event_id": "3f789e9e4988a3369c7f2b3e",
+    "session_date": "2026-07-23",
+    "event_category": "INFLATION",
+    "event_tags": [
+      "oil-near-100",
+      "middle-east",
+      "risk-off",
+      "gap-down"
+    ],
+    "headline_or_summary": "Oil above roughly $98, escalating Middle East risk and weak earnings maintained risk aversion. Bank Nifty opened lower and remained under pressure, consistent with imported-inflation and risk-premium concerns for Indian financial assets.",
+    "known_at": "2026-07-23T09:15:00+05:30",
+    "published_at": "2026-07-23T16:08:00+05:30",
+    "first_seen_at": "2026-07-23T09:15:00+05:30",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.936%; intraday range 0.972%.",
+    "source_name": "Taking Stock: Sensex, Nifty decline for fourth straight session amid Middle East tensions — primary contemporaneous market/event source. Published: 2026-07-23 16:08 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-decline-for-fourth-straight-session-amid-west-asia-tensions-13981794.html",
+    "special_flags": [],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "6e5b00cc2239ebba7f8d4fc5f45e58bde20c8a93b3a6f533f0bb5acfabf516ef",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex, Nifty decline for fourth straight session amid Middle East tensions — primary contemporaneous market/event source. Published: 2026-07-23 16:08 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-decline-for-fourth-straight-session-amid-west-asia-tensions-13981794.html",
+          "publication_text": "2026-07-23 16:08 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "d62b4cd78c7215467d129223146386dcb967ad393f081d9f424fb8f6ff82cdc4"
+  },
+  {
+    "event_id": "139c1a9eb588a73efb163d82",
+    "session_date": "2026-07-24",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "brent-100",
+      "gap-down",
+      "crude-reversal",
+      "intraday-recovery",
+      "timed-news"
+    ],
+    "headline_or_summary": "**Intraday structure / timing:** 09:54 IST: Brent-above-$100 article documented the oil shock",
+    "known_at": "2026-07-24T09:54:00+05:30",
+    "published_at": "2026-07-24T16:42:00+05:30",
+    "first_seen_at": "2026-07-24T09:54:00+05:30",
+    "knowledge_phase": "OPENING_HOUR",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close +0.179%; intraday range 1.427%.",
+    "source_name": "Taking Stock: Markets trim losses after sharp sell-off; Sensex down 332 pts, Nifty below 23,800 — primary contemporaneous market/event source. Published: 2026-07-24 16:42 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-trim-losses-after-sharp-sell-off-sensex-down-332-pts-nifty-below-23-800-13982808.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "8a6deed5312f0af1b69c8a26146fb26d85af7c4808624613af2a2ba18cf3c2d5",
+      "sources": [
+        {
+          "title": "Taking Stock: Markets trim losses after sharp sell-off; Sensex down 332 pts, Nifty below 23,800 — primary contemporaneous market/event source. Published: 2026-07-24 16:42 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-trim-losses-after-sharp-sell-off-sensex-down-332-pts-nifty-below-23-800-13982808.html",
+          "publication_text": "2026-07-24 16:42 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — Brent crude tops $100 at 09:54 IST",
+          "url": "https://www.moneycontrol.com/news/business/personal-finance/brent-crude-tops-100-mark-on-july-24-what-it-means-for-gold-investors-13982467.html",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — 13:47 recovery from lows as crude fell",
+          "url": "https://www.moneycontrol.com/news/business/markets/sensex-rises-600-pts-from-day-s-low-nifty-above-23-750-3-key-reasons-behind-markets-paring-losses-13982574.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "b596948282eb7cab9dc72625f060e9228d457bd7a0bf7a2b063c35ea30b050e2"
+  },
+  {
+    "event_id": "995a69d7aa228b256fd99e32",
+    "session_date": "2026-07-24",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "brent-100",
+      "gap-down",
+      "crude-reversal",
+      "intraday-recovery",
+      "timed-news"
+    ],
+    "headline_or_summary": "13:47 IST: market-recovery report explicitly linked the rebound from lows to falling crude and other relief factors",
+    "known_at": "2026-07-24T13:47:00+05:30",
+    "published_at": "2026-07-24T16:42:00+05:30",
+    "first_seen_at": "2026-07-24T13:47:00+05:30",
+    "knowledge_phase": "MIDDAY_EARLY_AFTERNOON",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close +0.179%; intraday range 1.427%.",
+    "source_name": "Taking Stock: Markets trim losses after sharp sell-off; Sensex down 332 pts, Nifty below 23,800 — primary contemporaneous market/event source. Published: 2026-07-24 16:42 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-trim-losses-after-sharp-sell-off-sensex-down-332-pts-nifty-below-23-800-13982808.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "8a6deed5312f0af1b69c8a26146fb26d85af7c4808624613af2a2ba18cf3c2d5",
+      "sources": [
+        {
+          "title": "Taking Stock: Markets trim losses after sharp sell-off; Sensex down 332 pts, Nifty below 23,800 — primary contemporaneous market/event source. Published: 2026-07-24 16:42 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-trim-losses-after-sharp-sell-off-sensex-down-332-pts-nifty-below-23-800-13982808.html",
+          "publication_text": "2026-07-24 16:42 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — Brent crude tops $100 at 09:54 IST",
+          "url": "https://www.moneycontrol.com/news/business/personal-finance/brent-crude-tops-100-mark-on-july-24-what-it-means-for-gold-investors-13982467.html",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — 13:47 recovery from lows as crude fell",
+          "url": "https://www.moneycontrol.com/news/business/markets/sensex-rises-600-pts-from-day-s-low-nifty-above-23-750-3-key-reasons-behind-markets-paring-losses-13982574.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "40211571e016997ee3c3259a7dd26a14eb4cf23b611d761a5afb9b8d08524a6f"
+  },
+  {
+    "event_id": "373388438e05919ba115c616",
+    "session_date": "2026-07-27",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude-decline",
+      "geopolitical-easing",
+      "rebound",
+      "earnings"
+    ],
+    "headline_or_summary": "Markets rebounded after a five-session losing streak as crude fell sharply on temporary easing in Middle East tensions, global cues improved and selected earnings helped. Bank Nifty joined the recovery.",
+    "known_at": null,
+    "published_at": "2026-07-27T19:40:00+05:30",
+    "first_seen_at": "2026-07-27T19:40:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close +0.694%; intraday range 0.708%.",
+    "source_name": "FIIs net sell shares worth Rs 1,688 crore, DIIs net buy Rs 2,329 crore on July 27 — primary contemporaneous market/event source. Published: 2026-07-27 19:40 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/fiis-net-sell-shares-worth-rs-1-688-crore-diis-net-buy-rs-2-329-crore-on-july-27-13984866.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "040191a9000f2eb43ee506db56917e1833f904d3e3028de278d76a82ac09e31e",
+      "sources": [
+        {
+          "title": "FIIs net sell shares worth Rs 1,688 crore, DIIs net buy Rs 2,329 crore on July 27 — primary contemporaneous market/event source. Published: 2026-07-27 19:40 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/fiis-net-sell-shares-worth-rs-1-688-crore-diis-net-buy-rs-2-329-crore-on-july-27-13984866.html",
+          "publication_text": "2026-07-27 19:40 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "0a2c0bb84b48153194e388e6e7c49ef46b840b730b8d4d89925aae012203c1c2"
+  },
+  {
+    "event_id": "ee4089067295ce626dba4106",
+    "session_date": "2026-07-28",
+    "event_category": "FED",
+    "event_tags": [
+      "fed-caution",
+      "monthly-expiry-window",
+      "bank-underperformance",
+      "no-clear-trigger"
+    ],
+    "headline_or_summary": "Broad equities were almost flat as investors avoided aggressive positions ahead of the Fed and Brent eased toward $84. Bank Nifty nevertheless fell about 0.6%. The source does not identify a discrete banking headline, so this should be treated as sector positioning/expiry-related flow rather than news causality.",
+    "known_at": null,
+    "published_at": "2026-07-28T20:37:00+05:30",
+    "first_seen_at": "2026-07-28T20:37:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_LEVEL_ONLY",
+    "causal_evidence_grade": "C",
+    "source_quality": "LIMITED_CAUSALITY",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.581%; intraday range 0.669%.",
+    "source_name": "FIIs net buy shares worth Rs 755 crore, DIIs net buy Rs 1,664 crore on July 28 — primary contemporaneous market/event source. Published: 2026-07-28 20:37 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/fiis-net-buy-shares-worth-rs-755-crores-diis-net-buy-rs-1-664-crore-on-july-28-13986165.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "a7131ab2d69abb2dfd3a674edc251c46c81ff9cd6aa199110ecec8f089c1ba85",
+      "sources": [
+        {
+          "title": "FIIs net buy shares worth Rs 755 crore, DIIs net buy Rs 1,664 crore on July 28 — primary contemporaneous market/event source. Published: 2026-07-28 20:37 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/fiis-net-buy-shares-worth-rs-755-crores-diis-net-buy-rs-1-664-crore-on-july-28-13986165.html",
+          "publication_text": "2026-07-28 20:37 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "498c2e923321e3ea4d8e5172699c58f0bc4a034bbdd3d46ebd84d3851262ce16"
+  },
+  {
+    "event_id": "714b0ca8f060c6d7169d0308",
+    "session_date": "2026-07-29",
+    "event_category": "FED",
+    "event_tags": [
+      "earnings",
+      "fed-optimism",
+      "fii-buying",
+      "broad-rally"
+    ],
+    "headline_or_summary": "Strong June-quarter earnings, optimism before the Fed decision, renewed FII buying and broad sector participation improved risk appetite. Bank Nifty gained in line with the broad rebound.",
+    "known_at": null,
+    "published_at": "2026-07-29T16:13:00+05:30",
+    "first_seen_at": "2026-07-29T16:13:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close +0.793%; intraday range 0.664%.",
+    "source_name": "Taking Stock: Market ends higher; Nifty tops 24,250, Sensex rallies 889 points — primary contemporaneous market/event source. Published: 2026-07-29 16:13 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-ends-higher-nifty-tops-24-250-sensex-rallies-889-points-13987057.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "770ccc8a3c12f8851f931cd903518fa5102b79e11caf8ab0c0f31a44467fbf30",
+      "sources": [
+        {
+          "title": "Taking Stock: Market ends higher; Nifty tops 24,250, Sensex rallies 889 points — primary contemporaneous market/event source. Published: 2026-07-29 16:13 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-ends-higher-nifty-tops-24-250-sensex-rallies-889-points-13987057.html",
+          "publication_text": "2026-07-29 16:13 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "717776a1d28bbe8bd248bb0d9b177b930aed89fcb5d32ae743f8f2f02958bc4a"
+  },
+  {
+    "event_id": "e48cc16f074cd3bb52a4bf11",
+    "session_date": "2026-07-30",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "range-bound",
+      "it-led",
+      "bank-divergence",
+      "no-clear-trigger"
+    ],
+    "headline_or_summary": "The broad market finished higher on IT/blue-chip buying and foreign inflows, but Bank Nifty was nearly flat to slightly lower. No bank-specific headline was isolated; this is a sector-relative-flow day rather than a reliable news-trigger day.",
+    "known_at": null,
+    "published_at": "2026-07-30T15:59:00+05:30",
+    "first_seen_at": "2026-07-30T15:59:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_LEVEL_ONLY",
+    "causal_evidence_grade": "C",
+    "source_quality": "LIMITED_CAUSALITY",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close -0.102%; intraday range 0.818%.",
+    "source_name": "Taking Stock: Nifty above 24,300, Sensex jumps 273 pts in volatile trade; auto stocks rally — primary contemporaneous market/event source. Published: 2026-07-30 15:59 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-above-24-300-sensex-jumps-273-pts-in-volatile-trade-auto-stocks-rally-13988808.html",
+    "special_flags": [],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "92d090ef9d6a913489d955d758b207730542d70f75958ed65e420dd6f9ba08e2",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty above 24,300, Sensex jumps 273 pts in volatile trade; auto stocks rally — primary contemporaneous market/event source. Published: 2026-07-30 15:59 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-above-24-300-sensex-jumps-273-pts-in-volatile-trade-auto-stocks-rally-13988808.html",
+          "publication_text": "2026-07-30 15:59 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "2ed0def58d738cae49f9e3fadc317ec32f178b342244944c5c2ecaa52f7355f4"
+  },
+  {
+    "event_id": "f3df6cd780d5737f608a1156",
+    "session_date": "2026-07-31",
+    "event_category": "FII_DII",
+    "event_tags": [
+      "earnings",
+      "financial-results",
+      "fii-buying",
+      "final-hour-profit-booking"
+    ],
+    "headline_or_summary": "Broad-based buying, strong heavyweight results (including Bajaj Finance/M&M) and foreign inflows supported equities. Bank Nifty advanced modestly; final-hour profit booking reduced the day's gains.",
+    "known_at": null,
+    "published_at": "2026-07-31T16:40:00+05:30",
+    "first_seen_at": "2026-07-31T16:40:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.205%; intraday range 0.475%.",
+    "source_name": "Taking Stock: Nifty above 24,350, Sensex jumps 166 pts; auto stocks shine — primary contemporaneous market/event source. Published: 2026-07-31 16:40 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-above-24-350-sensex-jumps-166-pts-auto-stocks-shine-13990174.html",
+    "special_flags": [],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "c4f9e02b57578b8e9d1f247235af30a1851b3cb17d326d883469b6bbc1370b86",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty above 24,350, Sensex jumps 166 pts; auto stocks shine — primary contemporaneous market/event source. Published: 2026-07-31 16:40 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-above-24-350-sensex-jumps-166-pts-auto-stocks-shine-13990174.html",
+          "publication_text": "2026-07-31 16:40 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "4e7cd4ec67effe023097d1d627b822754f9cd837d52f37bb5e7571c48bea06e8"
+  },
+  {
+    "event_id": "2f20031e24dd23061b9763df",
+    "session_date": "2026-08-03",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude-drop",
+      "geopolitical-easing",
+      "fii-buying",
+      "bank-rally",
+      "cas-era"
+    ],
+    "headline_or_summary": "A sharp crude decline (about 5% in contemporaneous reporting), easing geopolitical tension, FII buying and supportive earnings drove broad risk-on sentiment. Bank Nifty rose about 1.7% and closed at the day's high.",
+    "known_at": null,
+    "published_at": "2026-08-03T16:13:00+05:30",
+    "first_seen_at": "2026-08-03T16:13:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close +1.717%; intraday range 1.366%.",
+    "source_name": "Taking Stock: Market climbs for fourth straight day; Nifty reclaims 24,700, Sensex jumps 544 pts — primary contemporaneous market/event source. Published: 2026-08-03 16:13 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-climbs-for-fourth-straight-day-nifty-reclaims-24-700-sensex-jumps-544-pts-13992460.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "ca85071c3b8e2673a0c177e8fd170082493de7c5e27ef932a7fd5c611d610018",
+      "sources": [
+        {
+          "title": "Taking Stock: Market climbs for fourth straight day; Nifty reclaims 24,700, Sensex jumps 544 pts — primary contemporaneous market/event source. Published: 2026-08-03 16:13 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-climbs-for-fourth-straight-day-nifty-reclaims-24-700-sensex-jumps-544-pts-13992460.html",
+          "publication_text": "2026-08-03 16:13 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "36ac3c49c76d4acb085dccc0e655e79afc8836f8ff36b3c88411c21dda61cd80"
+  },
+  {
+    "event_id": "687450e9289120042757d690",
+    "session_date": "2026-08-04",
+    "event_category": "NSE_MARKET_STRUCTURE",
+    "event_tags": [
+      "profit-booking",
+      "rbi-eve",
+      "expiry",
+      "cas-distortion"
+    ],
+    "headline_or_summary": "Profit booking after a four-day rally, derivatives expiry and caution ahead of the RBI decision pressured the market. Bank Nifty also declined. The new Closing Auction Session materially altered the official Nifty settlement, so the close contains auction microstructure noise.",
+    "known_at": null,
+    "published_at": "2026-08-04T16:09:00+05:30",
+    "first_seen_at": "2026-08-04T16:09:00+05:30",
+    "knowledge_phase": "CLOSING_AUCTION",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "STRUCTURAL",
+    "observed_banknifty_response": "Close -0.585%; intraday range 1.230%.",
+    "source_name": "Taking Stock: Market snaps four-day winning streak; all eyes on RBI policy — primary contemporaneous market/event source. Published: 2026-08-04 16:09 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-snaps-four-day-winning-streak-all-eyes-on-rbi-policy-13993687.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "ffd3fe0ba88475f427385da866a3cc182d727aba47d1fd3caed05ed2c8bca87e",
+      "sources": [
+        {
+          "title": "Taking Stock: Market snaps four-day winning streak; all eyes on RBI policy — primary contemporaneous market/event source. Published: 2026-08-04 16:09 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-snaps-four-day-winning-streak-all-eyes-on-rbi-policy-13993687.html",
+          "publication_text": "2026-08-04 16:09 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "cd6479ced8c931c3c823e7277e68dd80fadf6841142f91973d93db1a179d8b10"
+  },
+  {
+    "event_id": "07b8a97116c6a295798e6638",
+    "session_date": "2026-08-05",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi-policy",
+      "rates-hold",
+      "hormuz-risk",
+      "late-fade",
+      "scheduled-event"
+    ],
+    "headline_or_summary": "**Intraday structure / timing:** 10:50 IST: RBI decision published",
+    "known_at": "2026-08-05T10:50:00+05:30",
+    "published_at": "2026-08-05T10:50:00+05:30",
+    "first_seen_at": "2026-08-05T10:50:00+05:30",
+    "knowledge_phase": "SCHEDULED_POLICY_WINDOW",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.289%; intraday range 0.821%.",
+    "source_name": "RBI keeps repo rate unchanged at 5.25%, maintains 'neutral' stance — primary contemporaneous market/event source. Published: 2026-08-05 10:50 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/banks/rbi-keeps-repo-rate-unchanged-at-5-25-maintains-neutral-stance-13994843.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "9b5b4f62edece506546e6f9e3f22275d6362e5f55138311ba4f8caa9d8914199",
+      "sources": [
+        {
+          "title": "RBI keeps repo rate unchanged at 5.25%, maintains 'neutral' stance — primary contemporaneous market/event source. Published: 2026-08-05 10:50 IST.",
+          "url": "https://www.moneycontrol.com/news/business/banks/rbi-keeps-repo-rate-unchanged-at-5-25-maintains-neutral-stance-13994843.html",
+          "publication_text": "2026-08-05 10:50 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — RBI repo unchanged at 5.25%, 10:50 IST",
+          "url": "https://www.moneycontrol.com/news/business/banks/rbi-keeps-repo-rate-unchanged-at-5-25-maintains-neutral-stance-13994843.html",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — late-session geopolitical reversal",
+          "url": "https://www.moneycontrol.com/news/business/markets/sensex-down-400-pts-from-day-s-high-nifty-below-24-600-3-key-reasons-behind-market-paring-gains-13994854.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": true,
+    "content_hash": "50401ada328889692c67a68768f28990107af8af318ec993a121cf1e9370f85b"
+  },
+  {
+    "event_id": "b3efee5279c36bfeabc64fed",
+    "session_date": "2026-08-06",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "psu-bank-rally",
+      "financial-strength",
+      "mixed-market"
+    ],
+    "headline_or_summary": "Strong PSU-bank buying supported the session while other sectors were mixed. Bank Nifty gained about 0.6%, consistent with financial-sector strength rather than a single macro surprise.",
+    "known_at": null,
+    "published_at": "2026-08-06T16:29:00+05:30",
+    "first_seen_at": "2026-08-06T16:29:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.561%; intraday range 0.627%.",
+    "source_name": "Taking Stock: Nifty ends above 24,600, Sensex gains 374 pts; PSU Banks lead — primary contemporaneous market/event source. Published: 2026-08-06 16:29 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-ends-above-24-600-sensex-gains-374-pts-psu-banks-lead-13996562.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "b806dfad7f20b575d24e5c9892c674325e6cc542fe948d3b4f1aad8adae4bde5",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty ends above 24,600, Sensex gains 374 pts; PSU Banks lead — primary contemporaneous market/event source. Published: 2026-08-06 16:29 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-ends-above-24-600-sensex-gains-374-pts-psu-banks-lead-13996562.html",
+          "publication_text": "2026-08-06 16:29 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "5b6ca16e78dbc8b152541fd70b113ccd2fbe6e57bc25a49a15ed82db21cc52a3"
+  },
+  {
+    "event_id": "4e796da5cd7a89eba5e1b59c",
+    "session_date": "2026-08-07",
+    "event_category": "INTEREST_RATES",
+    "event_tags": [
+      "profit-booking",
+      "private-bank-weakness",
+      "higher-yields",
+      "crude"
+    ],
+    "headline_or_summary": "Profit booking followed the recent rally; private banks lagged while crude near $82, higher US yields and weak global cues limited risk appetite. Bank Nifty fell about 0.55% despite modest institutional net buying.",
+    "known_at": null,
+    "published_at": "2026-08-07T21:58:00+05:30",
+    "first_seen_at": "2026-08-07T21:58:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close -0.546%; intraday range 0.530%.",
+    "source_name": "FIIs buy shares worth Rs 480 crore; DIIs invest Rs 236 crore on August 7 — primary contemporaneous market/event source. Published: 2026-08-07 21:58 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/fiis-buy-shares-worth-rs-480-crore-diis-invest-rs-236-crore-on-august-7-13998376.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "39a0fbd3984e6fea1d6320ed488de94dc2dbd4f0c0ea5b961a45d9ea4269aab8",
+      "sources": [
+        {
+          "title": "FIIs buy shares worth Rs 480 crore; DIIs invest Rs 236 crore on August 7 — primary contemporaneous market/event source. Published: 2026-08-07 21:58 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/fiis-buy-shares-worth-rs-480-crore-diis-invest-rs-236-crore-on-august-7-13998376.html",
+          "publication_text": "2026-08-07 21:58 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "dae347f12079f05dd4ab27f9ec97b876fcf3e145f914583a5308c3ce6a2cb401"
+  },
+  {
+    "event_id": "dd2f977868d69fc377a41f05",
+    "session_date": "2026-08-10",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "range-bound",
+      "softer-us-jobs",
+      "crude-offset",
+      "psu-bank-drag"
+    ],
+    "headline_or_summary": "Softer US jobs data eased rate fears, but higher crude and caution offset that support. PSU banks/SBI profit booking weighed on the banking complex; Bank Nifty finished slightly lower.",
+    "known_at": null,
+    "published_at": "2026-08-10T16:15:00+05:30",
+    "first_seen_at": "2026-08-10T16:15:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.103%; intraday range 0.845%.",
+    "source_name": "Taking Stock: Sensex, Nifty end flat in rangebound trade; realty shines, PSU banks drag — primary contemporaneous market/event source. Published: 2026-08-10 16:15 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-end-flat-in-rangebound-trade-realty-shines-psu-banks-drag-14000264.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "49d9f293a0d0a7d0920073b8734f33920ea3b9f719906a8942e3935d429c8794",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex, Nifty end flat in rangebound trade; realty shines, PSU banks drag — primary contemporaneous market/event source. Published: 2026-08-10 16:15 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-end-flat-in-rangebound-trade-realty-shines-psu-banks-drag-14000264.html",
+          "publication_text": "2026-08-10 16:15 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "87fac7dde60927a1f7d243afa41f8aac30bffa7661e3f73e5dd3c130e7b5dce5"
+  },
+  {
+    "event_id": "1b7839d78c04acc8ecc0d64e",
+    "session_date": "2026-08-11",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "financial-selling",
+      "crude",
+      "geopolitics",
+      "rupee-weakness"
+    ],
+    "headline_or_summary": "Sharp selling in financials combined with elevated crude and geopolitical uncertainty. This is directly relevant to Bank Nifty, which fell about 0.4% and spent most of the session under pressure.",
+    "known_at": null,
+    "published_at": "2026-08-11T16:01:00+05:30",
+    "first_seen_at": "2026-08-11T16:01:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.417%; intraday range 0.779%.",
+    "source_name": "Taking Stock: Sensex sheds 388 pts, Nifty slips below 24,500; mid, smallcaps outperform — primary contemporaneous market/event source. Published: 2026-08-11 16:01 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-sheds-388-pts-nifty-slips-below-24-500-mid-smallcaps-outperform-14001581.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "c7415e6ad43b835b67539ec487b4cd4a1da90d35e1f3be7aeb4fc5cf3e0d1588",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex sheds 388 pts, Nifty slips below 24,500; mid, smallcaps outperform — primary contemporaneous market/event source. Published: 2026-08-11 16:01 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-sheds-388-pts-nifty-slips-below-24-500-mid-smallcaps-outperform-14001581.html",
+          "publication_text": "2026-08-11 16:01 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "0fbd9627255743271862d4e54a441d8a0c0e208007ee5a0254e7002be46f3181"
+  },
+  {
+    "event_id": "b9e077220bcd04445f294b78",
+    "session_date": "2026-08-12",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "tata-leadership",
+      "bank-relative-strength",
+      "psu-bank-rally",
+      "divergence"
+    ],
+    "headline_or_summary": "The broad market fell on the Tata Sons leadership shock and crude risk, but Bank Nifty rose about 0.8%. PSU banks rallied roughly 2%, so the banking index diverged materially from the Tata-led headline decline.",
+    "known_at": null,
+    "published_at": "2026-08-12T16:04:00+05:30",
+    "first_seen_at": "2026-08-12T16:04:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close +0.765%; intraday range 1.100%.",
+    "source_name": "Taking Stock: Sensex falls 188 pts, Nifty below 24,450; Tata group stocks drag after Chandrasekaran's exit — primary contemporaneous market/event source. Published: 2026-08-12 16:04 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-falls-188-pts-nifty-below-24-450-tata-stocks-drag-after-chandrasekaran-exit-14003327.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "0e097dfcd38e5ec0398860006a39b1eb37b20248a7f0e2edb96878b490e60a9d",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex falls 188 pts, Nifty below 24,450; Tata group stocks drag after Chandrasekaran's exit — primary contemporaneous market/event source. Published: 2026-08-12 16:04 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-falls-188-pts-nifty-below-24-450-tata-stocks-drag-after-chandrasekaran-exit-14003327.html",
+          "publication_text": "2026-08-12 16:04 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "f292de9dd19df5b27f0d10b059534f93fa4cf7b7731f8838242efb60e8849708"
+  },
+  {
+    "event_id": "29f3ffeda08925a9422a1d0c",
+    "session_date": "2026-08-13",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude",
+      "geopolitical-risk",
+      "bank-weakness",
+      "cas-effect"
+    ],
+    "headline_or_summary": "Elevated crude and geopolitical uncertainty kept the market cautious. Bank Nifty fell about 0.4%. The official headline close was also influenced by the closing auction, so continuous-session and CAS prices should be separated in any learning pipeline.",
+    "known_at": null,
+    "published_at": "2026-08-13T16:54:00+05:30",
+    "first_seen_at": "2026-08-13T16:54:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.433%; intraday range 0.433%.",
+    "source_name": "Sensex ends 100 pts higher, Nifty closes near 24,400; Tata stocks steady, metal drags — primary contemporaneous market/event source. Published: 2026-08-13 16:54 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/sensex-ends-100-pts-higher-nifty-closes-near-24-400-tata-stocks-steady-metal-drags-14004641.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "ecb46aa9c3ee9fa1d57afe354c9c1f6bfa1211ff659ab19cc83fbe7ad2403daa",
+      "sources": [
+        {
+          "title": "Sensex ends 100 pts higher, Nifty closes near 24,400; Tata stocks steady, metal drags — primary contemporaneous market/event source. Published: 2026-08-13 16:54 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/sensex-ends-100-pts-higher-nifty-closes-near-24-400-tata-stocks-steady-metal-drags-14004641.html",
+          "publication_text": "2026-08-13 16:54 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "2b58c3540c8370eb9f7a67494b43a292f28d7ea6f1da653a2d4ff7d1533d377a"
+  },
+  {
+    "event_id": "53af356cbc40bf04f6271bf5",
+    "session_date": "2026-08-14",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude",
+      "geopolitics",
+      "partial-recovery",
+      "bank-resilience"
+    ],
+    "headline_or_summary": "Continued caution over elevated crude and geopolitics produced a fourth broad-market decline. Bank Nifty slipped only modestly, indicating financials were not the main source of selling.",
+    "known_at": null,
+    "published_at": "2026-08-14T16:00:00+05:30",
+    "first_seen_at": "2026-08-14T16:00:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.250%; intraday range 0.522%.",
+    "source_name": "Taking Stock: Nifty at 24,360, Sensex down 70 pts; media, telecom stocks rally — primary contemporaneous market/event source. Published: 2026-08-14 16:00 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-at-24-360-sensex-down-70-pts-media-telecom-stocks-rally-14005699.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "b5a42b3e9c3a643cea276976c9fc26f6e52708701428d1079403e64174f82e95",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty at 24,360, Sensex down 70 pts; media, telecom stocks rally — primary contemporaneous market/event source. Published: 2026-08-14 16:00 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-at-24-360-sensex-down-70-pts-media-telecom-stocks-rally-14005699.html",
+          "publication_text": "2026-08-14 16:00 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "8a651a84d32691f29a1ebd2fb9d8c251b4a38f111e6b76c14d85d5b3914e4e78"
+  },
+  {
+    "event_id": "b30c2fe44f7b9fb54b05d653",
+    "session_date": "2026-08-17",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "afternoon-recovery",
+      "value-buying",
+      "vix-easing",
+      "bank-resilience"
+    ],
+    "headline_or_summary": "14:33 IST market-recovery article cited value buying and easing VIX as the market bounced from the day's lows",
+    "known_at": "2026-08-17T14:33:00+05:30",
+    "published_at": "2026-08-17T16:09:00+05:30",
+    "first_seen_at": "2026-08-17T14:33:00+05:30",
+    "knowledge_phase": "FINAL_HOUR",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A-",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.012%; intraday range 1.109%.",
+    "source_name": "Taking Stock: Nifty below 24,300, Sensex slips 280 pts; metal, realty outperform — primary contemporaneous market/event source. Published: 2026-08-17 16:09 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-below-24-300-sensex-slips-280-pts-metal-realty-outperform-14007753.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "c4f7ae5eedd753dc7e23a39b13bdc4043166af8b4d147d5079fcf88f116ffe67",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty below 24,300, Sensex slips 280 pts; metal, realty outperform — primary contemporaneous market/event source. Published: 2026-08-17 16:09 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-below-24-300-sensex-slips-280-pts-metal-realty-outperform-14007753.html",
+          "publication_text": "2026-08-17 16:09 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — 14:33 recovery from lows on value buying/easing VIX",
+          "url": "https://www.moneycontrol.com/news/business/markets/sensex-rises-250-pts-from-day-s-low-nifty-above-24-300-key-reasons-behind-markets-paring-losses-14007504.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "7bd85f1284dd65a9a86f4da3b184e375301bc5d578a8b83e7d269877dab66913"
+  },
+  {
+    "event_id": "003f397c72e99b43654371a2",
+    "session_date": "2026-08-18",
+    "event_category": "INFLATION",
+    "event_tags": [
+      "crude-above-91",
+      "iran-us",
+      "gap-down",
+      "rupee-pressure"
+    ],
+    "headline_or_summary": "Brent climbed above $91 as the temporary US-Iran ceasefire expired and tensions rose; the rupee also weakened. Bank Nifty fell about 0.4%, consistent with renewed inflation/rate/current-account concerns.",
+    "known_at": "2026-08-18T09:15:00+05:30",
+    "published_at": "2026-08-18T15:54:00+05:30",
+    "first_seen_at": "2026-08-18T09:15:00+05:30",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close -0.409%; intraday range 0.638%.",
+    "source_name": "Taking Stock: Nifty ends near 24,150, Sensex dips 493 pts; IT, realty stocks drag — primary contemporaneous market/event source. Published: 2026-08-18 15:54 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-ends-near-24-150-sensex-dips-493-pts-it-realty-stocks-drag-14009224.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "216590beac5ce46e875d06371b20145ef51f091fed4409d4e61745754a24094b",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty ends near 24,150, Sensex dips 493 pts; IT, realty stocks drag — primary contemporaneous market/event source. Published: 2026-08-18 15:54 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-ends-near-24-150-sensex-dips-493-pts-it-realty-stocks-drag-14009224.html",
+          "publication_text": "2026-08-18 15:54 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "619606423bb96729c446668b896fc5966a92894bdecdee74e5b4b6d281cf9fab"
+  },
+  {
+    "event_id": "4a5a316bbfdc2919fda031ee",
+    "session_date": "2026-08-19",
+    "event_category": "INTEREST_RATES",
+    "event_tags": [
+      "bond-yields",
+      "crude",
+      "global-risk",
+      "bank-resilience",
+      "no-clear-bank-trigger"
+    ],
+    "headline_or_summary": "Elevated crude, higher global bond yields and global uncertainty drove broad risk aversion, but Bank Nifty finished almost flat. The evidence does not support attributing a meaningful bank move to a discrete headline.",
+    "known_at": null,
+    "published_at": "2026-08-19T15:56:00+05:30",
+    "first_seen_at": "2026-08-19T15:56:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_LEVEL_ONLY",
+    "causal_evidence_grade": "C",
+    "source_quality": "LIMITED_CAUSALITY",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.040%; intraday range 0.620%.",
+    "source_name": "Taking Stock: Bears tighten control; Nifty below 24,100, Sensex down 326 pts as defence, energy stocks drag — primary contemporaneous market/event source. Published: 2026-08-19 15:56 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-bears-tighten-control-nifty-below-24-100-sensex-down-326-pts-as-defence-energy-stocks-drag-14010354.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "2b3d91f41ffdb67774698b1471694293509e59f0e808ac7a100834c4e5acee5d",
+      "sources": [
+        {
+          "title": "Taking Stock: Bears tighten control; Nifty below 24,100, Sensex down 326 pts as defence, energy stocks drag — primary contemporaneous market/event source. Published: 2026-08-19 15:56 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-bears-tighten-control-nifty-below-24-100-sensex-down-326-pts-as-defence-energy-stocks-drag-14010354.html",
+          "publication_text": "2026-08-19 15:56 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "31e0f0ef4a2e4858b8a5083c2ea555c0166e66317f519c4b9ed5bbeefe517042"
+  },
+  {
+    "event_id": "f411ac15cc791d81bc8ebb01",
+    "session_date": "2026-08-20",
+    "event_category": "INTEREST_RATES",
+    "event_tags": [
+      "us-yields-ease",
+      "relief-rally",
+      "financial-buying",
+      "gap-up"
+    ],
+    "headline_or_summary": "Easing US Treasury yields and positive global cues triggered a relief rally after seven losing sessions. Financials were among the leaders and Bank Nifty gained about 0.45%.",
+    "known_at": null,
+    "published_at": "2026-08-20T16:01:00+05:30",
+    "first_seen_at": "2026-08-20T16:01:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.448%; intraday range 0.474%.",
+    "source_name": "Taking Stock: Nifty snaps 7-day losing streak, reclaims 24,200, Sensex jumps 628 pts — primary contemporaneous market/event source. Published: 2026-08-20 16:01 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-snaps-7-day-losing-streak-reclaims-24-200-sensex-jumps-628-pts-14011339.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "47591c722302cb20b08eaa5df4d30a01f03dd1300b888d9290a2eb01e7f122f3",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty snaps 7-day losing streak, reclaims 24,200, Sensex jumps 628 pts — primary contemporaneous market/event source. Published: 2026-08-20 16:01 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-snaps-7-day-losing-streak-reclaims-24-200-sensex-jumps-628-pts-14011339.html",
+          "publication_text": "2026-08-20 16:01 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "0faaeb92949d2b1a97a1711f1cc7571e71032a4e23297fadb6b6c24c758c29eb"
+  },
+  {
+    "event_id": "6f77f4b55b462d3744dc357e",
+    "session_date": "2026-08-21",
+    "event_category": "INTEREST_RATES",
+    "event_tags": [
+      "range-bound",
+      "crude",
+      "bond-yields",
+      "bank-relative-strength"
+    ],
+    "headline_or_summary": "**Intraday structure / timing:** 10:18 IST reporting already described the market as flat amid crude and bond-yield pressure",
+    "known_at": "2026-08-21T10:18:00+05:30",
+    "published_at": "2026-08-21T16:31:00+05:30",
+    "first_seen_at": "2026-08-21T10:18:00+05:30",
+    "knowledge_phase": "OPENING_HOUR",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.463%; intraday range 0.506%.",
+    "source_name": "Taking Stock: Sensex, Nifty flat in rangebound session; smallcaps outshine — primary contemporaneous market/event source. Published: 2026-08-21 16:31 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-flat-in-rangebound-session-smallcaps-outshine-14012362.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "MINUTE_DATA_UNAVAILABLE"
+    },
+    "source_metadata": {
+      "daily_checksum": "f0796df7d85dabcbb141f0a494fbb925c958fc0e8ab709adb4a38be346b260fc",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex, Nifty flat in rangebound session; smallcaps outshine — primary contemporaneous market/event source. Published: 2026-08-21 16:31 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-nifty-flat-in-rangebound-session-smallcaps-outshine-14012362.html",
+          "publication_text": "2026-08-21 16:31 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "a2d75eefc9c42f8b82c88e1988bb1b67a0bc97919433058b245343fd7c5bc460"
+  },
+  {
+    "event_id": "3dab17e1a3c5897c1532ccf1",
+    "session_date": "2026-08-24",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "iran-sanctions",
+      "crude",
+      "afternoon-reversal",
+      "psu-bank-drag"
+    ],
+    "headline_or_summary": "Early optimism faded as traders reduced risk ahead of possible new US sanctions on Iran and with crude still elevated. Bank Nifty fell about 0.4%, matching the afternoon reversal.",
+    "known_at": null,
+    "published_at": "2026-08-24T16:07:00+05:30",
+    "first_seen_at": "2026-08-24T16:07:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A-",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.409%; intraday range 1.087%.",
+    "source_name": "Taking Stock: Sensex falls 172 pts, Nifty ends below 24,250; PSU Banks drag, metal, realty outperform — primary contemporaneous market/event source. Published: 2026-08-24 16:07 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-falls-172-pts-nifty-ends-below-24-250-psu-banks-drag-metal-realty-outperform-14013922.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "3cf109676e6d804f0af9a605b61e69290c79a7924a813bf51dfe967b98cf58c8",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex falls 172 pts, Nifty ends below 24,250; PSU Banks drag, metal, realty outperform — primary contemporaneous market/event source. Published: 2026-08-24 16:07 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-falls-172-pts-nifty-ends-below-24-250-psu-banks-drag-metal-realty-outperform-14013922.html",
+          "publication_text": "2026-08-24 16:07 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "57c16799704b2ced703e30a88947326897934ad9bada66c026d3feba16f01cce"
+  },
+  {
+    "event_id": "37ac9552c3d552dd34005bb4",
+    "session_date": "2026-08-25",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "monthly-expiry",
+      "final-hour-buying",
+      "crude-easing",
+      "rupee-firmer",
+      "bank-flat"
+    ],
+    "headline_or_summary": "Monthly derivatives expiry created positioning noise. The market opened lower, then final-hour buying was helped by easing crude and a firmer rupee. Bank Nifty ended almost unchanged because private banks lagged even as PSU banks improved.",
+    "known_at": null,
+    "published_at": "2026-08-25T15:52:00+05:30",
+    "first_seen_at": "2026-08-25T15:52:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A-",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "MIXED",
+    "observed_banknifty_response": "Close -0.020%; intraday range 0.735%.",
+    "source_name": "Taking Stock: Sensex jumps 287 pts, Nifty reclaims 24,300 on expiry day; pharma, PSU banks lead rally — primary contemporaneous market/event source. Published: 2026-08-25 15:52 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-jumps-287-pts-nifty-reclaims-24-300-on-expiry-day-pharma-psu-banks-lead-rally-14014959.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "fd82177f6836c3228e730b80969d46aae9ce42a9e18052a7e1832cb5e79cacb0",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex jumps 287 pts, Nifty reclaims 24,300 on expiry day; pharma, PSU banks lead rally — primary contemporaneous market/event source. Published: 2026-08-25 15:52 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-jumps-287-pts-nifty-reclaims-24-300-on-expiry-day-pharma-psu-banks-lead-rally-14014959.html",
+          "publication_text": "2026-08-25 15:52 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "3cc064ec4a5f186010b0f223e3e2e0f9a465eb119b847d63ef51f63f56ecbc32"
+  },
+  {
+    "event_id": "bcc324d82269b13adef8b6bb",
+    "session_date": "2026-08-26",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "private-bank-strength",
+      "new-fo-series",
+      "settlement-holiday",
+      "divergence"
+    ],
+    "headline_or_summary": "Broad equities gave up gains in afternoon selling, but private banks rallied more than 1%, allowing Bank Nifty to finish about 0.47% higher. This was a settlement holiday, not a trading holiday, so normal equity trading occurred.",
+    "known_at": null,
+    "published_at": "2026-08-26T16:00:00+05:30",
+    "first_seen_at": "2026-08-26T16:00:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A-",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close +0.469%; intraday range 0.668%.",
+    "source_name": "Taking Stock: Nifty starts Sept series below 24,250; Sensex falls 183 points — primary contemporaneous market/event source. Published: 2026-08-26 16:00 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-starts-sept-series-below-24-250-sensex-falls-183-points-14015907.html",
+    "special_flags": [
+      "SETTLEMENT_HOLIDAY_BUT_TRADING_OPEN",
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "5462d70e9a54d2790b806b0291eb0ef9517023afe8b21b03ea2da66d6ae9dce4",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty starts Sept series below 24,250; Sensex falls 183 points — primary contemporaneous market/event source. Published: 2026-08-26 16:00 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-starts-sept-series-below-24-250-sensex-falls-183-points-14015907.html",
+          "publication_text": "2026-08-26 16:00 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Zerodha — settlement holiday, trading remained open",
+          "url": "https://zerodha.com/marketintel/bulletin/455995/settlement-holiday-on-account-of-id-e-milad-on-august-26-2026",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "e657edbad6cf1d9ee75ac963f17b8779eb7f31b7c789b07ff94a3b57182f8fd6"
+  },
+  {
+    "event_id": "20c9f78cae5a0820a029e3ec",
+    "session_date": "2026-08-27",
+    "event_category": "OTHER_RELEVANT",
+    "event_tags": [
+      "failed-open",
+      "psu-bank-weakness",
+      "broad-selling",
+      "no-single-trigger"
+    ],
+    "headline_or_summary": "Opening gains failed and selling spread across media, metals, oil & gas and PSU banks. Bank Nifty also declined about 0.47%. No single verified surprise headline was isolated, so classify this as broad risk/positioning flow.",
+    "known_at": null,
+    "published_at": "2026-08-27T15:56:00+05:30",
+    "first_seen_at": "2026-08-27T15:56:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_LEVEL_ONLY",
+    "causal_evidence_grade": "C+",
+    "source_quality": "LIMITED_CAUSALITY",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.474%; intraday range 0.870%.",
+    "source_name": "Taking Stock: Market extends losses; Nifty below 24,100, Sensex dips 539 points — primary contemporaneous market/event source. Published: 2026-08-27 15:56 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-extends-losses-nifty-below-24-100-sensex-dips-539-points-14016814.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "8bff39824141508fd2c87e4e7897b8414316829f4061cc1301ae6eb0b90a3991",
+      "sources": [
+        {
+          "title": "Taking Stock: Market extends losses; Nifty below 24,100, Sensex dips 539 points — primary contemporaneous market/event source. Published: 2026-08-27 15:56 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-extends-losses-nifty-below-24-100-sensex-dips-539-points-14016814.html",
+          "publication_text": "2026-08-27 15:56 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "e3faa2dee220275b344b32ece31996f05a2f9fa428c18d0efe6d4ff5ce055006"
+  },
+  {
+    "event_id": "813c41cd49b9b321548f4d32",
+    "session_date": "2026-08-28",
+    "event_category": "FED",
+    "event_tags": [
+      "positive-global-cues",
+      "jackson-hole",
+      "it-led",
+      "bank-flat"
+    ],
+    "headline_or_summary": "Positive global cues and an IT-led rebound lifted the broad market, while attention shifted to Fed Chair Kevin Warsh at Jackson Hole. Bank Nifty was nearly flat, so this was not a banking-driven rally.",
+    "known_at": null,
+    "published_at": "2026-08-28T16:10:00+05:30",
+    "first_seen_at": "2026-08-28T16:10:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close -0.024%; intraday range 0.578%.",
+    "source_name": "Taking Stock: Market bounces back; Sensex gains 331 points, Nifty climbs above 24,150 — primary contemporaneous market/event source. Published: 2026-08-28 16:10 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-bounces-back-sensex-gains-331-points-nifty-climbs-above-24-150-14017590.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "9156fcf4b9e7cf5b2c922420674f71d5c8e18aa2412f3195384f8a4b3d73b7ee",
+      "sources": [
+        {
+          "title": "Taking Stock: Market bounces back; Sensex gains 331 points, Nifty climbs above 24,150 — primary contemporaneous market/event source. Published: 2026-08-28 16:10 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-bounces-back-sensex-gains-331-points-nifty-climbs-above-24-150-14017590.html",
+          "publication_text": "2026-08-28 16:10 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "635b2afc0aa3290c0e756771340fee8ff1c7cefa2ae24865bac1c847599b7eca"
+  },
+  {
+    "event_id": "a6765e092f02f7f402943425",
+    "session_date": "2026-08-31",
+    "event_category": "NSE_MARKET_STRUCTURE",
+    "event_tags": [
+      "cas-distortion",
+      "msci-rebalance",
+      "auction-flow",
+      "bank-outperformance",
+      "timed-structural-event"
+    ],
+    "headline_or_summary": "**Intraday structure / timing:** 15:14 IST live update had Bank Nifty around 57,428 and slightly negative",
+    "known_at": "2026-08-31T15:14:00+05:30",
+    "published_at": "2026-08-31T16:10:00+05:30",
+    "first_seen_at": "2026-08-31T16:10:00+05:30",
+    "knowledge_phase": "CLOSING_AUCTION",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "STRUCTURAL",
+    "observed_banknifty_response": "Close +0.919%; intraday range 1.457%.",
+    "source_name": "CAS candle: Bank Nifty closes nearly 1% higher, reclaims 58,000; Federal, IDFC First Bank lead gains — primary contemporaneous market/event source. Published: 2026-08-31 16:10 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/cas-candle-bank-nifty-closes-nearly-1-higher-reclaims-58-000-federal-idfc-first-bank-lead-gains-14019031.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA",
+      "CAS_DISTORTION_REQUIRES_SEGREGATION"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_AVAILABLE",
+      "reference_at": "2026-08-31T15:14:00+05:30",
+      "reference_price": 57402.44921875,
+      "returns": {
+        "5": -8.880555306227066e-05,
+        "10": -8.880555306227066e-05,
+        "20": null,
+        "30": null
+      },
+      "big_move": {
+        "10": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-08-31T15:14:00+05:30",
+          "horizon_minutes": 10,
+          "expiry_at": "2026-08-31T15:24:00+05:30",
+          "reference_price": "57402.44921875",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.0015",
+          "max_future_high": "57397.3515625",
+          "min_future_low": "57397.3515625",
+          "maximum_up_excursion": "0",
+          "maximum_down_excursion": "0.0000888055530622706579579609",
+          "maximum_favorable_excursion": "0.0000888055530622706579579609",
+          "maximum_adverse_excursion": "0",
+          "close_return_at_horizon": "-0.0000888055530622706579579609",
+          "realized_range": "0E+1",
+          "first_barrier": null,
+          "first_barrier_at": null,
+          "label": "NO_BIG_MOVE",
+          "quality_status": "VALID"
+        },
+        "20": {
+          "label": "UNKNOWN",
+          "quality_status": "OUTSIDE_SESSION"
+        },
+        "30": {
+          "label": "UNKNOWN",
+          "quality_status": "OUTSIDE_SESSION"
+        }
+      },
+      "max_up_excursion": 0.010844485008431763,
+      "max_down_excursion": -8.880555306227066e-05,
+      "volatility_expansion": 0.0
+    },
+    "source_metadata": {
+      "daily_checksum": "ab72cf6edd0bc098b7e6082d7df4154f8ff3fdeb05cbf61b6fafe840ecd4b325",
+      "sources": [
+        {
+          "title": "CAS candle: Bank Nifty closes nearly 1% higher, reclaims 58,000; Federal, IDFC First Bank lead gains — primary contemporaneous market/event source. Published: 2026-08-31 16:10 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/cas-candle-bank-nifty-closes-nearly-1-higher-reclaims-58-000-federal-idfc-first-bank-lead-gains-14019031.html",
+          "publication_text": "2026-08-31 16:10 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — MSCI rebalance drove exceptional closing-auction volumes",
+          "url": "https://www.reuters.com/world/india/indias-new-stock-closing-auction-faces-first-major-test-msci-rejig-2026-08-31/",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol live blog — Bank Nifty around 57,428 at 15:14 before CAS",
+          "url": "https://hindi.moneycontrol.com/news/markets/stock-market-today-live-updates-sensex-nifty-50-tcs-tech-mahindra-share-prices-august-31-2026-liveblog-2435660.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "348418e662d14008b5d9d990434d53268fd2301700bfca0e0e5b84fc5dd79e08"
+  },
+  {
+    "event_id": "7d22b3d2e94a71f0f3f56a6c",
+    "session_date": "2026-09-01",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "cas-unwind",
+      "bank-selling",
+      "crude",
+      "mechanical-reversal"
+    ],
+    "headline_or_summary": "Bank Nifty dropped about 1.06%, effectively reversing the prior day's auction-driven spike. Banking shares were weak and crude remained elevated; this is best interpreted as both fundamental pressure and mechanical normalization after CAS distortion.",
+    "known_at": null,
+    "published_at": "2026-09-01T16:37:00+05:30",
+    "first_seen_at": "2026-09-01T16:37:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "Close -1.060%; intraday range 1.061%.",
+    "source_name": "Taking Stock: Nifty manages to hold above 24,000 amid volatility; broader indices underperform — primary contemporaneous market/event source. Published: 2026-09-01 16:37 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/taking-stock-nifty-manages-to-hold-above-24-000-amid-volatility-broader-indices-underperform-14019848.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA",
+      "CAS_DISTORTION_REQUIRES_SEGREGATION"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "009b45a067e20809c32f636ab20648adabee4dd7c2f8d9be2f49fea6e0ccb22a",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty manages to hold above 24,000 amid volatility; broader indices underperform — primary contemporaneous market/event source. Published: 2026-09-01 16:37 IST.",
+          "url": "https://www.moneycontrol.com/news/business/taking-stock-nifty-manages-to-hold-above-24-000-amid-volatility-broader-indices-underperform-14019848.html",
+          "publication_text": "2026-09-01 16:37 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "36404d94cd156d8a094d1966aeb10dc9a7f8754e3a60e641a49b13e2d6c926b2"
+  },
+  {
+    "event_id": "d79c3a3335520db6c2402d78",
+    "session_date": "2026-09-02",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "us-iran",
+      "crude-surge",
+      "gap-down",
+      "cas-recovery"
+    ],
+    "headline_or_summary": "Escalation in West Asia and fresh US strikes on Iran pushed Brent toward the mid-$90s, hurting India risk sentiment. Bank Nifty fell about 0.41% but recovered from its low with the broader market.",
+    "known_at": null,
+    "published_at": "2026-09-02T16:02:00+05:30",
+    "first_seen_at": "2026-09-02T16:02:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.414%; intraday range 0.693%.",
+    "source_name": "Taking Stock: Sensex down 374 pts; Nifty manages to close above 23,900 after CAS — primary contemporaneous market/event source. Published: 2026-09-02 16:02 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-down-374-pts-nifty-manages-to-close-above-23-900-after-cas-14020867.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "2abfa50dd02dba65c8468d8a125e63912953ac2ca06c4e778378d6ee1f0f2ca9",
+      "sources": [
+        {
+          "title": "Taking Stock: Sensex down 374 pts; Nifty manages to close above 23,900 after CAS — primary contemporaneous market/event source. Published: 2026-09-02 16:02 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-sensex-down-374-pts-nifty-manages-to-close-above-23-900-after-cas-14020867.html",
+          "publication_text": "2026-09-02 16:02 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "bfb8dd20f90cc279d0bfd024dc896249743cd8294374d6dc3964cb9228cc25c3"
+  },
+  {
+    "event_id": "e41f6abd30103000d3e7ac56",
+    "session_date": "2026-09-03",
+    "event_category": "RBI",
+    "event_tags": [
+      "bank-relative-strength",
+      "soft-crude",
+      "rupee-strength",
+      "liquidity-context"
+    ],
+    "headline_or_summary": "The headline market gave up early gains, but banking stocks were relatively strong and Bank Nifty rose about 0.36%. Softer crude and positive global cues helped the open; RBI liquidity/FX-swap discussions and a stronger rupee were contextual positives, but the available evidence does not prove they caused the bank gain.",
+    "known_at": null,
+    "published_at": "2026-09-03T16:10:00+05:30",
+    "first_seen_at": "2026-09-03T16:10:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B-",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.365%; intraday range 0.652%.",
+    "source_name": "Taking Stock: Market extends fall on fourth day; Sensex down 417 pts, Nifty below 23,900 — primary contemporaneous market/event source. Published: 2026-09-03 16:10 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-extends-fall-on-fourth-day-sensex-down-417-pts-nifty-below-23-900-14021746.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "8d768825ad0581cadb4a09d066adb71d0832ef0d7f41cf14f44dc27386abb070",
+      "sources": [
+        {
+          "title": "Taking Stock: Market extends fall on fourth day; Sensex down 417 pts, Nifty below 23,900 — primary contemporaneous market/event source. Published: 2026-09-03 16:10 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-extends-fall-on-fourth-day-sensex-down-417-pts-nifty-below-23-900-14021746.html",
+          "publication_text": "2026-09-03 16:10 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — bank liquidity/FX-swap context",
+          "url": "https://www.reuters.com/world/india/indian-banks-pitch-fx-sellbuy-swaps-drain-surplus-liquidity-sources-say-2026-09-03/",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — rupee strengthened on record deposit inflows",
+          "url": "https://www.reuters.com/world/india/indias-127-bln-nri-deposits-arm-rbi-with-more-firepower-setting-rupee-up-rally-2026-09-03/",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "65d4b04655b5eface3319e405e618a03c61acd0bcecdf1cbc46846a57b7f94cd"
+  },
+  {
+    "event_id": "b94e5f2042a9ad547928fc50",
+    "session_date": "2026-09-04",
+    "event_category": "FED",
+    "event_tags": [
+      "fed-expectations",
+      "broad-rebound",
+      "private-bank-buying",
+      "bank-flat"
+    ],
+    "headline_or_summary": "Positive global cues and easing expectations of a Fed hike supported the broad market, with private banks among gainers. Bank Nifty itself finished almost unchanged, indicating offsetting moves within the bank basket.",
+    "known_at": null,
+    "published_at": "2026-09-04T21:54:00+05:30",
+    "first_seen_at": "2026-09-04T21:54:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B-",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close -0.019%; intraday range 0.614%.",
+    "source_name": "Taking Stock: Market snaps 4-day fall; Sensex jumps 363 pts, Nifty at 23,900 — primary contemporaneous market/event source. Published: 2026-09-04 21:54 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-snaps-4-day-fall-sensex-jumps-363-pts-nifty-at-23-900-14022866.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "8154c0d8872cb03745edcd1fdf699b35252984d9b05a60e3442911c134db73ea",
+      "sources": [
+        {
+          "title": "Taking Stock: Market snaps 4-day fall; Sensex jumps 363 pts, Nifty at 23,900 — primary contemporaneous market/event source. Published: 2026-09-04 21:54 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-snaps-4-day-fall-sensex-jumps-363-pts-nifty-at-23-900-14022866.html",
+          "publication_text": "2026-09-04 21:54 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "1131cff41bd14c16e915bde686bc73ac8867541f494e916beedb652ef088b7d4"
+  },
+  {
+    "event_id": "961eb11e28a90975278a14c6",
+    "session_date": "2026-09-07",
+    "event_category": "INTEREST_RATES",
+    "event_tags": [
+      "crude-97",
+      "us-iran",
+      "rate-hike-risk",
+      "trend-down"
+    ],
+    "headline_or_summary": "Middle East conflict, Brent around $97 and concern about a possible US rate hike weakened risk appetite. Bank Nifty fell roughly 0.49% with the broader risk-off move.",
+    "known_at": null,
+    "published_at": "2026-09-07T15:59:00+05:30",
+    "first_seen_at": "2026-09-07T15:59:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.490%; intraday range 0.739%.",
+    "source_name": "Taking Stock: Nifty below 23,800, Sensex slips 383 pts; IT, media worst hit — primary contemporaneous market/event source. Published: 2026-09-07 15:59 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-below-23-800-sensex-slips-383-pts-it-media-worst-hit-14024255.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "MEDIUM",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "ed2a13313e2c45a51cdc16e517e8ccbbaabbfc6bab1be68e625ff75472abb5e6",
+      "sources": [
+        {
+          "title": "Taking Stock: Nifty below 23,800, Sensex slips 383 pts; IT, media worst hit — primary contemporaneous market/event source. Published: 2026-09-07 15:59 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-nifty-below-23-800-sensex-slips-383-pts-it-media-worst-hit-14024255.html",
+          "publication_text": "2026-09-07 15:59 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "18088d07d52b62ca6dd03132d165a56e9809ced8a08fa068f8173d11c7252d11"
+  },
+  {
+    "event_id": "6a6c4f25524304d4da2ec2a4",
+    "session_date": "2026-09-08",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude",
+      "rupee-weakness",
+      "bank-selling",
+      "failed-pullback"
+    ],
+    "headline_or_summary": "Rising crude and a 33-paise rupee fall added pressure to IT, oil & gas and banking. Bank Nifty declined about 0.54%.",
+    "known_at": null,
+    "published_at": "2026-09-08T16:11:00+05:30",
+    "first_seen_at": "2026-09-08T16:11:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.544%; intraday range 0.567%.",
+    "source_name": "Taking Stock: Markets fall for second day; Nifty below 23,650, Sensex down 555 points — primary contemporaneous market/event source. Published: 2026-09-08 16:11 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-fall-for-second-day-nifty-below-23-650-sensex-down-555-points-14025185.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "e031cf25e2b80a4d9ce8cf26ebade05e277ac4c4532a607ce6e590366a12efc7",
+      "sources": [
+        {
+          "title": "Taking Stock: Markets fall for second day; Nifty below 23,650, Sensex down 555 points — primary contemporaneous market/event source. Published: 2026-09-08 16:11 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-fall-for-second-day-nifty-below-23-650-sensex-down-555-points-14025185.html",
+          "publication_text": "2026-09-08 16:11 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "6bb6e41da9091fc17f99a759ae3ff05115792cc7eee8cae3b7cd3147e2175380"
+  },
+  {
+    "event_id": "a66bf0cb47c317fa9ca19a8d",
+    "session_date": "2026-09-09",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude-100",
+      "us-iran",
+      "rupee-weakness",
+      "fii-selling",
+      "failed-recovery"
+    ],
+    "headline_or_summary": "Escalating US-Iran tension pushed crude toward $100 while the rupee weakened and foreign selling renewed. Bank Nifty lost about 0.85% and closed at the day's low, confirming persistent financial risk aversion.",
+    "known_at": null,
+    "published_at": "2026-09-09T16:16:00+05:30",
+    "first_seen_at": "2026-09-09T16:16:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.849%; intraday range 0.788%.",
+    "source_name": "Taking Stock: Markets hit 3-month low as Nifty closes below 23,450; Sensex declines 813 pts — primary contemporaneous market/event source. Published: 2026-09-09 16:16 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-hit-3-month-low-as-nifty-closes-below-23-450-sensex-declines-813-pts-14026091.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "7ac8625a03a24778fcd3a4225b0b66c135018426594cd99994f9fe3393cfd178",
+      "sources": [
+        {
+          "title": "Taking Stock: Markets hit 3-month low as Nifty closes below 23,450; Sensex declines 813 pts — primary contemporaneous market/event source. Published: 2026-09-09 16:16 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-markets-hit-3-month-low-as-nifty-closes-below-23-450-sensex-declines-813-pts-14026091.html",
+          "publication_text": "2026-09-09 16:16 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "c74e03e8afbed8c05da1f88d95c0e5a51bf9a6953e4081ca57c7b7f203125f70"
+  },
+  {
+    "event_id": "8676846186825f3833c8c7cc",
+    "session_date": "2026-09-10",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "financial-buying",
+      "range-bound",
+      "crude-overhang",
+      "relief"
+    ],
+    "headline_or_summary": "Financial buying helped the market break a three-day losing streak, though elevated crude and geopolitics kept the session range-bound. Bank Nifty gained about 0.31%.",
+    "known_at": null,
+    "published_at": "2026-09-10T16:14:00+05:30",
+    "first_seen_at": "2026-09-10T16:14:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "B",
+    "source_quality": "MEDIUM",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.313%; intraday range 0.610%.",
+    "source_name": "Taking Stock: Market snaps 3-day fall; Nifty above 23,400, Sensex up 138 pts — primary contemporaneous market/event source. Published: 2026-09-10 16:14 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/taking-stock-market-snaps-3-day-fall-nifty-above-23-400-sensex-up-138-pts-14026980.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "dfbbb78429dadfa801ae31d177cb4a515f3dc8682dacfbeba451403127611230",
+      "sources": [
+        {
+          "title": "Taking Stock: Market snaps 3-day fall; Nifty above 23,400, Sensex up 138 pts — primary contemporaneous market/event source. Published: 2026-09-10 16:14 IST.",
+          "url": "https://www.moneycontrol.com/news/business/taking-stock-market-snaps-3-day-fall-nifty-above-23-400-sensex-up-138-pts-14026980.html",
+          "publication_text": "2026-09-10 16:14 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "55b2a218a32363dc712e1d385f945d4acf71a03314025151d98ac8175a1b77fe"
+  },
+  {
+    "event_id": "0391f7eea62717fc21ad4a03",
+    "session_date": "2026-09-11",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude-reversal",
+      "bank-reversal",
+      "hdfc-bank",
+      "yes-bank",
+      "timed-news",
+      "900-point-recovery"
+    ],
+    "headline_or_summary": "Around 14:00 IST Bank Nifty had already recovered roughly 770 points as crude slipped below ~$106",
+    "known_at": "2026-09-11T14:00:00+05:30",
+    "published_at": "2026-09-11T15:52:00+05:30",
+    "first_seen_at": "2026-09-11T14:00:00+05:30",
+    "knowledge_phase": "MIDDAY_EARLY_AFTERNOON",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "Close +0.238%; intraday range 1.676%.",
+    "source_name": "Bank Nifty rebounds over 900 points from day’s low, ends in green as HDFC Bank jumps 2%; PSU banks lag — primary contemporaneous market/event source. Published: 2026-09-11 15:52 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/bank-nifty-recovers-770-points-from-day-s-low-turns-flat-as-hdfc-bank-yes-bank-gain-psu-banks-lag-14027904.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_AVAILABLE",
+      "reference_at": "2026-09-11T14:00:00+05:30",
+      "reference_price": 56487.69921875,
+      "returns": {
+        "5": 0.00105332666798102,
+        "10": 0.0005877247473195042,
+        "20": -0.0003664376321974412,
+        "30": 0.001067502873793527
+      },
+      "big_move": {
+        "10": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-11T14:00:00+05:30",
+          "horizon_minutes": 10,
+          "expiry_at": "2026-09-11T14:10:00+05:30",
+          "reference_price": "56487.69921875",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.002389730440682931819534703544",
+          "max_future_high": "56625.6484375",
+          "min_future_low": "56455.30078125",
+          "maximum_up_excursion": "0.002442110772042392249252828",
+          "maximum_down_excursion": "0.0005735485415069970640040479",
+          "maximum_favorable_excursion": "0.002442110772042392249252828",
+          "maximum_adverse_excursion": "0.0005735485415069970640040479",
+          "close_return_at_horizon": "0.000587724747319504225581192",
+          "realized_range": "0.003015659313549389313256875408",
+          "first_barrier": "UP",
+          "first_barrier_at": "2026-09-11T14:03:00+05:30",
+          "label": "BIG_UP",
+          "quality_status": "VALID"
+        },
+        "20": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-11T14:00:00+05:30",
+          "horizon_minutes": 20,
+          "expiry_at": "2026-09-11T14:20:00+05:30",
+          "reference_price": "56487.69921875",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.003244405631644450171965408714",
+          "max_future_high": "56625.6484375",
+          "min_future_low": "56455.30078125",
+          "maximum_up_excursion": "0.002442110772042392249252828",
+          "maximum_down_excursion": "0.0005735485415069970640040479",
+          "maximum_favorable_excursion": "0.002442110772042392249252828",
+          "maximum_adverse_excursion": "0.0005735485415069970640040479",
+          "close_return_at_horizon": "-0.0003664376321974412155965095",
+          "realized_range": "0.003015659313549389313256875408",
+          "first_barrier": null,
+          "first_barrier_at": null,
+          "label": "NO_BIG_MOVE",
+          "quality_status": "VALID"
+        },
+        "30": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-11T14:00:00+05:30",
+          "horizon_minutes": 30,
+          "expiry_at": "2026-09-11T14:30:00+05:30",
+          "reference_price": "56487.69921875",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.003808003776484256692681351134",
+          "max_future_high": "56625.6484375",
+          "min_future_low": "56455.30078125",
+          "maximum_up_excursion": "0.002442110772042392249252828",
+          "maximum_down_excursion": "0.0005735485415069970640040479",
+          "maximum_favorable_excursion": "0.002442110772042392249252828",
+          "maximum_adverse_excursion": "0.0005735485415069970640040479",
+          "close_return_at_horizon": "0.001067502873793527089104230",
+          "realized_range": "0.003015659313549389313256875408",
+          "first_barrier": null,
+          "first_barrier_at": null,
+          "label": "NO_BIG_MOVE",
+          "quality_status": "VALID"
+        }
+      },
+      "max_up_excursion": 0.002442110772042392,
+      "max_down_excursion": -0.000573548541506997,
+      "volatility_expansion": 1.186577962018927
+    },
+    "source_metadata": {
+      "daily_checksum": "f6dc8e5588b0fb50e40a2c55aac60bfd87cf3260ab4b31ad20da5ced86a5fa86",
+      "sources": [
+        {
+          "title": "Bank Nifty rebounds over 900 points from day’s low, ends in green as HDFC Bank jumps 2%; PSU banks lag — primary contemporaneous market/event source. Published: 2026-09-11 15:52 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/bank-nifty-recovers-770-points-from-day-s-low-turns-flat-as-hdfc-bank-yes-bank-gain-psu-banks-lag-14027904.html",
+          "publication_text": "2026-09-11 15:52 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Moneycontrol — Bank Nifty 900+ point rebound tied to crude retreat",
+          "url": "https://www.moneycontrol.com/news/business/markets/bank-nifty-recovers-770-points-from-day-s-low-turns-flat-as-hdfc-bank-yes-bank-gain-psu-banks-lag-14027904.html",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "9a8b77cb61b0dfa31aa1e344c3e9c8113ec42295952397038274d7815b8c8d66"
+  },
+  {
+    "event_id": "2652f2075121dfb8eb6d109c",
+    "session_date": "2026-09-15",
+    "event_category": "FED",
+    "event_tags": [
+      "oil-108",
+      "fed-hike",
+      "bond-yields",
+      "india-inflation",
+      "financial-selloff",
+      "post-holiday-gap"
+    ],
+    "headline_or_summary": "After the Sep14 market holiday, Bank Nifty fell about 1.43%. Brent near $108, US 10-year yields near multi-decade highs and expectations of a Fed hike raised inflation/discount-rate pressure; financials were among the worst sectors. India CPI/WPI released during the holiday also strengthened domestic rate-hike concerns.",
+    "known_at": "2026-09-15T09:15:00+05:30",
+    "published_at": null,
+    "first_seen_at": "2026-09-15T09:15:00+05:30",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "A+",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -1.434%; intraday range 2.123%.",
+    "source_name": "India's Nifty 50 closes at 5-month low on elevated oil prices, bond yields — primary contemporaneous market/event source. Published: 2026-09-15 session / Reuters.",
+    "source_url": "https://www.reuters.com/world/india/indian-shares-seen-opening-higher-hdfc-bank-focus-2026-09-15/",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_AVAILABLE",
+      "reference_at": "2026-09-15T09:15:00+05:30",
+      "reference_price": 56705.80078125,
+      "returns": {
+        "5": -0.0012088848108228567,
+        "10": -0.0026143709807025504,
+        "20": -0.0044625201965875815,
+        "30": -0.004433450198857384
+      },
+      "big_move": {
+        "10": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-15T09:15:00+05:30",
+          "horizon_minutes": 10,
+          "expiry_at": "2026-09-15T09:25:00+05:30",
+          "reference_price": "56705.80078125",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.0015",
+          "max_future_high": "56747.5",
+          "min_future_low": "56542.6015625",
+          "maximum_up_excursion": "0.000735360724573137737713534",
+          "maximum_down_excursion": "0.0028779986615401519010710779",
+          "maximum_favorable_excursion": "0.0028779986615401519010710779",
+          "maximum_adverse_excursion": "0.000735360724573137737713534",
+          "close_return_at_horizon": "-0.0026143709807025502034383194",
+          "realized_range": "0.003613359386113289638784612327",
+          "first_barrier": "DOWN",
+          "first_barrier_at": "2026-09-15T09:20:00+05:30",
+          "label": "BIG_DOWN",
+          "quality_status": "VALID"
+        },
+        "20": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-15T09:15:00+05:30",
+          "horizon_minutes": 20,
+          "expiry_at": "2026-09-15T09:35:00+05:30",
+          "reference_price": "56705.80078125",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.0020",
+          "max_future_high": "56747.5",
+          "min_future_low": "56444.6484375",
+          "maximum_up_excursion": "0.000735360724573137737713534",
+          "maximum_down_excursion": "0.0046053902802189342814836858",
+          "maximum_favorable_excursion": "0.0046053902802189342814836858",
+          "maximum_adverse_excursion": "0.000735360724573137737713534",
+          "close_return_at_horizon": "-0.0044625201965875818067279134",
+          "realized_range": "0.005340751004792072019197220302",
+          "first_barrier": "DOWN",
+          "first_barrier_at": "2026-09-15T09:24:00+05:30",
+          "label": "BIG_DOWN",
+          "quality_status": "VALID"
+        },
+        "30": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-15T09:15:00+05:30",
+          "horizon_minutes": 30,
+          "expiry_at": "2026-09-15T09:45:00+05:30",
+          "reference_price": "56705.80078125",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.0025",
+          "max_future_high": "56747.5",
+          "min_future_low": "56404.6015625",
+          "maximum_up_excursion": "0.000735360724573137737713534",
+          "maximum_down_excursion": "0.0053116121208113284816747074",
+          "maximum_favorable_excursion": "0.0053116121208113284816747074",
+          "maximum_adverse_excursion": "0.000735360724573137737713534",
+          "close_return_at_horizon": "-0.0044334501988573837622019077",
+          "realized_range": "0.006046972845384466219388241875",
+          "first_barrier": "DOWN",
+          "first_barrier_at": "2026-09-15T09:24:00+05:30",
+          "label": "BIG_DOWN",
+          "quality_status": "VALID"
+        }
+      },
+      "max_up_excursion": 0.0007353607245731377,
+      "max_down_excursion": -0.005311612120811328,
+      "volatility_expansion": null
+    },
+    "source_metadata": {
+      "daily_checksum": "613157144c14bac76615136bd88d27e9850d00cbb5d041ca755057ac76021992",
+      "sources": [
+        {
+          "title": "India's Nifty 50 closes at 5-month low on elevated oil prices, bond yields — primary contemporaneous market/event source. Published: 2026-09-15 session / Reuters.",
+          "url": "https://www.reuters.com/world/india/indian-shares-seen-opening-higher-hdfc-bank-focus-2026-09-15/",
+          "publication_text": "2026-09-15 session / Reuters"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — rupee, stocks and bonds pressured by oil/inflation/Fed",
+          "url": "https://www.reuters.com/world/india/rupee-drops-with-stocks-bonds-oil-inflation-fed-worries-mount-2026-09-15/",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — India August CPI 4.82%, published Sep14 while market closed",
+          "url": "https://www.reuters.com/world/india/indias-august-retail-inflation-482-on-year-2026-09-14/",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "c5bb8012e79ed932529c06f749b4c05a3923196e9fee68798faf743996cb9072"
+  },
+  {
+    "event_id": "4eefe5b01ded3dd753eb08da",
+    "session_date": "2026-09-16",
+    "event_category": "FED",
+    "event_tags": [
+      "upi-fee",
+      "financial-buying",
+      "oil-relief",
+      "fomc-eve"
+    ],
+    "headline_or_summary": "Bank Nifty rebounded about 0.89%. Broad value buying and some oil relief helped, while a new UPI merchant-fee framework improved monetization expectations for banks/payments firms. The pending Fed decision limited conviction.",
+    "known_at": null,
+    "published_at": "2026-09-16T16:08:00+05:30",
+    "first_seen_at": "2026-09-16T16:08:00+05:30",
+    "knowledge_phase": "UNKNOWN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": false,
+    "context_only": true,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.892%; intraday range 0.997%.",
+    "source_name": "Taking Stock: Market snaps 2-day losing streak; Nifty above 23,200, Sensex gains 332 pts ahead of FOMC decision — primary contemporaneous market/event source. Published: 2026-09-16 16:08 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-snaps-2-day-losing-streak-nifty-above-23-200-sensex-gains-332-pts-ahead-of-fomc-decision-14031105.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "EVENT_TIME_UNKNOWN"
+    },
+    "source_metadata": {
+      "daily_checksum": "e387665f070785f993b3f7087a47a4fa6516ae6324a30f086afdb3a4c121f581",
+      "sources": [
+        {
+          "title": "Taking Stock: Market snaps 2-day losing streak; Nifty above 23,200, Sensex gains 332 pts ahead of FOMC decision — primary contemporaneous market/event source. Published: 2026-09-16 16:08 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/taking-stock-market-snaps-2-day-losing-streak-nifty-above-23-200-sensex-gains-332-pts-ahead-of-fomc-decision-14031105.html",
+          "publication_text": "2026-09-16 16:08 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — financial/payment firms gained after UPI fee change",
+          "url": "https://www.reuters.com/world/india/indian-shares-seen-opening-higher-after-selloff-higher-oil-fed-caution-cap-gains-2026-09-16/",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — UPI fee framework details",
+          "url": "https://www.reuters.com/world/india/indias-upi-fee-shake-up-what-changes-why-it-matters-2026-09-16/",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "6a347587a063a00e24b901cc507a617c9dcda75dbee3330c5f2baefd5043613c"
+  },
+  {
+    "event_id": "6efbcc483197fe1cf7473c37",
+    "session_date": "2026-09-17",
+    "event_category": "FED",
+    "event_tags": [
+      "fed-hike",
+      "hawkish-fed",
+      "profit-booking",
+      "ipo-liquidity",
+      "pre-open-known"
+    ],
+    "headline_or_summary": "The Fed's overnight 25-bp hike was expected, but its hawkish tone and prospect of further tightening reduced emerging-market appeal. Profit booking and IPO liquidity demand also capped risk appetite. Bank Nifty fell about 0.42%.",
+    "known_at": "2026-09-17T09:15:00+05:30",
+    "published_at": "2026-09-17T16:28:00+05:30",
+    "first_seen_at": "2026-09-17T09:15:00+05:30",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "Close -0.420%; intraday range 0.945%.",
+    "source_name": "Sensex settles 350 pts lower from day's high, Nifty ends below 23,300: Key factors behind market decline — primary contemporaneous market/event source. Published: 2026-09-17 16:28 IST.",
+    "source_url": "https://www.moneycontrol.com/news/business/markets/sensex-falls-350-pts-from-day-s-high-nifty-near-23-200-key-factors-behind-market-decline-14031829.html",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_AVAILABLE",
+      "reference_at": "2026-09-17T09:15:00+05:30",
+      "reference_price": 56153.3515625,
+      "returns": {
+        "5": 0.002651639365359564,
+        "10": 0.0019953728830466905,
+        "20": 0.007283625796490053,
+        "30": 0.0045019018093449175
+      },
+      "big_move": {
+        "10": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-17T09:15:00+05:30",
+          "horizon_minutes": 10,
+          "expiry_at": "2026-09-17T09:25:00+05:30",
+          "reference_price": "56153.3515625",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.0015",
+          "max_future_high": "56328.69921875",
+          "min_future_low": "56121.30078125",
+          "maximum_up_excursion": "0.003122656998573521254366356",
+          "maximum_down_excursion": "0.0005707723645725175854235103",
+          "maximum_favorable_excursion": "0.003122656998573521254366356",
+          "maximum_adverse_excursion": "0.0005707723645725175854235103",
+          "close_return_at_horizon": "0.001995372883046690362009503",
+          "realized_range": "0.003693429363146038839789866728",
+          "first_barrier": "UP",
+          "first_barrier_at": "2026-09-17T09:16:00+05:30",
+          "label": "BIG_UP",
+          "quality_status": "VALID"
+        },
+        "20": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-17T09:15:00+05:30",
+          "horizon_minutes": 20,
+          "expiry_at": "2026-09-17T09:35:00+05:30",
+          "reference_price": "56153.3515625",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.0020",
+          "max_future_high": "56566.8984375",
+          "min_future_low": "56121.30078125",
+          "maximum_up_excursion": "0.007364598256253905147302400",
+          "maximum_down_excursion": "0.0005707723645725175854235103",
+          "maximum_favorable_excursion": "0.007364598256253905147302400",
+          "maximum_adverse_excursion": "0.0005707723645725175854235103",
+          "close_return_at_horizon": "0.007283625796490052561143598",
+          "realized_range": "0.007935370620826422732725910032",
+          "first_barrier": "UP",
+          "first_barrier_at": "2026-09-17T09:17:00+05:30",
+          "label": "BIG_UP",
+          "quality_status": "VALID"
+        },
+        "30": {
+          "dataset_revision_id": "market-memory-v2",
+          "instrument_id": 0,
+          "as_of": "2026-09-17T09:15:00+05:30",
+          "horizon_minutes": 30,
+          "expiry_at": "2026-09-17T09:45:00+05:30",
+          "reference_price": "56153.3515625",
+          "threshold_policy_version": "big-move-threshold-v1",
+          "threshold_value": "0.0025",
+          "max_future_high": "56570.44921875",
+          "min_future_low": "56121.30078125",
+          "maximum_up_excursion": "0.007427831903956088996802701",
+          "maximum_down_excursion": "0.0005707723645725175854235103",
+          "maximum_favorable_excursion": "0.007427831903956088996802701",
+          "maximum_adverse_excursion": "0.0005707723645725175854235103",
+          "close_return_at_horizon": "0.004501901809344917496437281",
+          "realized_range": "0.007998604268528606582226211175",
+          "first_barrier": "UP",
+          "first_barrier_at": "2026-09-17T09:18:00+05:30",
+          "label": "BIG_UP",
+          "quality_status": "VALID"
+        }
+      },
+      "max_up_excursion": 0.007427831903956089,
+      "max_down_excursion": -0.0005707723645725176,
+      "volatility_expansion": null
+    },
+    "source_metadata": {
+      "daily_checksum": "07a50341ec4380b35ebd99b3cf26c2413453b7b6f9413b0d483e64344a8f8e7f",
+      "sources": [
+        {
+          "title": "Sensex settles 350 pts lower from day's high, Nifty ends below 23,300: Key factors behind market decline — primary contemporaneous market/event source. Published: 2026-09-17 16:28 IST.",
+          "url": "https://www.moneycontrol.com/news/business/markets/sensex-falls-350-pts-from-day-s-high-nifty-near-23-200-key-factors-behind-market-decline-14031829.html",
+          "publication_text": "2026-09-17 16:28 IST"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — Fed rate hike / hawkish global context",
+          "url": "https://www.reuters.com/commentary/reuters-open-interest/global-markets-view-usa-2026-09-17/",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — Indian shares muted after Fed, oil and IPO rush",
+          "url": "https://www.reuters.com/world/india/indian-shares-seen-opening-flat-after-fed-signals-more-hikes-nse-ipo-focus-2026-09-17/",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "ff09e152271109d638b159554cce4dc79724b6e23d16599fd8c19471738c9027"
+  },
+  {
+    "event_id": "7c99e61c5183523abbdf5ca7",
+    "session_date": "2026-09-18",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "oil-easing",
+      "bargain-buying",
+      "hdfc-bank",
+      "relief-rally",
+      "global-cues"
+    ],
+    "headline_or_summary": "Bank Nifty gained about 0.54% as crude eased and global/Asian cues improved, while bargain buying followed an extended selloff. HDFC Bank was a notable gainer. The broader market still carried weekly pressure from >$100 oil and global tightening.",
+    "known_at": "2026-09-18T09:15:00+05:30",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T09:15:00+05:30",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "SESSION_PHASE",
+    "causal_evidence_grade": "A",
+    "source_quality": "HIGH",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BULLISH",
+    "observed_banknifty_response": "Close +0.540%; intraday range 0.750%.",
+    "source_name": "Indian shares post longest weekly losing streak in six years on oil, rate worries — primary contemporaneous market/event source. Published: 2026-09-18 Reuters.",
+    "source_url": "https://www.reuters.com/world/india/indian-shares-set-inch-higher-oil-eases-ipo-rush-cap-upside-2026-09-18/",
+    "special_flags": [
+      "NSE_CLOSING_AUCTION_ERA"
+    ],
+    "relevance": "HIGH",
+    "reaction": {
+      "status": "REACTION_NOT_MEASURABLE",
+      "reason": "NO_REFERENCE_MINUTE"
+    },
+    "source_metadata": {
+      "daily_checksum": "24d7228fbd93db9ffaff9db1e9ab88f5fab5663f6131cdfc9900133a9a117c0e",
+      "sources": [
+        {
+          "title": "Indian shares post longest weekly losing streak in six years on oil, rate worries — primary contemporaneous market/event source. Published: 2026-09-18 Reuters.",
+          "url": "https://www.reuters.com/world/india/indian-shares-set-inch-higher-oil-eases-ipo-rush-cap-upside-2026-09-18/",
+          "publication_text": "2026-09-18 Reuters"
+        },
+        {
+          "title": "Yahoo Finance — NIFTY BANK (^NSEBANK) historical data — daily index OHLC cross-check.",
+          "url": "https://sg.finance.yahoo.com/quote/%5ENSEBANK/history/",
+          "publication_text": null
+        },
+        {
+          "title": "Investing.com — Nifty Bank historical data — recent daily OHLC cross-check.",
+          "url": "https://in.investing.com/indices/bank-nifty-historical-data",
+          "publication_text": null
+        },
+        {
+          "title": "Reuters — weekly losing streak, oil/rate worries and bargain buying",
+          "url": "https://www.reuters.com/world/india/indian-shares-set-inch-higher-oil-eases-ipo-rush-cap-upside-2026-09-18/",
+          "publication_text": null
+        },
+        {
+          "title": "Financial Express — Bank Nifty strength / HDFC Bank gain",
+          "url": "https://www.financialexpress.com/market/sensex-nifty-50-stock-market-today-live-updates-india-us-iran-isreal-war-asia-nikkei-gold-silver-rate-crude-oil-18september2026-4341900/",
+          "publication_text": null
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "24ac7b2a069ac7cac299c36d68ead7027622312273679df72c0a085fc91c55a7"
+  }
+]

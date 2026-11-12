@@ -1,0 +1,13 @@
+{
+  "purpose": "Configurable banking relevance watchlist; not an assertion of current index membership or weights",
+  "symbols": {
+    "HDFCBANK": ["hdfc bank", "hdfcbank"], "ICICIBANK": ["icici bank", "icicibank"],
+    "SBIN": ["state bank of india", "sbi", "sbin"], "AXISBANK": ["axis bank", "axisbank"],
+    "KOTAKBANK": ["kotak mahindra bank", "kotak bank", "kotakbank"],
+    "BANKBARODA": ["bank of baroda", "bankbaroda"], "PNB": ["punjab national bank", "pnb"],
+    "CANBK": ["canara bank", "canbk"], "FEDERALBNK": ["federal bank", "federalbnk"],
+    "IDFCFIRSTB": ["idfc first bank", "idfcfirstb"], "INDUSINDBK": ["indusind bank", "indusindbk"],
+    "AUBANK": ["au small finance bank", "aubank"], "YESBANK": ["yes bank", "yesbank"],
+    "UNIONBANK": ["union bank of india", "union bank", "unionbank"]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "casEffectiveFrom": "2026-08-03",
+  "ruleVersion": "nse-cas-2026-08-03-v1",
+  "source": "NSE cash-market CAS; phase times supplied in the reviewed development specification",
+  "sourceUrl": "https://www.nseindia.com/static/products-services/closing-auction-session",
+  "sourceObservedAt": "2026-09-20T00:00:00+05:30",
+  "sourcePublicationDate": "2026-05-29",
+  "historicalKnowledgeAvailableFrom": "2026-05-30T00:00:00+05:30",
+  "historicalKnowledgeBasis": "OFFICIAL_PUBLICATION_DATE_CONSERVATIVE_NEXT_DAY",
+  "sourceReference": "NSE/CMTR/74466",
+  "provenanceNote": "No source fetch in this sprint. sourceObservedAt is retained unchanged. Historical point-in-time eligibility uses the verified official publication date plus one conservative day; when that metadata is absent the existing sourceObservedAt rule applies.",
+  "indexPredictionClose": "15:30",
+  "phases": [
+    {"from":"09:15","to":"15:15","phase":"CONTINUOUS"},
+    {"from":"15:15","to":"15:20","phase":"CAS_REFERENCE"},
+    {"from":"15:20","to":"15:25","phase":"CAS_ORDER_ENTRY_MARKET_LIMIT"},
+    {"from":"15:25","to":"15:30","phase":"CAS_ORDER_ENTRY_LIMIT_ONLY","randomClose":true},
+    {"from":"15:30","to":"15:35","phase":"CAS_MATCHING"}
+  ]
+}

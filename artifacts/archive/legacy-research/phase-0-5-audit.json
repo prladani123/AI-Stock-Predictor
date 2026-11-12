@@ -1,0 +1,24 @@
+{
+  "computed_checks": {
+    "explicit_calendar_only": true,
+    "no_forbidden_broker_calls": true,
+    "no_forward_fill_in_feature_definition": true,
+    "no_generated_environments": true,
+    "phase0_5_migrations_present": true,
+    "read_only_adapter_capabilities": true
+  },
+  "evidence": "docs/PHASE_0_5_AUDIT.md",
+  "forbidden_broker_calls": [],
+  "generated_paths": [],
+  "phase_boundaries": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "schema_version": "phase-0-5-audit-v1",
+  "status": "PASS",
+  "transient_cache_warnings": []
+}

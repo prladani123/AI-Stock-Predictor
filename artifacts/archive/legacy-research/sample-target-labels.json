@@ -1,0 +1,66 @@
+{
+  "generated": 34,
+  "inserted": 34,
+  "revision_id": "e94c60d4-4f83-5eda-a7e7-1f72f9d3f6df",
+  "sample_as_of": "2024-07-25T03:45:00+00:00",
+  "sample_labels_all_horizons": [
+    {
+      "as_of": "2024-07-25T03:45:00+00:00",
+      "dataset_revision": "e94c60d4-4f83-5eda-a7e7-1f72f9d3f6df",
+      "expiry_timestamp": "2024-07-25T03:50:00+00:00",
+      "future_price": "100.20",
+      "horizon_minutes": 5,
+      "instrument": 2,
+      "label": "UP",
+      "quality_status": "VALID",
+      "realised_return": "0.002",
+      "reference_price": "100.00",
+      "threshold_policy_version": "fixed-v1",
+      "threshold_value": "0.0010"
+    },
+    {
+      "as_of": "2024-07-25T03:45:00+00:00",
+      "dataset_revision": "e94c60d4-4f83-5eda-a7e7-1f72f9d3f6df",
+      "expiry_timestamp": "2024-07-25T03:55:00+00:00",
+      "future_price": "99.80",
+      "horizon_minutes": 10,
+      "instrument": 2,
+      "label": "DOWN",
+      "quality_status": "VALID",
+      "realised_return": "-0.002",
+      "reference_price": "100.00",
+      "threshold_policy_version": "fixed-v1",
+      "threshold_value": "0.0015"
+    },
+    {
+      "as_of": "2024-07-25T03:45:00+00:00",
+      "dataset_revision": "e94c60d4-4f83-5eda-a7e7-1f72f9d3f6df",
+      "expiry_timestamp": "2024-07-25T04:00:00+00:00",
+      "future_price": "100.10",
+      "horizon_minutes": 15,
+      "instrument": 2,
+      "label": "NO_TRADE",
+      "quality_status": "VALID",
+      "realised_return": "0.001",
+      "reference_price": "100.00",
+      "threshold_policy_version": "fixed-v1",
+      "threshold_value": "0.0020"
+    },
+    {
+      "as_of": "2024-07-25T03:45:00+00:00",
+      "dataset_revision": "e94c60d4-4f83-5eda-a7e7-1f72f9d3f6df",
+      "expiry_timestamp": "2024-07-25T04:05:00+00:00",
+      "future_price": "100.40",
+      "horizon_minutes": 20,
+      "instrument": 2,
+      "label": "UP",
+      "quality_status": "VALID",
+      "realised_return": "0.004",
+      "reference_price": "100.00",
+      "threshold_policy_version": "fixed-v1",
+      "threshold_value": "0.0025"
+    }
+  ],
+  "schema_version": "target-labels-v1",
+  "zerodha_network_calls": 0
+}

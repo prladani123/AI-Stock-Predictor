@@ -1,0 +1,95 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-banknifty}
+      POSTGRES_USER: ${POSTGRES_USER:-banknifty}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"], interval: 5s, timeout: 3s, retries: 10}
+    restart: unless-stopped
+  python-service:
+    build: {context: ., dockerfile: Dockerfile}
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-banknifty}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-banknifty}
+      INTERNAL_API_TOKEN: ${INTERNAL_API_TOKEN:?set INTERNAL_API_TOKEN in .env}
+      HISTORICAL_REQUESTS_PER_SECOND: ${HISTORICAL_REQUESTS_PER_SECOND:-3}
+      HISTORICAL_CHUNK_DAYS: ${HISTORICAL_CHUNK_DAYS:-60}
+      HISTORICAL_MAX_RETRIES: ${HISTORICAL_MAX_RETRIES:-3}
+      ALLOW_REAL_ZERODHA: ${ALLOW_REAL_ZERODHA:-false}
+      ZERODHA_API_KEY: ${ZERODHA_API_KEY:-}
+      ZERODHA_ACCESS_TOKEN: ${ZERODHA_ACCESS_TOKEN:-}
+      MARKET_MEMORY_ROOT: /app/market_memory
+      NEWS_POLLING_ENABLED: ${NEWS_POLLING_ENABLED:-true}
+      NEWS_POLL_INTERVAL_SECONDS: ${NEWS_POLL_INTERVAL_SECONDS:-90}
+      NEWS_REACTION_INTERVAL_SECONDS: ${NEWS_REACTION_INTERVAL_SECONDS:-30}
+      NEWS_SOURCE_NSE_OFFICIAL_ENABLED: ${NEWS_SOURCE_NSE_OFFICIAL_ENABLED:-true}
+      NEWS_SOURCE_RBI_OFFICIAL_ENABLED: ${NEWS_SOURCE_RBI_OFFICIAL_ENABLED:-true}
+      NEWS_SOURCE_MONEYCONTROL_ENABLED: ${NEWS_SOURCE_MONEYCONTROL_ENABLED:-true}
+      NEWS_SOURCE_ET_MARKETS_ENABLED: ${NEWS_SOURCE_ET_MARKETS_ENABLED:-true}
+      NEWS_SOURCE_LIVEMINT_ENABLED: ${NEWS_SOURCE_LIVEMINT_ENABLED:-true}
+      MEMORY_ROLLUP_ENABLED: ${MEMORY_ROLLUP_ENABLED:-true}
+      MEMORY_ROLLUP_AFTER: ${MEMORY_ROLLUP_AFTER:-15:45}
+      BIG_MOVE_RUNTIME_ENABLED: ${BIG_MOVE_RUNTIME_ENABLED:-false}
+      BIG_MOVE_RUNTIME_INTERVAL_SECONDS: ${BIG_MOVE_RUNTIME_INTERVAL_SECONDS:-15}
+      BIG_MOVE_ARTIFACT_DIR: /app/model_artifacts/big_move_v2
+      ML_THREADS: ${ML_THREADS:-2}
+      ML_RANDOM_SEED: ${ML_RANDOM_SEED:-1729}
+      EVIDENCE_MINIMUM_SAMPLE: ${EVIDENCE_MINIMUM_SAMPLE:-20}
+      UPSTOX_ANALYTICS_ENABLED: ${UPSTOX_ANALYTICS_ENABLED:-false}
+      UPSTOX_ANALYTICS_TOKEN: ${UPSTOX_ANALYTICS_TOKEN:-}
+      UPSTOX_PLUS_EXPIRED_DATA_ENABLED: ${UPSTOX_PLUS_EXPIRED_DATA_ENABLED:-false}
+      UPSTOX_GLOBAL_INSTRUMENTS_FILE: ${UPSTOX_GLOBAL_INSTRUMENTS_FILE:-}
+      UPSTOX_BOD_INSTRUMENTS_FILE: ${UPSTOX_BOD_INSTRUMENTS_FILE:-}
+      NEWS_SOURCE_UPSTOX_INSTRUMENT_ENABLED: ${NEWS_SOURCE_UPSTOX_INSTRUMENT_ENABLED:-false}
+      MARKET_STRUCTURE_CONTEXT_ENABLED: ${MARKET_STRUCTURE_CONTEXT_ENABLED:-false}
+      MARKET_STRUCTURE_CONTEXT_INTERVAL_SECONDS: ${MARKET_STRUCTURE_CONTEXT_INTERVAL_SECONDS:-60}
+      EVENT_IMPACT_MINIMUM_SAMPLE: ${EVENT_IMPACT_MINIMUM_SAMPLE:-5}
+      DHAN_RESEARCH_ENABLED: ${DHAN_RESEARCH_ENABLED:-false}
+      DHAN_CLIENT_ID: ${DHAN_CLIENT_ID:-}
+      DHAN_ACCESS_TOKEN: ${DHAN_ACCESS_TOKEN:-}
+      DHAN_DATA_API_ENABLED: ${DHAN_DATA_API_ENABLED:-false}
+      RESEARCH_CONTEXT_PROVIDER: ${RESEARCH_CONTEXT_PROVIDER:-auto}
+      RESEARCH_CONTEXT_OPTION_WIDTH: ${RESEARCH_CONTEXT_OPTION_WIDTH:-10}
+      RESEARCH_CONTEXT_STALENESS_POLICY_VERSION: ${RESEARCH_CONTEXT_STALENESS_POLICY_VERSION:-context-staleness-v1}
+      RESEARCH_CONTEXT_STALENESS_SECONDS: ${RESEARCH_CONTEXT_STALENESS_SECONDS:-}
+      LIVE_LATENESS_SECONDS: ${LIVE_LATENESS_SECONDS:-3}
+      LIVE_STALE_SECONDS: ${LIVE_STALE_SECONDS:-10}
+      LIVE_QUEUE_LIMIT: ${LIVE_QUEUE_LIMIT:-2048}
+      LIVE_OPTION_STRIKE_WIDTH: ${LIVE_OPTION_STRIKE_WIDTH:-5}
+      LIVE_MARKET_ENABLED: ${LIVE_MARKET_ENABLED:-false}
+      LIVE_UNIVERSE_REFRESH_SECONDS: ${LIVE_UNIVERSE_REFRESH_SECONDS:-300}
+      RAW_TICK_RETENTION_DAYS: ${RAW_TICK_RETENTION_DAYS:-14}
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      NUMEXPR_NUM_THREADS: "2"
+    expose: ["8000"]
+    depends_on: {postgres: {condition: service_healthy}}
+    volumes: ["./artifacts:/app/artifacts", "./model_artifacts:/app/model_artifacts", "./market_memory:/app/market_memory"]
+    healthcheck: {test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/internal/health', timeout=2)"], interval: 10s, timeout: 3s, retries: 10}
+    init: true
+    restart: unless-stopped
+  backend:
+    build: ./backend
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: "0"
+      APP_SECRET: ${APP_SECRET:?set APP_SECRET in .env}
+      PYTHON_INTERNAL_URL: http://python-service:8000
+      INTERNAL_API_TOKEN: ${INTERNAL_API_TOKEN:?set INTERNAL_API_TOKEN in .env}
+      SYMFONY_DATABASE_DSN: pgsql:host=postgres;port=5432;dbname=${POSTGRES_DB:-banknifty};user=${POSTGRES_USER:-banknifty};password=${POSTGRES_PASSWORD}
+    expose: ["8080"]
+    ports: ["127.0.0.1:8080:8080"]
+    depends_on: {postgres: {condition: service_healthy}, python-service: {condition: service_healthy}}
+    healthcheck: {test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/api/health"], interval: 10s, timeout: 4s, retries: 10}
+    restart: unless-stopped
+  frontend:
+    build: ./frontend
+    ports: ["127.0.0.1:3000:80"]
+    depends_on: {backend: {condition: service_healthy}}
+    healthcheck: {test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"], interval: 10s, timeout: 3s, retries: 10}
+    restart: unless-stopped
+volumes:
+  postgres_data:

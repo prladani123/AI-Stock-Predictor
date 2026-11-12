@@ -1,0 +1,37 @@
+[
+  {
+    "source": "NSE_OFFICIAL",
+    "state": "DOWN",
+    "checked_at": "2026-09-18T20:37:02.321426+00:00",
+    "article_count": 0,
+    "message": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "source": "RBI_OFFICIAL",
+    "state": "UP",
+    "checked_at": "2026-09-18T20:37:02.321426+00:00",
+    "article_count": 9,
+    "message": null
+  },
+  {
+    "source": "MONEYCONTROL",
+    "state": "DOWN",
+    "checked_at": "2026-09-18T20:37:02.321426+00:00",
+    "article_count": 0,
+    "message": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "source": "ET_MARKETS",
+    "state": "UP",
+    "checked_at": "2026-09-18T20:37:02.321426+00:00",
+    "article_count": 50,
+    "message": null
+  },
+  {
+    "source": "LIVEMINT",
+    "state": "UP",
+    "checked_at": "2026-09-18T20:37:02.321426+00:00",
+    "article_count": 35,
+    "message": null
+  }
+]

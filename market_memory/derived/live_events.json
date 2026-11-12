@@ -1,0 +1,522 @@
+[
+  {
+    "event_id": "f5e46f83186224c4a7e14bf8",
+    "session_date": "2026-09-19",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "headline_or_summary": "Reserve Bank of India (Rural Co-operative Banks – Know Your Customer) Amendment Directions, 2026",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "RBI_OFFICIAL",
+    "source_url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13704&Mode=0",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "b8620e89d6efd1cd17878925",
+        "05cbadc5fad71630784dd1b7",
+        "a8070ff370082d96949e10db",
+        "dd3b57ec27c452d89fddb5a7"
+      ],
+      "sources": [
+        {
+          "name": "RBI_OFFICIAL",
+          "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13703&Mode=0",
+          "articleId": "05cbadc5fad71630784dd1b7"
+        },
+        {
+          "name": "RBI_OFFICIAL",
+          "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13702&Mode=0",
+          "articleId": "a8070ff370082d96949e10db"
+        },
+        {
+          "name": "RBI_OFFICIAL",
+          "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13699&Mode=0",
+          "articleId": "dd3b57ec27c452d89fddb5a7"
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "de458f019db79ed6fb1d0a21791eef94e523ab94344716f150b7e8706c528fab"
+  },
+  {
+    "event_id": "2b56db99a9f046c7475f4362",
+    "session_date": "2026-09-19",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "headline_or_summary": "Reserve Bank of India (Local Area Banks – Know Your Customer) Amendment Directions, 2026",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "RBI_OFFICIAL",
+    "source_url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13701&Mode=0",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "dc5c0789ab7e4a2cf8306ff8",
+        "813ece92114de1fed4b4cac0"
+      ],
+      "sources": [
+        {
+          "name": "RBI_OFFICIAL",
+          "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13700&Mode=0",
+          "articleId": "813ece92114de1fed4b4cac0"
+        }
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "46c4d54cf8fa31503a2609445fe9980dfb485fbb6c24e97f14f85f5494fe61cb"
+  },
+  {
+    "event_id": "e994385af00dc519ce46f8b5",
+    "session_date": "2026-09-19",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "headline_or_summary": "RBI invites comments on the Draft “Reserve Bank of India (Know Your Customer) Amendment Directions, 2026”",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "RBI_OFFICIAL",
+    "source_url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63587",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "d52ec36b05a42baf81f1337e"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "88e37c9224b46a00de0247a62b58db4d77eb01ee2248b3b39773cc81edcc0d86"
+  },
+  {
+    "event_id": "a1084cdc8601d30c9ddca34c",
+    "session_date": "2026-09-19",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "headline_or_summary": "Data on Forex inflows via FCNR(B) Deposits, External Commercial Borrowings (ECBs) and Overseas Foreign Currency Borrowings (OFCBs) under Reserve Bank’s Swap facility",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "RBI_OFFICIAL",
+    "source_url": "https://rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63502",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "75b49038f56c15fc8ca21208"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "4bf1eebda570d5bdceace598bc2dc2ce76ac034119d10b44ccfe9200740c10b9"
+  },
+  {
+    "event_id": "46c3e79946d05e67c621c16a",
+    "session_date": "2026-09-19",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "headline_or_summary": "Conference for Registrars of Cooperative Societies held at Reserve Bank of India, New Delhi on September 1, 2026",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "RBI_OFFICIAL",
+    "source_url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=63499",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "d38f5fc7693ab3c85d234663"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "b4854d311ac10a7e1494f6fcd19c3a928c29be911daae753241f5d0d29449f72"
+  },
+  {
+    "event_id": "6a85e23ea4a5659c40110bd3",
+    "session_date": "2026-09-19",
+    "event_category": "CRUDE_OIL",
+    "event_tags": [
+      "crude-oil",
+      "crude"
+    ],
+    "headline_or_summary": "Pulse of the Street: Crude retreats, but markets extend losing streak",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T20:25:45+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "LIVEMINT",
+    "source_url": "https://www.livemint.com/market/stock-market-news/pulse-of-the-street-crude-retreats-but-markets-fail-to-break-losing-streak-11789739627282.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "2f1c5dd8a06bb431d98ca602"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "c33d074fae07233f47f96f816512b84614ae3721142478d3670e4d33ebb1098e"
+  },
+  {
+    "event_id": "b025beb92fb950fb2e816779",
+    "session_date": "2026-09-19",
+    "event_category": "FED",
+    "event_tags": [
+      "fed",
+      "federal-reserve"
+    ],
+    "headline_or_summary": "US Federal Reserve's Michelle Bowman says changes to bank stress test coming soon",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T19:52:11+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "ET_MARKETS",
+    "source_url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-federal-reserves-michelle-bowman-says-changes-to-bank-stress-test-coming-soon/articleshow/134337833.cms",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "70662aa0710452e0b16eed15"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "c9f00317d5a5c5669e3a1ea54f6fb91c3f34d47114987a713b62f5599367c397"
+  },
+  {
+    "event_id": "3b5a6f8405afc3b636b9b970",
+    "session_date": "2026-09-19",
+    "event_category": "FED",
+    "event_tags": [
+      "fed"
+    ],
+    "headline_or_summary": "US stocks today: US stocks slip as Treasury yields rise, investors weigh Fed outlook",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T19:11:28+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "ET_MARKETS",
+    "source_url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-sp-500-nasdaq-open-higher-as-oil-prices-fall/articleshow/134337081.cms",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "4279db74ed739ef7a6396bf1"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "15f1e6a9ec765ba441630607eefa7d846857b46297f6107a631a00a750360763"
+  },
+  {
+    "event_id": "6959e6d16a483c1e2bfc354e",
+    "session_date": "2026-09-19",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi"
+    ],
+    "headline_or_summary": "Fed hike, RBI moves hand India bonds a fifth weekly loss",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T17:53:29+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "ET_MARKETS",
+    "source_url": "https://economictimes.indiatimes.com/markets/bonds/fed-hike-rbi-moves-hand-india-bonds-a-fifth-weekly-loss/articleshow/134335309.cms",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "fa8e613ce975b57ce2519019"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "5a7232af9263ab054fa149eb30125b6c940bda2db696bc0056d0d13463197d05"
+  },
+  {
+    "event_id": "f9dd0074e52dc64998dd080c",
+    "session_date": "2026-09-19",
+    "event_category": "RBI",
+    "event_tags": [
+      "rbi"
+    ],
+    "headline_or_summary": "RBI funding curbs, CAS take a toll on proprietary volumes",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T16:23:15+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "LIVEMINT",
+    "source_url": "https://www.livemint.com/market/stock-market-news/proprietary-traders-nse-equity-options-trading-share-falls-rbi-funding-norms-cas-11789717692603.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "03e26e6b1e16b854e0406b15"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "a6cad9c2ed134426ab9b7f2dc23928fce6d04c3bace461cd7bec464f5bbba5ef"
+  },
+  {
+    "event_id": "9015fd90845137c323f9cea9",
+    "session_date": "2026-09-19",
+    "event_category": "FED",
+    "event_tags": [
+      "fed"
+    ],
+    "headline_or_summary": "Gold price extends gains despite US Fed rate hike: Should investors chase the rally? Key outlook explained",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T16:21:10+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "LIVEMINT",
+    "source_url": "https://www.livemint.com/market/stock-market-news/gold-price-extends-gains-despite-us-fed-rate-hike-should-investors-chase-the-rally-key-outlook-explained-11789727563285.html",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "e997a72b90860645902e2b0f"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "16e2cc3c37966d92714bd29a814d2a19511ca8a05bb85d912e0c49fcab55b133"
+  },
+  {
+    "event_id": "f168878c974d73ce6c993786",
+    "session_date": "2026-09-19",
+    "event_category": "NSE_MARKET_STRUCTURE",
+    "event_tags": [
+      "nse-market-structure",
+      "cas"
+    ],
+    "headline_or_summary": "CAS chaos continues: Sensex indicative price tumbles nearly 1,000 points in seconds, closes in red but Nifty ends above 23,300",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T15:55:20+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "ET_MARKETS",
+    "source_url": "https://economictimes.indiatimes.com/markets/stocks/news/cas-chaos-continues-sensex-indicative-price-tumbles-nearly-1000-points-closes-in-red-but-nifty-ends-above-23300/articleshow/134332368.cms",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "00740877437b248412c858b5"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "2065106df23f4921c4d84b60e0232b63c00a8e93418840b177fe456c47f5777f"
+  },
+  {
+    "event_id": "deaf21132d5fd2cf728827a8",
+    "session_date": "2026-09-19",
+    "event_category": "FED",
+    "event_tags": [
+      "fed"
+    ],
+    "headline_or_summary": "Bitcoin holds near $77K despite hawkish Fed, CLARITY Act setback and weak ETF demand. Here is what experts say",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T14:41:55+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "ET_MARKETS",
+    "source_url": "https://economictimes.indiatimes.com/markets/cryptocurrency/crypto-news/bitcoin-holds-near-77k-despite-hawkish-fed-clarity-act-setback-and-weak-etf-demand-here-is-what-experts-say/articleshow/134330927.cms",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "0bc9a5f309691f36fda3366e"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "fc27c4d7ed00d86fe30fb71bc72312a08933fe215d7f9221ceef5d540d118914"
+  },
+  {
+    "event_id": "2e5e50db574d2b33483dc5b5",
+    "session_date": "2026-09-19",
+    "event_category": "GEOPOLITICS",
+    "event_tags": [
+      "geopolitics",
+      "war",
+      "iran"
+    ],
+    "headline_or_summary": "Even JPMorgan can’t predict oil’s next move as Iran war crosses more red lines",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T11:14:20+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "BEARISH",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "ET_MARKETS",
+    "source_url": "https://economictimes.indiatimes.com/markets/commodities/even-jpmorgan-cant-predict-oils-next-move-as-iran-war-crosses-more-red-lines/articleshow/134327059.cms",
+    "special_flags": [],
+    "relevance": "HIGH",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "917ce070facd8a680729c64c"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "19493b6fbb7ab3519b8801c00b2b5f7ea26683ebcb186c0ce481042f1250d598"
+  },
+  {
+    "event_id": "80b18484ace3ae1a9332241d",
+    "session_date": "2026-09-19",
+    "event_category": "USD_INR",
+    "event_tags": [
+      "usd-inr",
+      "rupee",
+      "dollar"
+    ],
+    "headline_or_summary": "Rupee rises 16 paise to 95.73 against US dollar in early trade",
+    "known_at": "2026-09-18T20:11:29.479687+00:00",
+    "published_at": "2026-09-18T10:46:47+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "knowledge_phase": "PREOPEN",
+    "timing_precision": "EXACT_OR_NARROW_WINDOW",
+    "causal_evidence_grade": "LIVE_UNVERIFIED_CAUSALITY",
+    "source_quality": "LIVE_SOURCE",
+    "predictive_eligible": true,
+    "context_only": false,
+    "directional_context": "UNKNOWN",
+    "observed_banknifty_response": "PENDING_REACTION",
+    "source_name": "ET_MARKETS",
+    "source_url": "https://economictimes.indiatimes.com/markets/forex/rupee-rises-16-paise-to-95-73-against-us-dollar-in-early-trade/articleshow/134326642.cms",
+    "special_flags": [],
+    "relevance": "MEDIUM",
+    "reaction": {},
+    "source_metadata": {
+      "article_ids": [
+        "070b4c7412e688a63c75108d"
+      ]
+    },
+    "scheduled": false,
+    "content_hash": "647b1bb3719b4f92ca34263bd821c9e051e09eba1e4f9df4b62029b3d4139671"
+  }
+]

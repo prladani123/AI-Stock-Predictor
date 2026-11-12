@@ -1,0 +1,57 @@
+{
+  "coverage": [
+    {
+      "coverage_percent": 100.0,
+      "expected_minutes": 6,
+      "instrument_id": 1,
+      "issue_counts": {},
+      "missing_minutes": [],
+      "session_date": "2024-07-24",
+      "stored_minutes": 6
+    },
+    {
+      "coverage_percent": 66.67,
+      "expected_minutes": 6,
+      "instrument_id": 2,
+      "issue_counts": {
+        "DUPLICATE_TIMESTAMP": 1,
+        "INCOMPLETE_SESSION_COVERAGE": 1,
+        "INVALID_OHLC": 1,
+        "MISSING_MINUTE": 2,
+        "OUT_OF_ORDER": 1
+      },
+      "missing_minutes": [
+        "2024-07-24T03:48:00+00:00",
+        "2024-07-24T03:50:00+00:00"
+      ],
+      "session_date": "2024-07-24",
+      "stored_minutes": 4
+    }
+  ],
+  "fixture_client_calls": {
+    "historical_data": 2,
+    "instruments": 1
+  },
+  "imports": [
+    {
+      "duplicate_rows": 0,
+      "instrument_token": 1100001,
+      "rejected_rows": 0,
+      "rows_inserted": 6,
+      "rows_received": 6,
+      "status": "COMPLETED",
+      "symbol": "BANKNIFTY24JULFUT"
+    },
+    {
+      "duplicate_rows": 1,
+      "instrument_token": 260105,
+      "rejected_rows": 2,
+      "rows_inserted": 4,
+      "rows_received": 6,
+      "status": "COMPLETED",
+      "symbol": "NIFTY BANK"
+    }
+  ],
+  "mode": "OFFLINE_FIXTURE_ONLY",
+  "zerodha_network_calls": 0
+}

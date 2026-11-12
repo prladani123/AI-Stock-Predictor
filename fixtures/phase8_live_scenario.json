@@ -1,0 +1,25 @@
+{
+  "schema_version": "phase8-simulated-feed-v1",
+  "session_date": "2024-07-24",
+  "session_status": "SPECIAL",
+  "snapshot_version": "fixture-snapshot-2024-07-24",
+  "initial_underlying": "51520",
+  "rotated_underlying": "51620",
+  "strike_width": 5,
+  "events": [
+    "CONNECT",
+    "NORMAL_TICKS",
+    "DUPLICATE_TICK",
+    "STALE_OPTION_TICK",
+    "FINALIZE_MINUTE",
+    "LATE_TICK_CORRECTION",
+    "ATM_ROTATION",
+    "OUT_OF_ORDER_TICK",
+    "DISCONNECT",
+    "RECONNECT",
+    "RESUBSCRIBE",
+    "FRESH_TICKS",
+    "SESSION_CLOSE",
+    "EXPIRY_TRANSITION_SELECTION_TESTED_SEPARATELY"
+  ]
+}

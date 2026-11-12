@@ -1,0 +1,23 @@
+[
+  {"minute": 0, "close": "100.00"},
+  {"minute": 1, "close": "100.01"},
+  {"minute": 2, "close": "100.02"},
+  {"minute": 3, "close": "100.03"},
+  {"minute": 4, "close": "100.04"},
+  {"minute": 5, "close": "100.20"},
+  {"minute": 6, "close": "100.06"},
+  {"minute": 7, "close": "100.07"},
+  {"minute": 8, "close": "100.08"},
+  {"minute": 9, "close": "100.09"},
+  {"minute": 10, "close": "99.80"},
+  {"minute": 11, "close": "100.11"},
+  {"minute": 12, "close": "100.12"},
+  {"minute": 13, "close": "100.13"},
+  {"minute": 14, "close": "100.14"},
+  {"minute": 15, "close": "100.10"},
+  {"minute": 16, "close": "100.16"},
+  {"minute": 17, "close": "100.17"},
+  {"minute": 18, "close": "100.18"},
+  {"minute": 19, "close": "100.19"},
+  {"minute": 20, "close": "100.40"}
+]

@@ -1,0 +1,89 @@
+{
+  "instrument_token": 260105,
+  "session_open_ist": "09:15",
+  "session_minutes": 61,
+  "sessions": [
+    {
+      "date": "2024-07-15",
+      "start_close": "99.00",
+      "segments": [
+        {"increments": 20, "per_minute": "0.04"},
+        {"increments": 20, "per_minute": "-0.03"},
+        {"increments": 20, "per_minute": "0.00"}
+      ]
+    },
+    {
+      "date": "2024-07-16",
+      "start_close": "100.00",
+      "segments": [
+        {"increments": 20, "per_minute": "-0.04"},
+        {"increments": 20, "per_minute": "0.00"},
+        {"increments": 20, "per_minute": "0.05"}
+      ]
+    },
+    {
+      "date": "2024-07-17",
+      "start_close": "100.50",
+      "segments": [
+        {"increments": 15, "per_minute": "0.00"},
+        {"increments": 15, "per_minute": "0.05"},
+        {"increments": 15, "per_minute": "-0.05"},
+        {"increments": 15, "per_minute": "0.00"}
+      ]
+    },
+    {
+      "date": "2024-07-18",
+      "start_close": "101.00",
+      "segments": [
+        {"increments": 20, "per_minute": "0.05"},
+        {"increments": 20, "per_minute": "-0.04"},
+        {"increments": 20, "per_minute": "0.00"}
+      ]
+    },
+    {
+      "date": "2024-07-19",
+      "start_close": "100.00",
+      "segments": [
+        {"increments": 20, "per_minute": "0.00"},
+        {"increments": 15, "per_minute": "-0.06"},
+        {"increments": 15, "per_minute": "0.06"},
+        {"increments": 10, "per_minute": "0.00"}
+      ]
+    },
+    {"date": "2024-07-20", "status": "CLOSED"},
+    {"date": "2024-07-21", "status": "CLOSED"},
+    {
+      "date": "2024-07-22",
+      "start_close": "100.00",
+      "segments": [
+        {"increments": 20, "per_minute": "0.00"},
+        {"increments": 15, "per_minute": "0.06"},
+        {"increments": 25, "per_minute": "-0.06"}
+      ]
+    },
+    {
+      "date": "2024-07-23",
+      "start_close": "101.00",
+      "segments": [
+        {"increments": 20, "per_minute": "0.00"},
+        {"increments": 20, "per_minute": "-0.05"},
+        {"increments": 20, "per_minute": "0.05"}
+      ]
+    },
+    {
+      "date": "2024-07-24",
+      "start_close": "100.00",
+      "segments": [
+        {"increments": 15, "per_minute": "0.01"},
+        {"increments": 15, "per_minute": "0.04"},
+        {"increments": 15, "per_minute": "-0.05"},
+        {"increments": 15, "per_minute": "0.00"}
+      ]
+    }
+  ],
+  "edge_cases": {
+    "incomplete_lookback": "first 20 minutes of every session",
+    "near_close": "last 20 minutes have one or more unresolved horizons",
+    "missing_future_fixture": "fixtures/candles_260105.json contains an explicit missing minute"
+  }
+}

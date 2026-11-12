@@ -1,0 +1,398 @@
+[
+  {
+    "headline": "Reserve Bank of India (Rural Co-operative Banks – Know Your Customer) Amendment Directions, 2026",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13704&Mode=0",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "b8620e89d6efd1cd178789255b9b085fc2eb73cabb060e3fc9cadd66233c113c",
+    "article_id": "b8620e89d6efd1cd17878925"
+  },
+  {
+    "headline": "Reserve Bank of India (Urban Co-operative Banks – Know Your Customer) Amendment Directions, 2026",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13703&Mode=0",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "05cbadc5fad71630784dd1b72a50f7d50b593ad73275317a037b7a615d104bc4",
+    "article_id": "05cbadc5fad71630784dd1b7"
+  },
+  {
+    "headline": "Reserve Bank of India (Regional Rural Banks – Know Your Customer) Amendment Directions, 2026",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13702&Mode=0",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "a8070ff370082d96949e10db59251de9a0fb3a6bea764855a4bc7ec8cf5ec5f5",
+    "article_id": "a8070ff370082d96949e10db"
+  },
+  {
+    "headline": "Reserve Bank of India (Local Area Banks – Know Your Customer) Amendment Directions, 2026",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13701&Mode=0",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "dc5c0789ab7e4a2cf8306ff839a6806c0be04edb9f8799fb9fee8d760631b1ff",
+    "article_id": "dc5c0789ab7e4a2cf8306ff8"
+  },
+  {
+    "headline": "Reserve Bank of India (Small Finance Banks – Know Your Customer) Amendment Directions, 2026",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13700&Mode=0",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "813ece92114de1fed4b4cac0c398326535b65490d06a24e27578ca10a271fe26",
+    "article_id": "813ece92114de1fed4b4cac0"
+  },
+  {
+    "headline": "Reserve Bank of India (Commercial Banks – Know Your Customer) Amendment Directions, 2026",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13699&Mode=0",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "dd3b57ec27c452d89fddb5a788df064d91a22260f553cd1706d21b65e9b48332",
+    "article_id": "dd3b57ec27c452d89fddb5a7"
+  },
+  {
+    "headline": "RBI invites comments on the Draft “Reserve Bank of India (Know Your Customer) Amendment Directions, 2026”",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63587",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.75,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "d52ec36b05a42baf81f1337ee3ec4fb1746e0888afe5a875d67e264cf05c410d",
+    "article_id": "d52ec36b05a42baf81f1337e"
+  },
+  {
+    "headline": "Data on Forex inflows via FCNR(B) Deposits, External Commercial Borrowings (ECBs) and Overseas Foreign Currency Borrowings (OFCBs) under Reserve Bank’s Swap facility",
+    "source": "RBI_OFFICIAL",
+    "url": "https://rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63502",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "75b49038f56c15fc8ca212086da0fd31b0f6754cc5192427ab30d6523e0017b4",
+    "article_id": "75b49038f56c15fc8ca21208"
+  },
+  {
+    "headline": "Conference for Registrars of Cooperative Societies held at Reserve Bank of India, New Delhi on September 1, 2026",
+    "source": "RBI_OFFICIAL",
+    "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=63499",
+    "published_at": null,
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi",
+      "reserve-bank"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "d38f5fc7693ab3c85d2346639943428a53101bb6718d388fdb097ee9ad851d9c",
+    "article_id": "d38f5fc7693ab3c85d234663"
+  },
+  {
+    "headline": "Pulse of the Street: Crude retreats, but markets extend losing streak",
+    "source": "LIVEMINT",
+    "url": "https://www.livemint.com/market/stock-market-news/pulse-of-the-street-crude-retreats-but-markets-fail-to-break-losing-streak-11789739627282.html",
+    "published_at": "2026-09-18T20:25:45+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "CRUDE_OIL",
+    "tags": [
+      "crude-oil",
+      "crude"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "2f1c5dd8a06bb431d98ca602b73e3746d6d8cd84eaa10302c5a6d61ecb9c763f",
+    "article_id": "2f1c5dd8a06bb431d98ca602"
+  },
+  {
+    "headline": "US Federal Reserve's Michelle Bowman says changes to bank stress test coming soon",
+    "source": "ET_MARKETS",
+    "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-federal-reserves-michelle-bowman-says-changes-to-bank-stress-test-coming-soon/articleshow/134337833.cms",
+    "published_at": "2026-09-18T19:52:11+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "FED",
+    "tags": [
+      "fed",
+      "federal-reserve"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "70662aa0710452e0b16eed15d0f202c0113010f7e051059c5df28e51dc21e2d8",
+    "article_id": "70662aa0710452e0b16eed15"
+  },
+  {
+    "headline": "US stocks today: US stocks slip as Treasury yields rise, investors weigh Fed outlook",
+    "source": "ET_MARKETS",
+    "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-sp-500-nasdaq-open-higher-as-oil-prices-fall/articleshow/134337081.cms",
+    "published_at": "2026-09-18T19:11:28+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "FED",
+    "tags": [
+      "fed"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "4279db74ed739ef7a6396bf184236a8b5e181ab71aabad016eab2c0d1ca88f8f",
+    "article_id": "4279db74ed739ef7a6396bf1"
+  },
+  {
+    "headline": "Fed hike, RBI moves hand India bonds a fifth weekly loss",
+    "source": "ET_MARKETS",
+    "url": "https://economictimes.indiatimes.com/markets/bonds/fed-hike-rbi-moves-hand-india-bonds-a-fifth-weekly-loss/articleshow/134335309.cms",
+    "published_at": "2026-09-18T17:53:29+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "fa8e613ce975b57ce25190193ac2526c502711a97a1c47cbafb35297214a1e9b",
+    "article_id": "fa8e613ce975b57ce2519019"
+  },
+  {
+    "headline": "RBI funding curbs, CAS take a toll on proprietary volumes",
+    "source": "LIVEMINT",
+    "url": "https://www.livemint.com/market/stock-market-news/proprietary-traders-nse-equity-options-trading-share-falls-rbi-funding-norms-cas-11789717692603.html",
+    "published_at": "2026-09-18T16:23:15+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "RBI",
+    "tags": [
+      "rbi"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "03e26e6b1e16b854e0406b15d486b86c3885bb5a386cc53f57a497c9b00277a4",
+    "article_id": "03e26e6b1e16b854e0406b15"
+  },
+  {
+    "headline": "Gold price extends gains despite US Fed rate hike: Should investors chase the rally? Key outlook explained",
+    "source": "LIVEMINT",
+    "url": "https://www.livemint.com/market/stock-market-news/gold-price-extends-gains-despite-us-fed-rate-hike-should-investors-chase-the-rally-key-outlook-explained-11789727563285.html",
+    "published_at": "2026-09-18T16:21:10+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "FED",
+    "tags": [
+      "fed"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "e997a72b90860645902e2b0f86fa49740e51dccefbe2d9c173280232566169e9",
+    "article_id": "e997a72b90860645902e2b0f"
+  },
+  {
+    "headline": "CAS chaos continues: Sensex indicative price tumbles nearly 1,000 points in seconds, closes in red but Nifty ends above 23,300",
+    "source": "ET_MARKETS",
+    "url": "https://economictimes.indiatimes.com/markets/stocks/news/cas-chaos-continues-sensex-indicative-price-tumbles-nearly-1000-points-closes-in-red-but-nifty-ends-above-23300/articleshow/134332368.cms",
+    "published_at": "2026-09-18T15:55:20+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "NSE_MARKET_STRUCTURE",
+    "tags": [
+      "nse-market-structure",
+      "cas"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "00740877437b248412c858b5ecfc38041181c9260b8a3e855b37125a1c3958e3",
+    "article_id": "00740877437b248412c858b5"
+  },
+  {
+    "headline": "Bitcoin holds near $77K despite hawkish Fed, CLARITY Act setback and weak ETF demand. Here is what experts say",
+    "source": "ET_MARKETS",
+    "url": "https://economictimes.indiatimes.com/markets/cryptocurrency/crypto-news/bitcoin-holds-near-77k-despite-hawkish-fed-clarity-act-setback-and-weak-etf-demand-here-is-what-experts-say/articleshow/134330927.cms",
+    "published_at": "2026-09-18T14:41:55+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "FED",
+    "tags": [
+      "fed"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.7,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "0bc9a5f309691f36fda3366ecb311c712292153c2298094ae672155ed4d533fc",
+    "article_id": "0bc9a5f309691f36fda3366e"
+  },
+  {
+    "headline": "Even JPMorgan can’t predict oil’s next move as Iran war crosses more red lines",
+    "source": "ET_MARKETS",
+    "url": "https://economictimes.indiatimes.com/markets/commodities/even-jpmorgan-cant-predict-oils-next-move-as-iran-war-crosses-more-red-lines/articleshow/134327059.cms",
+    "published_at": "2026-09-18T11:14:20+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "GEOPOLITICS",
+    "tags": [
+      "geopolitics",
+      "war",
+      "iran"
+    ],
+    "relevance": "HIGH",
+    "relevance_score": 0.75,
+    "banknifty_relevance": "HIGH",
+    "relevance_reason": "Macro/rate/oil event with material banking valuation or risk implications.",
+    "raw_metadata": {},
+    "content_hash": "917ce070facd8a680729c64c9be7281a6f611306951d8d5e3875bd717d74a778",
+    "article_id": "917ce070facd8a680729c64c"
+  },
+  {
+    "headline": "Rupee rises 16 paise to 95.73 against US dollar in early trade",
+    "source": "ET_MARKETS",
+    "url": "https://economictimes.indiatimes.com/markets/forex/rupee-rises-16-paise-to-95-73-against-us-dollar-in-early-trade/articleshow/134326642.cms",
+    "published_at": "2026-09-18T10:46:47+05:30",
+    "first_seen_at": "2026-09-18T20:11:29.479687+00:00",
+    "ingested_at": "2026-09-18T20:11:29.479687+00:00",
+    "affected_symbols": [],
+    "category": "USD_INR",
+    "tags": [
+      "usd-inr",
+      "rupee",
+      "dollar"
+    ],
+    "relevance": "MEDIUM",
+    "relevance_score": 0.55,
+    "banknifty_relevance": "MEDIUM",
+    "relevance_reason": "No direct BANKNIFTY relevance rule matched; retained only when explicitly requested.",
+    "raw_metadata": {},
+    "content_hash": "070b4c7412e688a63c75108d0313503fb50a1807c9aad4fc65b7c9ca860ec194",
+    "article_id": "070b4c7412e688a63c75108d"
+  }
+]

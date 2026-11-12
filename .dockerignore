@@ -1,0 +1,10 @@
+.venv
+**/__pycache__
+.pytest_cache
+*.egg-info
+frontend/node_modules
+frontend/dist
+backend/vendor
+backend/var
+.env
+artifacts/*.json

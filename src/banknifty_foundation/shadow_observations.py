@@ -69,10 +69,20 @@ class ShadowRepository:
             rows=db.execute('''SELECT s.prediction_id,s.market_as_of,s.decision_at,s.horizon_minutes,
                 s.context_v3_evidence->>'status' AS context_status,
                 s.microstructure_evidence->>'status' AS microstructure_status,
-                p.state,p.direction,p.big_move_probability,o.actual_label,o.quality_status AS outcome_quality
+                p.state,p.direction,p.big_move_probability,o.actual_label,o.quality_status AS outcome_quality,
+                research.references AS research_references
                 FROM big_move_shadow_observations s JOIN big_move_predictions p USING(prediction_id)
                 LEFT JOIN big_move_prediction_outcomes o ON o.prediction_id=s.prediction_id
                     AND o.attached_at<=now() AND p.expires_at<=now()
+                LEFT JOIN LATERAL (
+                    SELECT jsonb_agg(jsonb_build_object(
+                        'outputId',e.output_id,'model',e.model_name,
+                        'identityChecksum',e.identity_checksum,
+                        'pointInTimeStatus',e.point_in_time_status,
+                        'availableAt',e.available_at) ORDER BY e.model_name) AS references
+                    FROM experimental_model_outputs e
+                    WHERE e.prediction_ids ? p.prediction_id AND e.as_of=p.as_of
+                ) research ON true
                 ORDER BY s.market_as_of DESC,s.prediction_id LIMIT %s''',(max(1,min(int(limit),10000)),)).fetchall()
         return [dict(row,market_as_of=row['market_as_of'].isoformat(),decision_at=row['decision_at'].isoformat(),
                      big_move_probability=float(row['big_move_probability'])) for row in rows]

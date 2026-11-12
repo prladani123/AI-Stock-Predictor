@@ -8,6 +8,7 @@ returns multiple independently seeded sample paths for research aggregation.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import threading
@@ -15,6 +16,7 @@ import time
 from datetime import datetime, timedelta
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
@@ -26,6 +28,8 @@ from model import Kronos, KronosPredictor, KronosTokenizer
 MODEL_NAME = "KRONOS_MINI_ZERO_SHOT_V1"
 MODEL_DIR = os.getenv("KRONOS_MODEL_DIR", "/app/models/Kronos-mini")
 TOKENIZER_DIR = os.getenv("KRONOS_TOKENIZER_DIR", "/app/models/Kronos-Tokenizer-2k")
+MODEL_SHA256 = "A7D5F37E2E9FBD9891F7D7D4F72574512DD1F704FEE14223E0A8CD0FBF54197C"
+TOKENIZER_SHA256 = "B97EC46B3B72160509E289183EAF7BDF5F0DAC5BB9B49522F6D46638A99A8717"
 THREADS = max(1, min(4, int(os.getenv("KRONOS_THREADS", "2"))))
 MAX_CONTEXT = 2048
 MAX_CANDLES = 2048
@@ -44,15 +48,34 @@ STATE: dict[str, Any] = {
 PREDICTOR: KronosPredictor | None = None
 
 
+def _sha256(path: str) -> str:
+    value = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            value.update(chunk)
+    return value.hexdigest().upper()
+
+
+def _verify(path: str, expected: str) -> None:
+    actual = _sha256(path)
+    if actual != expected:
+        raise ValueError(f"committed model hash mismatch for {os.path.basename(os.path.dirname(path))}")
+
+
 def _load() -> None:
     global PREDICTOR
+    PREDICTOR = None
     torch.set_num_threads(THREADS)
     try:
         if not os.path.isdir(MODEL_DIR) or not os.path.isdir(TOKENIZER_DIR):
             STATE.update(status="MODEL_NOT_DOWNLOADED", detail="local model cache missing")
             return
+        _verify(os.path.join(MODEL_DIR, "model.safetensors"), MODEL_SHA256)
+        _verify(os.path.join(TOKENIZER_DIR, "model.safetensors"), TOKENIZER_SHA256)
         tokenizer = KronosTokenizer.from_pretrained(TOKENIZER_DIR)
         model = Kronos.from_pretrained(MODEL_DIR)
+        tokenizer.eval()
+        model.eval()
         PREDICTOR = KronosPredictor(model, tokenizer, device="cpu", max_context=MAX_CONTEXT)
         STATE.update(status="READY", detail=None)
     except Exception as error:  # pragma: no cover - exercised only in container
@@ -81,6 +104,8 @@ def _candles(payload: dict[str, Any]) -> tuple[list[dict[str, Any]], datetime]:
             raise ValueError("future candle supplied")
         if previous is not None and timestamp <= previous:
             raise ValueError("candles must be strictly ascending")
+        if previous is not None and timestamp - previous != timedelta(minutes=1):
+            raise ValueError("minute gaps are not allowed")
         values = [float(row.get(name)) for name in ("open", "high", "low", "close")]
         if any(not np.isfinite(value) or value <= 0 for value in values):
             raise ValueError("OHLC values must be finite and positive")
@@ -98,6 +123,9 @@ def _predict(payload: dict[str, Any]) -> dict[str, Any]:
     if PREDICTOR is None:
         raise RuntimeError(STATE["status"])
     candles, reference = _candles(payload)
+    local = reference.astimezone(ZoneInfo("Asia/Kolkata"))
+    if local + timedelta(minutes=30) >= local.replace(hour=15, minute=30, second=0, microsecond=0):
+        raise ValueError("forecast crosses NSE close")
     pred_len = int(payload.get("pred_len", 30))
     sample_paths = int(payload.get("sample_paths", 8))
     seed = int(payload.get("seed", 1729))
@@ -122,14 +150,18 @@ def _predict(payload: dict[str, Any]) -> dict[str, Any]:
             T=temperature, top_k=top_k, top_p=top_p, sample_count=1, verbose=False)
         if len(predicted) != pred_len:
             raise ValueError("Kronos returned an invalid forecast path")
-        paths.append([
-            {"timestamp": y_timestamp.iloc[offset].isoformat(),
-             "open": float(predicted.iloc[offset]["open"]),
-             "high": float(predicted.iloc[offset]["high"]),
-             "low": float(predicted.iloc[offset]["low"]),
-             "close": float(predicted.iloc[offset]["close"])}
-            for offset in range(pred_len)
-        ])
+        path = []
+        for offset in range(pred_len):
+            values = [float(predicted.iloc[offset][name])
+                      for name in ("open", "high", "low", "close")]
+            if any(not np.isfinite(value) or value <= 0 for value in values):
+                raise ValueError("Kronos returned invalid OHLC")
+            opened, high, low, close = values
+            if high < max(opened, close) or low > min(opened, close) or high < low:
+                raise ValueError("Kronos returned inconsistent OHLC")
+            path.append({"timestamp": y_timestamp.iloc[offset].isoformat(),
+                         "open": opened, "high": high, "low": low, "close": close})
+        paths.append(path)
     return {
         "status": "COMPLETED",
         "modelName": MODEL_NAME,
@@ -140,7 +172,11 @@ def _predict(payload: dict[str, Any]) -> dict[str, Any]:
         "pathCount": len(paths),
         "seed": seed,
         "seedPolicy": "SEED_PLUS_PATH_INDEX",
-        "sampling": {"temperature": temperature, "topK": top_k, "topP": top_p},
+        "sampling": {"temperature": temperature, "topK": top_k, "topP": top_p,
+                     "sampleCount": 1, "separateSeededCalls": True},
+        "modelRevision": MODEL_SHA256,
+        "tokenizerRevision": TOKENIZER_SHA256,
+        "upstreamRevision": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
         "mode": "OHLC_ONLY",
         "volumeStatus": "INDEX_VOLUME_NOT_USED",
         "latencyMs": round((time.perf_counter() - started) * 1000, 3),

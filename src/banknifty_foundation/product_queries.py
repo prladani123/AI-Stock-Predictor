@@ -246,11 +246,14 @@ class ProductDataReader:
             "resolved": row.get("actual_label") is not None,
         }
 
-    def _experimental_payload(self, row) -> dict[str, Any]:
+    def _experimental_payload(self, row, reference_minute, prediction_ids) -> dict[str, Any]:
+        unavailable = {"available": False, "researchOnly": True, "usedByPriceCoreV2": False}
         if row is None:
-            return {"available": False, "reason": "NO_EXPERIMENTAL_OUTPUT",
-                    "researchOnly": True, "usedByPriceCoreV2": False}
+            return {**unavailable, "reason": "NO_EXPERIMENTAL_OUTPUT"}
         summary = row["summary"] or {}
+        linked = {str(value) for value in summary.get("predictionIds", [])}
+        if row["as_of"] != reference_minute or not linked.intersection(prediction_ids):
+            return {**unavailable, "reason": "REFERENCE_MISMATCH"}
         return {
             "available": True,
             "id": row["output_id"],
@@ -259,10 +262,20 @@ class ProductDataReader:
             "computedAt": summary.get("computedAt"),
             "availableAt": summary.get("availableAt"),
             "sourceMaxTimestamp": summary.get("sourceMaxTimestamp"),
-            "pointInTimeStatus": summary.get("pointInTimeStatus"),
+            "pointInTimeStatus": row["point_in_time_status"],
+            "decisionAt": summary.get("decisionAt"),
             "status": summary.get("researchStatus"),
             "model": row["model_name"],
             "modelVersion": row["model_version"],
+            "predictionIds": sorted(linked),
+            "replayPoolRevisionId": row["replay_pool_revision_id"],
+            "inputChecksum": row["input_checksum"],
+            "upstreamRevision": row["upstream_revision"],
+            "modelRevision": row["model_revision"],
+            "tokenizerRevision": row["tokenizer_revision"],
+            "seed": row["seed"],
+            "pathCount": row["path_count"],
+            "thresholdPolicyVersion": row["threshold_policy_version"],
             "horizons": summary.get("horizons", {}),
             "forecastPath": row["forecast_path"],
             "summary": summary,
@@ -278,7 +291,7 @@ class ProductDataReader:
                 rows = connection.execute("""
                     SELECT DISTINCT ON (prediction.horizon_minutes)
                            prediction.prediction_id, prediction.horizon_minutes,
-                           prediction.as_of, prediction.expires_at, prediction.reference_price,
+                           prediction.as_of, prediction.expires_at, prediction.reference_price, prediction.instrument_id,
                            big_move_probability, quiet_probability, state, direction,
                            direction_probability, up_given_big_move_probability,
                            down_given_big_move_probability, expected_move_points,
@@ -301,26 +314,39 @@ class ProductDataReader:
                       AND prediction.expires_at + interval '1 minute' > now()
                     ORDER BY prediction.horizon_minutes, prediction.as_of DESC
                 """,(as_of,as_of,instrument_id,instrument_id)).fetchall()
-                kronos = connection.execute("""
-                    SELECT output_id, as_of, model_name, model_version, forecast_path, summary
+                rows = sorted(rows, key=lambda item: item["horizon_minutes"])
+                latest = max(rows, key=lambda item: item["as_of"]) if rows else None
+                reference_minute = latest["as_of"] if latest else None
+                selected_instrument = latest["instrument_id"] if latest else None
+                prediction_ids = {str(item["prediction_id"]) for item in rows}
+                columns = ("output_id, as_of, model_name, model_version, forecast_path, summary, "
+                           "replay_pool_revision_id, input_checksum, upstream_revision, "
+                           "model_revision, tokenizer_revision, seed, path_count, "
+                           "threshold_policy_version, point_in_time_status")
+                external_sql = f"""
+                    SELECT {columns}
                     FROM experimental_model_outputs
-                    WHERE model_name='KRONOS_MINI_ZERO_SHOT_V1'
-                      AND (%s::bigint IS NULL OR instrument_id=%s)
-                      AND as_of <= now()
-                      AND summary->>'pointInTimeStatus'='PROSPECTIVE'
-                    ORDER BY as_of DESC LIMIT 1
-                """, (instrument_id, instrument_id)).fetchone()
-                time_machine = connection.execute("""
-                    SELECT output_id, as_of, model_name, model_version, forecast_path, summary
-                    FROM experimental_model_outputs
-                    WHERE model_name='BANKNIFTY_TIME_MACHINE_V1'
-                      AND (%s::bigint IS NULL OR instrument_id=%s)
-                      AND as_of <= now()
-                      AND summary->>'pointInTimeStatus'='PROSPECTIVE'
-                    ORDER BY as_of DESC LIMIT 1
-                """, (instrument_id, instrument_id)).fetchone()
-            rows = sorted(rows, key=lambda item: item["horizon_minutes"])
-            latest = max(rows, key=lambda item: item["as_of"]) if rows else None
+                    WHERE model_name=%s
+                      AND instrument_id=%s
+                      AND as_of=%s
+                      AND prediction_ids ?| %s::text[]
+                      AND summary->>'researchStatus'='COMPLETED'
+                      AND point_in_time_status IN ('PROSPECTIVE_DECISION_AVAILABLE',
+                                                   'PROSPECTIVE_POST_DECISION')
+                    ORDER BY available_at DESC, identity_checksum DESC LIMIT 1
+                """
+                def optional_output(model_name):
+                    if reference_minute is None:
+                        return None
+                    try:
+                        # A research migration/query failure cannot hide V2 rows.
+                        with connection.transaction():
+                            return connection.execute(external_sql, (model_name, selected_instrument,
+                                reference_minute, sorted(prediction_ids))).fetchone()
+                    except Exception:
+                        return None
+                kronos = optional_output("KRONOS_MINI_ZERO_SHOT_V1")
+                time_machine = optional_output("BANKNIFTY_TIME_MACHINE_V1")
             return {"available": bool(rows), "reason": None if rows else "NO_BIG_MOVE_PREDICTIONS",
                 "asOf": latest["as_of"].isoformat() if latest else None,
                 "marketRegime": latest["market_regime"] if latest else "UNKNOWN",
@@ -330,8 +356,10 @@ class ProductDataReader:
                 "featureValues": (latest['session_bias'].get('runtime_lineage') or {}).get('feature_values') if latest else None,
                 "featureAsOf": latest['as_of'].isoformat() if latest else None,
                 "featureQualityStatus": latest['quality_status'] if latest else None,
-                "kronosExperimental": self._experimental_payload(kronos),
-                "timeMachineExperimental": self._experimental_payload(time_machine)}
+                "kronosExperimental": self._experimental_payload(
+                    kronos, reference_minute, prediction_ids),
+                "timeMachineExperimental": self._experimental_payload(
+                    time_machine, reference_minute, prediction_ids)}
         except Exception:
             return {"available": False, "reason": "DATABASE_UNAVAILABLE", "horizons": []}
 

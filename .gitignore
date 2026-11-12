@@ -52,6 +52,7 @@ huggingface/
 *.onnx
 
 # External reference clones and regenerated research output
+/data/external/banknifty/sandeepkapri/bank-nifty-1m-data.csv
 refs/
 .reference/
 external-repos/

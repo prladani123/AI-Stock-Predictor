@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import replace
 from datetime import date, datetime, time, timedelta, timezone
 from decimal import Decimal
 import json
@@ -25,7 +26,7 @@ from .big_move_features import BigMoveFeatureGenerationService
 from .kronos_experiment import KronosForecastAdapter
 from .banknifty_time_machine import BankniftyTimeMachine
 from .external_research import (HISTORICAL_COUNTERFACTUAL, KRONOS_MODEL_NAME, PROSPECTIVE,
-                                TIME_MACHINE_MODEL_NAME)
+                                prospective_status, TIME_MACHINE_MODEL_NAME)
 from .models import Candle, TradingSession
 from .rate_limit import RateLimiter
 from .repository import MemoryRepository, PostgresRepository
@@ -318,16 +319,40 @@ def command_external_research_preflight(args: argparse.Namespace) -> int:
     return 0
 
 
+def _research_session(repository, reference: datetime):
+    day = reference.astimezone(IST).date()
+    return next((item for item in repository.sessions_between(day, day)
+                 if item.session_date == day and item.status == "OPEN"), None)
+
+
+def _research_point_status(args: argparse.Namespace, available_at: datetime,
+                           reference: datetime) -> str:
+    if not args.prospective:
+        return HISTORICAL_COUNTERFACTUAL
+    decision_at = _research_timestamp(args.decision_at) if args.decision_at else None
+    return prospective_status(available_at, decision_at) if decision_at else PROSPECTIVE
+
+
 def command_kronos_research_run(args: argparse.Namespace) -> int:
+    if args.prospective:
+        raise ValueError("Revision CLI runs are historical counterfactuals; live capture requires committed prediction identity")
     repository = _research_repository()
     reference = _research_timestamp(args.as_of)
     candles = repository.revision_candles(args.revision, args.instrument_id)
+    session = _research_session(repository, reference)
     adapter = KronosForecastAdapter(service_url=args.service_url or None,
                                     sample_paths=args.paths, seed=args.seed,
                                     timeout_seconds=args.timeout)
     result = adapter.forecast(candles, as_of=reference, lookback=args.lookback,
         sample_count=args.paths,
-        point_in_time_status=PROSPECTIVE if args.prospective else HISTORICAL_COUNTERFACTUAL)
+        point_in_time_status=PROSPECTIVE if args.prospective else HISTORICAL_COUNTERFACTUAL,
+        session_open=session.open_at if session else None,
+        session_close=session.close_at if session else None)
+    if args.prospective:
+        result = replace(result, point_in_time_status=prospective_status(
+            result.available_at, _research_timestamp(args.decision_at))
+            if args.decision_at else PROSPECTIVE,
+            decision_at=_research_timestamp(args.decision_at) if args.decision_at else None)
     persisted = repository.save_experimental_output(result, args.revision,
         args.instrument_id) if result.status == "COMPLETED" else False
     payload = result.to_dict()
@@ -341,6 +366,8 @@ def command_kronos_research_run(args: argparse.Namespace) -> int:
 
 
 def command_time_machine_run(args: argparse.Namespace) -> int:
+    if args.prospective:
+        raise ValueError("Revision CLI runs are historical counterfactuals; live capture requires committed prediction identity")
     repository = _research_repository()
     reference = _research_timestamp(args.as_of)
     machine = BankniftyTimeMachine(repository, sample_paths=args.paths,
@@ -348,7 +375,13 @@ def command_time_machine_run(args: argparse.Namespace) -> int:
         seed=args.seed)
     result = machine.run(revision_id=args.revision, instrument_id=args.instrument_id,
         reference_minute=reference,
-        point_in_time_status=PROSPECTIVE if args.prospective else HISTORICAL_COUNTERFACTUAL)
+        point_in_time_status=PROSPECTIVE if args.prospective else HISTORICAL_COUNTERFACTUAL,
+        current_session=_research_session(repository, reference))
+    if args.prospective:
+        result = replace(result, point_in_time_status=prospective_status(
+            result.available_at, _research_timestamp(args.decision_at))
+            if args.decision_at else PROSPECTIVE,
+            decision_at=_research_timestamp(args.decision_at) if args.decision_at else None)
     persisted = repository.save_experimental_output(result, args.revision,
         args.instrument_id) if result.status == "COMPLETED" else False
     payload = result.to_dict()
@@ -369,7 +402,7 @@ def command_external_research_backfill(args: argparse.Namespace) -> int:
         raise ValueError("--from must not be after --to")
     revision = repository.get_revision(args.revision)
     sessions = {item.session_date: item for item in repository.sessions_between(from_date, to_date)
-                if item.status in {"OPEN", "SPECIAL"}}
+                if item.status == "OPEN"}
     candles = sorted(repository.revision_candles(args.revision, args.instrument_id),
                      key=lambda item: item.timestamp)
     candidates: list[datetime] = []
@@ -410,9 +443,12 @@ def command_external_research_backfill(args: argparse.Namespace) -> int:
                         instrument_id=args.instrument_id, reference_minute=reference,
                         point_in_time_status=HISTORICAL_COUNTERFACTUAL)
                 else:
+                    day = reference.astimezone(IST).date()
+                    session = sessions[day]
                     result = service.forecast(candles, as_of=reference,
                         sample_count=args.kronos_paths,
-                        point_in_time_status=HISTORICAL_COUNTERFACTUAL)
+                        point_in_time_status=HISTORICAL_COUNTERFACTUAL,
+                        session_open=session.open_at, session_close=session.close_at)
                 persisted = repository.save_experimental_output(
                     result, args.revision, args.instrument_id) if result.status == "COMPLETED" else False
                 counts[name] += int(persisted)
@@ -1361,7 +1397,9 @@ def build_parser() -> argparse.ArgumentParser:
     kronos_run.add_argument("--timeout", type=float, default=90.0)
     kronos_run.add_argument("--service-url")
     kronos_run.add_argument("--prospective", action="store_true",
-        help="mark decision-available prospective research instead of historical counterfactual")
+        help="mark prospective research instead of historical counterfactual")
+    kronos_run.add_argument("--decision-at",
+        help="exact production decision time used to classify prospective availability")
     kronos_run.add_argument("--output", default="artifacts/kronos-research-output.json")
     kronos_run.set_defaults(func=command_kronos_research_run)
 
@@ -1375,7 +1413,9 @@ def build_parser() -> argparse.ArgumentParser:
     time_machine_run.add_argument("--slot-window", type=int, default=2)
     time_machine_run.add_argument("--min-prior-sessions", type=int, default=20)
     time_machine_run.add_argument("--prospective", action="store_true",
-        help="mark decision-available prospective research instead of historical counterfactual")
+        help="mark prospective research instead of historical counterfactual")
+    time_machine_run.add_argument("--decision-at",
+        help="exact production decision time used to classify prospective availability")
     time_machine_run.add_argument("--output", default="artifacts/time-machine-output.json")
     time_machine_run.set_defaults(func=command_time_machine_run)
 

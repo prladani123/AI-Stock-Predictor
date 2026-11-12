@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import Counter
 from contextlib import contextmanager
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date, datetime
 from decimal import Decimal
 import hashlib
@@ -98,8 +98,9 @@ class Repository(Protocol):
     def save_big_move_labels(self, labels: list[BigMoveLabel]) -> int: ...
     def big_move_labels(self, revision_id: str, instrument_id: int) -> list[BigMoveLabel]: ...
     def save_experimental_output(self, output: ExternalForecastResult,
-                                 dataset_revision_id: str, instrument_id: int) -> bool: ...
-    def experimental_outputs_for(self, revision_id: str, instrument_id: int, *,
+                                 dataset_revision_id: str | None, instrument_id: int, *,
+                                 replay_pool_revision_id: str | None = None) -> bool: ...
+    def experimental_outputs_for(self, revision_id: str | None, instrument_id: int, *,
                                  model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]: ...
 
 
@@ -384,22 +385,26 @@ class MemoryRepository:
                       key=lambda item: (item.as_of, item.horizon_minutes))
 
     def save_experimental_output(self, output: ExternalForecastResult,
-                                 dataset_revision_id: str, instrument_id: int) -> bool:
+                                 dataset_revision_id: str | None, instrument_id: int, *,
+                                 replay_pool_revision_id: str | None = None) -> bool:
         if output.model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
             raise ValueError("unknown experimental research model")
         if output.reference_minute.tzinfo is None:
             raise ValueError("experimental output reference minute must be timezone-aware")
+        if replay_pool_revision_id is not None:
+            output = replace(output, replay_pool_revision_id=replay_pool_revision_id)
         record = output.to_record(dataset_revision_id=dataset_revision_id,
                                   instrument_id=instrument_id)
         existing = self.experimental_outputs.get(record["output_id"])
         if existing is not None:
-            if canonical_json(existing) != canonical_json(record):
+            from .external_research import persistence_content
+            if persistence_content(existing) != persistence_content(record):
                 raise ValueError("experimental model outputs are immutable")
             return False
         self.experimental_outputs[record["output_id"]] = deepcopy(record)
         return True
 
-    def experimental_outputs_for(self, revision_id: str, instrument_id: int, *,
+    def experimental_outputs_for(self, revision_id: str | None, instrument_id: int, *,
                                  model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]:
         if model_name is not None and model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
             raise ValueError("unknown experimental research model")
@@ -1298,59 +1303,80 @@ class PostgresRepository:
             """, (revision_id, instrument_id)).fetchall()
         return [BigMoveLabel(str(row[0]), *row[1:]) for row in rows]
 
+    _EXPERIMENTAL_COLUMNS = (
+        "output_id", "dataset_revision_id", "instrument_id", "as_of", "model_name",
+        "model_version", "pred_len", "forecast_path", "summary", "status",
+        "identity_checksum", "prediction_ids", "replay_pool_revision_id", "input_checksum",
+        "reference_state_checksum", "configuration_checksum", "upstream_revision",
+        "model_revision", "tokenizer_revision", "seed", "path_count", "sampling",
+        "threshold_policy_version", "sampling_pool_checksum", "decision_at", "available_at",
+        "computed_at", "source_max_timestamp", "point_in_time_status",
+    )
+
     def save_experimental_output(self, output: ExternalForecastResult,
-                                 dataset_revision_id: str, instrument_id: int) -> bool:
+                                 dataset_revision_id: str | None, instrument_id: int, *,
+                                 replay_pool_revision_id: str | None = None) -> bool:
         from psycopg.types.json import Jsonb
         if output.model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
             raise ValueError("unknown experimental research model")
+        if replay_pool_revision_id is not None:
+            output = replace(output, replay_pool_revision_id=replay_pool_revision_id)
         record = output.to_record(dataset_revision_id=dataset_revision_id,
                                   instrument_id=instrument_id)
+        values = [record[column] for column in self._EXPERIMENTAL_COLUMNS]
+        values[self._EXPERIMENTAL_COLUMNS.index("forecast_path")] = Jsonb(record["forecast_path"])
+        values[self._EXPERIMENTAL_COLUMNS.index("summary")] = Jsonb(record["summary"])
+        values[self._EXPERIMENTAL_COLUMNS.index("prediction_ids")] = Jsonb(record["prediction_ids"])
+        values[self._EXPERIMENTAL_COLUMNS.index("sampling")] = Jsonb(record["sampling"])
+        from psycopg import sql
+        query = sql.SQL("INSERT INTO experimental_model_outputs ({}) VALUES ({}) "
+                        "ON CONFLICT(output_id) DO NOTHING RETURNING 1").format(
+            sql.SQL(",").join(map(sql.Identifier, self._EXPERIMENTAL_COLUMNS)),
+            sql.SQL(",").join(sql.Placeholder() for _ in self._EXPERIMENTAL_COLUMNS))
         with self._connection() as connection:
-            row = connection.execute("""
-                INSERT INTO experimental_model_outputs(
-                  output_id, dataset_revision_id, instrument_id, as_of, model_name,
-                  model_version, pred_len, forecast_path, summary, status
-                ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s)
-                ON CONFLICT(output_id) DO NOTHING RETURNING 1
-            """, (record["output_id"], dataset_revision_id, instrument_id, record["as_of"],
-                record["model_name"], record["model_version"], record["pred_len"],
-                canonical_json(record["forecast_path"]), canonical_json(record["summary"]),
-                record["status"])).fetchone()
+            row = connection.execute(query, values).fetchone()
             if row is not None:
                 return True
             existing = connection.execute(
-                "SELECT summary FROM experimental_model_outputs WHERE output_id=%s",
+                sql.SQL("SELECT {} FROM experimental_model_outputs WHERE output_id=%s").format(
+                    sql.SQL(",").join(map(sql.Identifier, self._EXPERIMENTAL_COLUMNS))),
                 (record["output_id"],)).fetchone()
         if existing is None:
             raise ValueError("experimental output could not be persisted")
-        if canonical_json(existing[0]) != canonical_json(record["summary"]):
+        expected = {key: record[key] for key in self._EXPERIMENTAL_COLUMNS}
+        actual = dict(zip(self._EXPERIMENTAL_COLUMNS, existing, strict=True))
+        from .external_research import persistence_content
+        if persistence_content(actual) != persistence_content(expected):
             raise ValueError("experimental model outputs are immutable")
         return False
 
-    def experimental_outputs_for(self, revision_id: str, instrument_id: int, *,
+    def experimental_outputs_for(self, revision_id: str | None, instrument_id: int, *,
                                  model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]:
         if model_name is not None and model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
             raise ValueError("unknown experimental research model")
         selected_limit = max(0, min(limit, 5000))
+        from psycopg import sql
+        columns = sql.SQL(",").join(map(sql.Identifier, (*self._EXPERIMENTAL_COLUMNS, "created_at")))
         with self._connection() as connection:
             if model_name is None:
-                rows = connection.execute("""
-                    SELECT output_id, dataset_revision_id, instrument_id, as_of, model_name,
-                           model_version, pred_len, forecast_path, summary, status, created_at
-                    FROM experimental_model_outputs
-                    WHERE dataset_revision_id=%s AND instrument_id=%s
+                rows = connection.execute(sql.SQL("""
+                    SELECT {} FROM experimental_model_outputs
+                    WHERE ((%s::uuid IS NULL AND dataset_revision_id IS NULL)
+                           OR dataset_revision_id=%s::uuid)
+                      AND instrument_id=%s
                     ORDER BY as_of DESC, output_id DESC LIMIT %s
-                """, (revision_id, instrument_id, selected_limit)).fetchall()
+                """).format(columns), (revision_id, revision_id, instrument_id,
+                                        selected_limit)).fetchall()
             else:
-                rows = connection.execute("""
-                    SELECT output_id, dataset_revision_id, instrument_id, as_of, model_name,
-                           model_version, pred_len, forecast_path, summary, status, created_at
-                    FROM experimental_model_outputs
-                    WHERE dataset_revision_id=%s AND instrument_id=%s AND model_name=%s
+                rows = connection.execute(sql.SQL("""
+                    SELECT {} FROM experimental_model_outputs
+                    WHERE ((%s::uuid IS NULL AND dataset_revision_id IS NULL)
+                           OR dataset_revision_id=%s::uuid)
+                      AND instrument_id=%s AND model_name=%s
                     ORDER BY as_of DESC, output_id DESC LIMIT %s
-                """, (revision_id, instrument_id, model_name, selected_limit)).fetchall()
-        keys = ("output_id", "dataset_revision_id", "instrument_id", "as_of", "model_name",
-                "model_version", "pred_len", "forecast_path", "summary", "status", "created_at")
+                """).format(columns), (revision_id, revision_id, instrument_id,
+                                        model_name, selected_limit)).fetchall()
+        keys = (*self._EXPERIMENTAL_COLUMNS, "created_at")
         return [dict(zip(keys, row, strict=True)) for row in rows]
 
     def save_feature_set(self, definition: FeatureSetDefinition) -> None:

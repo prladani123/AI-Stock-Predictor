@@ -38,9 +38,15 @@ Kronos and Time Machine are optional research channels. They are persisted with 
 `KRONOS_MINI_ZERO_SHOT_V1` and `BANKNIFTY_TIME_MACHINE_V1`, returned separately as
 `kronosExperimental` and `timeMachineExperimental`, and labelled experimental in the UI. Kronos runs in a
 local CPU sidecar built from committed `third_party/Kronos/` sources; Docker never clones upstream.
-Time Machine uses complete sessions strictly before the reference date and keeps Market Memory separate.
-No research output mutates PRICE_CORE_V2 probabilities or production artifacts. See
-`docs/KRONOS_TIME_MACHINE_INTEGRATION.md`.
+Time Machine uses complete sessions strictly before the reference date and keeps Market Memory separate;
+live replay uses an explicitly selected accepted replay-pool revision and merges it with the current
+accepted session. Migration `022` separates live research identity from dataset revision and records
+model/tokenizer revisions, reference minute, replay pool, input/configuration checksums, seed, sampling,
+path count and PIT fields. Live evidence is decision-available only when `availableAt <= decisionAt`;
+post-decision rows are persisted but excluded from decision-ready claims. Evaluation uses exact common
+reference-minute/horizon support, chronological calibration/holdout, Stage A/B/joint/magnitude metrics
+and paired trading-day bootstrap for the six cohort combinations. No research output mutates
+PRICE_CORE_V2 probabilities or production artifacts. See `docs/KRONOS_TIME_MACHINE_INTEGRATION.md`.
 
 The numerical channel is:
 

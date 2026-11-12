@@ -53,7 +53,9 @@ export function MarketChart({candles, intelligence, showExperimental = false}: {
     });
 
     const experimental = intelligence?.kronosExperimental;
-    if (showExperimental && experimental?.available && experimental.forecastPath?.length) {
+    const referenceMatches = Boolean(intelligence?.asOf
+      && (experimental?.referenceMinute ?? experimental?.asOf) === intelligence.asOf);
+    if (showExperimental && experimental?.available && referenceMatches && experimental.forecastPath?.length) {
       const forecast = chart.addSeries(LineSeries, {color: '#b785ff', lineWidth: 2, lineStyle: LineStyle.Dotted, title: 'EXPERIMENTAL KRONOS FORECAST'});
       forecast.setData(experimental.forecastPath.map(item => ({time: utc(item.timestamp), value: item.close})));
     }

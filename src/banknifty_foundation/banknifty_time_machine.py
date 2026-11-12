@@ -2,16 +2,20 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 import hashlib
-from typing import Any, Callable
+from typing import Any, Callable, Sequence
 
 import numpy as np
 
 from .big_move_labels import BigMoveThresholdPolicy, default_big_move_policy
 from .calendar import IST, TradingCalendar
 from .external_research import (ExternalForecastResult, HISTORICAL_COUNTERFACTUAL,
-                                TIME_MACHINE_MODEL_NAME, aggregate_paths, median_path,
-                                path_fan_quantiles)
+                                TIME_MACHINE_MODEL_NAME, aggregate_paths, checksum_payload,
+                                median_path, path_fan_quantiles)
 from .models import Candle, TradingSession
+
+
+INDIA_TRADER_UPSTREAM_SHA = "cd9767f40241ac914cd13e2a06fd3a60b3af42d4"
+NORMAL_SESSION_MINUTES = 375
 
 
 class BankniftyTimeMachine:
@@ -32,19 +36,31 @@ class BankniftyTimeMachine:
             raise ValueError("sample paths must be between 1 and 200000")
         if slot_window_minutes < 0 or slot_window_minutes > 10:
             raise ValueError("slot window must be between 0 and 10 minutes")
-        if minimum_prior_sessions < 2:
-            raise ValueError("at least two prior sessions are required")
         self.repository = repository
         self.policy = policy or default_big_move_policy()
         self.sample_paths = sample_paths
         self.slot_window_minutes = slot_window_minutes
-        self.minimum_prior_sessions = minimum_prior_sessions
+        # Product policy: environment/CLI may increase but never reduce this.
+        self.minimum_prior_sessions = max(20, int(minimum_prior_sessions))
         self.seed = seed
         self.clock = clock or (lambda: datetime.now(timezone.utc))
 
+    def _configuration(self) -> dict[str, Any]:
+        return {
+            "samplePaths": self.sample_paths,
+            "slotWindowMinutes": self.slot_window_minutes,
+            "minimumPriorSessions": self.minimum_prior_sessions,
+            "seed": self.seed,
+            "thresholdPolicyVersion": self.policy.version,
+            "futureBars": 30,
+            "mode": "OHLC_ONLY",
+        }
+
     def _status(self, status: str, reference: datetime, *, detail: str | None = None,
                 prior_sessions: int = 0, checksum: str | None = None,
-                point_in_time_status: str = HISTORICAL_COUNTERFACTUAL) -> ExternalForecastResult:
+                point_in_time_status: str = HISTORICAL_COUNTERFACTUAL,
+                replay_pool_revision_id: str | None = None,
+                input_checksum: str | None = None) -> ExternalForecastResult:
         now = self.clock()
         summary = {
             "researchStatus": status,
@@ -60,10 +76,17 @@ class BankniftyTimeMachine:
             "usedByPriceCoreV2": False,
         }
         return ExternalForecastResult(TIME_MACHINE_MODEL_NAME, "time-of-day-v1", reference,
-            reference, now, now, reference, point_in_time_status, status, {}, (), summary)
+            reference, now, now, reference, point_in_time_status, status, {}, (), summary,
+            replay_pool_revision_id=replay_pool_revision_id,
+            input_checksum=input_checksum, configuration=self._configuration(),
+            upstream_revision=INDIA_TRADER_UPSTREAM_SHA, seed=self.seed,
+            threshold_policy_version=self.policy.version,
+            sampling_pool_checksum=checksum)
 
     def run(self, *, revision_id: str, instrument_id: int, reference_minute: datetime,
-            point_in_time_status: str = HISTORICAL_COUNTERFACTUAL) -> ExternalForecastResult:
+            point_in_time_status: str = HISTORICAL_COUNTERFACTUAL,
+            current_candles: Sequence[Candle] | None = None,
+            current_session: TradingSession | None = None) -> ExternalForecastResult:
         revision = self.repository.get_revision(revision_id)
         if revision.status != "ACCEPTED":
             raise ValueError("Time Machine requires an ACCEPTED dataset revision")
@@ -79,42 +102,83 @@ class BankniftyTimeMachine:
         reference = reference.astimezone(timezone.utc).replace(second=0, microsecond=0)
         sessions = {item.session_date: item for item in self.repository.sessions_between(
             revision.session_start, revision.session_end)
-            if item.status in {"OPEN", "SPECIAL"}}
+            if item.status == "OPEN"}
         reference_date = reference.astimezone(IST).date()
-        session = sessions.get(reference_date)
+        session = current_session or sessions.get(reference_date)
         if session is None:
-            return self._status("SESSION_BOUNDARY", reference, detail="no open session for reference date", point_in_time_status=point_in_time_status)
+            return self._status("SESSION_BOUNDARY", reference,
+                                detail="reference date has no normal OPEN session",
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id)
+        if session.session_date != reference_date or session.status != "OPEN":
+            return self._status("SESSION_BOUNDARY", reference,
+                                detail="special or mismatched session is not replayed",
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id)
         if reference < session.open_at or reference + timedelta(minutes=30) >= session.close_at:
             return self._status("SESSION_BOUNDARY", reference,
-                                detail="reference minute leaves fewer than 30 session minutes", point_in_time_status=point_in_time_status)
-        candles = sorted(self.repository.revision_candles(revision_id, instrument_id),
-                         key=lambda item: item.timestamp)
+                                detail="reference minute leaves fewer than 30 session minutes",
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id)
+        expected = TradingCalendar.expected_minutes(session)
+        if len(expected) != NORMAL_SESSION_MINUTES:
+            return self._status("SESSION_BOUNDARY", reference,
+                                detail="rectangular replay requires a normal 375-minute session",
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id)
+        merged: dict[datetime, Candle] = {
+            item.timestamp: item for item in
+            self.repository.revision_candles(revision_id, instrument_id)
+            if current_candles is None or item.timestamp.astimezone(IST).date() < reference_date}
+        merged.update({item.timestamp: item for item in (current_candles or ())})
+        candles = sorted(merged.values(), key=lambda item: item.timestamp)
         by_date: dict[Any, dict[datetime, Candle]] = {}
         for candle in candles:
             by_date.setdefault(candle.timestamp.astimezone(IST).date(), {})[candle.timestamp] = candle
-        expected = TradingCalendar.expected_minutes(session)
         current = by_date.get(reference_date, {})
         known = [current[item] for item in expected if item in current and item <= reference]
+        if len(known) != sum(item <= reference for item in expected):
+            return self._status("INPUT_GAP", reference, detail="incomplete current-session input",
+                point_in_time_status=point_in_time_status, replay_pool_revision_id=revision_id)
         if reference not in current:
             return self._status("INSUFFICIENT_HISTORY", reference,
-                                detail="reference candle is missing", point_in_time_status=point_in_time_status)
+                                detail="reference candle is missing",
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id)
         required_history = self.policy.volatility_lookback_minutes + 1
         if len(known) < required_history:
             return self._status("INSUFFICIENT_HISTORY", reference,
-                                detail=f"at least {required_history} known closes are required", point_in_time_status=point_in_time_status)
+                                detail=f"at least {required_history} known closes are required",
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id)
+        input_checksum = checksum_payload({
+            "model": TIME_MACHINE_MODEL_NAME,
+            "instrument": instrument_id,
+            "referenceMinute": reference.isoformat(),
+            "session": {"open": session.open_at.isoformat(), "close": session.close_at.isoformat()},
+            "known": [{"timestamp": item.timestamp.isoformat(), "open": str(item.open),
+                       "high": str(item.high), "low": str(item.low), "close": str(item.close)}
+                      for item in known],
+        })
         prior_dates = sorted(day for day in by_date if day < reference_date and day in sessions)
         complete: list[tuple[Any, list[Candle]]] = []
         for day in prior_dates:
             session_for_day = sessions[day]
             day_expected = TradingCalendar.expected_minutes(session_for_day)
             stored = by_date.get(day, {})
-            if day_expected and all(item in stored for item in day_expected):
+            if (len(day_expected) == NORMAL_SESSION_MINUTES
+                    and session_for_day.open_at.astimezone(IST).time() == session.open_at.astimezone(IST).time()
+                    and session_for_day.close_at.astimezone(IST).time() == session.close_at.astimezone(IST).time()
+                    and all(item in stored for item in day_expected)):
                 complete.append((day, [stored[item] for item in day_expected]))
         if len(complete) < self.minimum_prior_sessions:
             return self._status("INSUFFICIENT_PRIOR_SESSIONS", reference,
-                                detail=f"found {len(complete)} complete prior sessions, "
+                                detail=f"found {len(complete)} complete normal prior sessions, "
                                        f"require {self.minimum_prior_sessions}",
-                                prior_sessions=len(complete), point_in_time_status=point_in_time_status)
+                                prior_sessions=len(complete),
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id,
+                                input_checksum=input_checksum)
         values = np.asarray([
             [[float(candle.open), float(candle.high), float(candle.low), float(candle.close)]
              for candle in session_candles]
@@ -122,12 +186,14 @@ class BankniftyTimeMachine:
         ], dtype=np.float64)
         if np.any(values <= 0) or not np.all(np.isfinite(values)):
             return self._status("FAILED", reference, detail="invalid OHLC in prior-session pool",
-                                prior_sessions=len(complete), point_in_time_status=point_in_time_status)
+                                prior_sessions=len(complete), point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id, input_checksum=input_checksum)
         previous_close = values[:, :-1, 3]
         pool = values[:, 1:, :] / previous_close[:, :, None]
         if np.any(pool <= 0) or not np.all(np.isfinite(pool)):
             return self._status("FAILED", reference, detail="invalid ratio in prior-session pool",
-                                prior_sessions=len(complete), point_in_time_status=point_in_time_status)
+                                prior_sessions=len(complete), point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id, input_checksum=input_checksum)
         checksum = hashlib.sha256(
             b"BANKNIFTY_TIME_MACHINE_V1|" +
             "|".join(day.isoformat() for day, _ in complete).encode("ascii") + b"|" +
@@ -142,7 +208,10 @@ class BankniftyTimeMachine:
         if future_slots[-1] > last_slot:
             return self._status("SESSION_BOUNDARY", reference,
                                 detail="forecast crosses the session close",
-                                prior_sessions=len(complete), checksum=checksum, point_in_time_status=point_in_time_status)
+                                prior_sessions=len(complete), checksum=checksum,
+                                point_in_time_status=point_in_time_status,
+                                replay_pool_revision_id=revision_id,
+                                input_checksum=input_checksum)
         rng = np.random.default_rng(self.seed)
         offsets = rng.integers(-self.slot_window_minutes, self.slot_window_minutes + 1,
                                size=(path_count, steps))
@@ -181,17 +250,34 @@ class BankniftyTimeMachine:
             "seed": self.seed,
             "seedPolicy": "NUMPY_PCG64_DEFAULT_RNG",
             "slotWindowMinutes": self.slot_window_minutes,
+            "minimumPriorSessions": self.minimum_prior_sessions,
             "referenceSlot": reference_slot,
             "pathCount": path_count,
             "futureBars": steps,
             "mode": "OHLC_ONLY",
             "volumeStatus": "INDEX_VOLUME_NOT_USED",
             "pathFanQuantiles": fan,
+            "upstreamRevision": INDIA_TRADER_UPSTREAM_SHA,
+            "replayPoolRevisionId": revision_id,
+            "inputChecksum": input_checksum,
             "sampling": {"method": "TIME_OF_DAY_BAR_RATIO_REPLAY",
                           "windowMinutes": self.slot_window_minutes,
-                          "strictlyPriorSessions": True},
+                          "strictlyPriorSessions": True,
+                          "normalSessionOnly": True},
             "usedByPriceCoreV2": False,
         }
         return ExternalForecastResult(TIME_MACHINE_MODEL_NAME, "time-of-day-v1", reference,
             reference, now, now, reference, point_in_time_status, "COMPLETED", horizons,
-            median_path(paths), summary)
+            median_path(paths), summary, replay_pool_revision_id=revision_id,
+            input_checksum=input_checksum,
+            reference_state_checksum=checksum_payload({
+                "reference": {"timestamp": reference.isoformat(),
+                              "open": str(current[reference].open),
+                              "high": str(current[reference].high),
+                              "low": str(current[reference].low),
+                              "close": str(current[reference].close)},
+                "session": {"open": session.open_at.isoformat(), "close": session.close_at.isoformat()},
+            }),
+            configuration=self._configuration(), upstream_revision=INDIA_TRADER_UPSTREAM_SHA,
+            seed=self.seed, threshold_policy_version=self.policy.version,
+            sampling_pool_checksum=checksum)

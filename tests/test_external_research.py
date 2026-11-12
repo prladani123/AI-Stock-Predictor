@@ -1,12 +1,14 @@
 from dataclasses import replace
 from datetime import date, datetime, time, timedelta, timezone
 from decimal import Decimal
+from types import SimpleNamespace
 
 # pandas is optional in the host environment; the Kronos Docker sidecar installs it.
 import pytest
 
 from banknifty_foundation.banknifty_time_machine import BankniftyTimeMachine
 from banknifty_foundation.external_research import HISTORICAL_COUNTERFACTUAL
+from banknifty_foundation.external_research_evaluation import ExternalResearchEvaluationService
 from banknifty_foundation.kronos_experiment import KronosForecastAdapter
 from banknifty_foundation.models import (Candle, DatasetRevision, Instrument, RevisionCandle,
     TradingSession)
@@ -171,3 +173,113 @@ def test_experimental_output_persistence_is_explicit_and_immutable():
         repository.save_experimental_output(changed, "revision-1", 1)
     with pytest.raises(ValueError, match="unknown experimental"):
         repository.experimental_outputs_for("revision-1", 1, model_name="GENERIC")
+
+
+def test_seed_changes_research_identity_and_replay_pool_stays_separate():
+    repository, days = _repository()
+    reference = datetime.combine(days[-1], time(11, 0), IST).astimezone(timezone.utc)
+    first = BankniftyTimeMachine(repository, sample_paths=50, seed=3).run(
+        revision_id="revision-1", instrument_id=1, reference_minute=reference)
+    second = BankniftyTimeMachine(repository, sample_paths=50, seed=4).run(
+        revision_id="revision-1", instrument_id=1, reference_minute=reference)
+    first_record = first.to_record(dataset_revision_id=None, instrument_id=1)
+    second_record = second.to_record(dataset_revision_id=None, instrument_id=1)
+    assert first_record["output_id"] != second_record["output_id"]
+    assert first_record["dataset_revision_id"] is None
+    assert first_record["replay_pool_revision_id"] == "revision-1"
+
+
+def test_kronos_failure_is_serializable_and_close_boundary_is_rejected():
+    import json
+    repository, days = _repository()
+    session = _session(days[-1])
+    history = _candles(session, 21)
+    reference = history[300].timestamp
+    adapter = KronosForecastAdapter(enabled=True, service_url="http://127.0.0.1:1",
+                                    timeout_seconds=0.2)
+    result = adapter.forecast(history, as_of=reference)
+    json.dumps(result.to_dict())
+    late = adapter.forecast(history, as_of=reference,
+                            session_close=reference + timedelta(minutes=10))
+    assert late.status == "SESSION_BOUNDARY"
+    assert late.horizons == {}
+
+
+def test_time_machine_refuses_special_session_for_live_replay():
+    repository, days = _repository()
+    session = replace(_session(days[-1]), status="SPECIAL")
+    reference = datetime.combine(days[-1], time(11, 0), IST).astimezone(timezone.utc)
+    result = BankniftyTimeMachine(repository, sample_paths=50).run(
+        revision_id="revision-1", instrument_id=1, reference_minute=reference,
+        current_session=session)
+    assert result.status == "SESSION_BOUNDARY"
+    assert result.replay_pool_revision_id == "revision-1"
+
+
+def test_prospective_status_never_upgrades_post_decision_evidence():
+    from banknifty_foundation.external_research import (
+        PROSPECTIVE_DECISION_AVAILABLE, PROSPECTIVE_POST_DECISION, prospective_status)
+    decision = datetime(2025, 1, 1, 10, 0, tzinfo=timezone.utc)
+    assert prospective_status(decision, decision) == PROSPECTIVE_DECISION_AVAILABLE
+    assert prospective_status(decision + timedelta(seconds=1),
+                              decision) == PROSPECTIVE_POST_DECISION
+
+
+def test_evaluation_uses_external_rows_without_runtime_v2_predictions(monkeypatch):
+    class Repository:
+        pit = HISTORICAL_COUNTERFACTUAL
+        def __init__(self):
+            self.rows = []
+            for index in range(40):
+                day = date(2025, 1, 1) + timedelta(days=index)
+                as_of = datetime.combine(day, time(11, 0), IST).astimezone(timezone.utc)
+                label = ("BIG_UP", "BIG_DOWN", "NO_BIG_MOVE")[index % 3]
+                for horizon in (10, 20, 30):
+                    self.rows.append(SimpleNamespace(
+                        as_of=as_of, horizon_minutes=horizon, label=label,
+                        expiry_at=as_of + timedelta(minutes=horizon), reference_price=50000,
+                        maximum_up_excursion=.002, maximum_down_excursion=.001,
+                        quality_status="VALID", close_return_at_horizon=0.001))
+        def _connection(self):
+            raise AssertionError("historical scoring must not read production predictions")
+        def big_move_labels(self, *_):
+            return self.rows
+        def experimental_outputs_for(self, _, __, *, model_name, limit):
+            return [{"as_of": row.as_of, "summary": {
+                "researchStatus": "COMPLETED",
+                    "pointInTimeStatus": self.pit,
+                "horizons": {str(row.horizon_minutes): {
+                    "pMeaningfulMove": 0.6, "pUpGivenMeaningfulMove": 0.55,
+                    "pDownGivenMeaningfulMove": 0.45, "pAmbiguousBarrier": 0.0,
+                    "expectedMagnitude": 0.001, "expectedReturn": 0.0}}}}
+                for row in self.rows[:limit]]
+
+    from banknifty_foundation import big_move_evaluation as evaluation
+    repo = Repository()
+    feature = SimpleNamespace(values={"test": 1.0})
+    monkeypatch.setattr(evaluation, "_load", lambda *args: ([(feature, row) for row in repo.rows], None))
+    calls = []
+    def fold(service, prior, horizon, algorithm, config):
+        calls.append((horizon, max(l.expiry_at for _, l in prior)))
+        return SimpleNamespace(feature_schema=("test",), model_version="fixture-only",
+            predict=lambda *_: {"bigMoveProbability": .2, "upGivenBigMoveProbability": .8,
+                "downGivenBigMoveProbability": .2, "expectedMovePercent": .002,
+                "moveDecisionThreshold": .4}), {}
+    monkeypatch.setattr(evaluation, "_fold_fit", fold)
+    service = ExternalResearchEvaluationService(repo)
+    result = service.evaluate("revision-1", 1)
+    assert result["available"] is True
+    horizon = result["horizons"]["10"]
+    assert horizon["status"] == "COMPLETED"
+    assert horizon["cohorts"]["KRONOS"]["status"] == "COMPLETED"
+    assert horizon["cohorts"]["TIME_MACHINE"]["stageA"]["samples"] == 7
+    assert horizon["cohorts"]["TIME_MACHINE"]["bootstrapVersusPriceCoreV2"]["status"] == "PASS"
+    assert horizon["chronologicalMetaModel"]["V2_KRONOS"]["status"] == "COMPLETED"
+    assert all(result["cohortStatus"].values())
+    assert set(result["horizons"]) == {"10", "20", "30"}
+    assert horizon["cohorts"]["V2_KRONOS"]["stageA"]["brier"] != horizon["cohorts"]["KRONOS"]["stageA"]["brier"]
+    for (_, last_expiry), metadata in zip(calls, service.v2_folds):
+        assert last_expiry.astimezone(IST).date() < date.fromisoformat(metadata["day"])
+    assert result["usedByPriceCoreV2"] is False
+    repo.pit = "PROSPECTIVE_POST_DECISION"
+    assert service.evaluate("revision-1", 1)["reason"] == "NO_MATCHED_REFERENCE_MINUTES"

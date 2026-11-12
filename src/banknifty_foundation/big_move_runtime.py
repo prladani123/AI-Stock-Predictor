@@ -250,6 +250,7 @@ class BigMoveRuntimeService:
         if pending:
             from .evidence_journal import EvidenceJournalService
             if self.journal is None: self.journal=EvidenceJournalService()
+            persisted=[]
             try:
                 shared=self.journal.prepare(snapshot)
                 for value in pending:
@@ -261,6 +262,7 @@ class BigMoveRuntimeService:
                         evidence=self.journal.capture(value,snapshot,shared)
                         result[horizon]=self.repository.save_big_move_prediction_with_evidence(value,evidence)
                         if result[horizon]=='PERSISTED':
+                            persisted.append((value['prediction_id'],shared['decision_at']))
                             # Separate transaction, after mandatory production evidence commits.
                             try:
                                 from .shadow_observations import capture_best_effort
@@ -272,14 +274,25 @@ class BigMoveRuntimeService:
                         result[horizon]='EVIDENCE_JOURNAL_MISSING' if 'EVIDENCE_JOURNAL_MISSING' in str(error) else 'DATA_NOT_READY'
             except Exception:
                 log.exception('big_move_evidence_capture_failed')
-            if any(value == 'PERSISTED' for value in result.values()):
+            if persisted:
                 # Optional research never blocks or changes the production result.
                 try:
                     from .external_research_runtime import capture_best_effort
-                    capture_best_effort(self.repository, state, reference.minute_at,
-                        str(pending[0]['dataset_revision_id']), reference.instrument_id)
+                    capture_best_effort(self.repository, state, reference.minute_at, None,
+                        reference.instrument_id, decision_at=persisted[0][1],
+                        prediction_ids=tuple(item[0] for item in persisted),
+                        replay_pool_revision_id=os.getenv(
+                            'TIME_MACHINE_REPLAY_POOL_REVISION_ID') or None)
                 except Exception:
                     log.exception('EXTERNAL_RESEARCH_UNAVAILABLE')
+            elif any(value == 'ALREADY_PERSISTED' for value in result.values()):
+                try:
+                    from .external_research_runtime import retry_committed
+                    retry_committed(self.repository, state, reference.minute_at, reference.instrument_id,
+                        tuple(item['prediction_id'] for item in pending
+                              if result.get(item['horizon_minutes']) == 'ALREADY_PERSISTED'))
+                except Exception:
+                    log.exception('EXTERNAL_RESEARCH_RETRY_UNAVAILABLE')
         return result
 
 

@@ -4,7 +4,7 @@ Analysis-only BANKNIFTY workstation. Big Move V2 is the primary signal; Market M
 
 ## Stack
 
-- Python 3.12, FastAPI, PostgreSQL migrations through `021` (including append-only prospective shadow evidence)
+- Python 3.12, FastAPI, PostgreSQL migrations through `022` (including external-research identity and append-only prospective shadow evidence)
 - Symfony thin public API proxy
 - React/Vite workstation UI
 - read-only Zerodha market-data adapters
@@ -17,16 +17,25 @@ Kronos and Time Machine are separated from PRICE_CORE_V2 in storage, API and UI:
 
 ```powershell
 banknifty-foundation external-research-preflight
-docker compose --profile research up --build
+docker compose --profile research up -d
 banknifty-foundation time-machine-run --revision REVISION_UUID --instrument-id 1 --as-of 2026-11-10T10:00:00+05:30
 banknifty-foundation kronos-research-run --revision REVISION_UUID --instrument-id 1 --as-of 2026-11-10T10:00:00+05:30
 banknifty-foundation external-research-backfill --revision REVISION_UUID --instrument-id 1 --from 2026-01-01 --to 2026-03-31 --stride 30 --max-references 50
 ```
 
-Preflight performs no downloads. Backfill is bounded and never samples future candles. Live research
-is best-effort after the production prediction and journal commit; failure cannot change V2. Historical
-counterfactuals are labelled `HISTORICAL_COUNTERFACTUAL_RESEARCH`. Authenticated research endpoints are
-`/api/research/external/current`, `/history`, `/status` and `/evaluation`.
+Preflight performs no downloads. Apply migration `022_experimental_research_identity.sql` before
+live capture. Backfill is bounded and never samples future candles. Live research is best-effort
+after the production prediction and journal commit; failure cannot change V2. It binds to the
+production prediction/decision, while Time Machine replay uses an explicitly selected accepted
+historical revision (`TIME_MACHINE_REPLAY_POOL_REVISION_ID`). Historical counterfactuals are
+labelled `HISTORICAL_COUNTERFACTUAL_RESEARCH`; live evidence is decision-available only when
+`availableAt <= decisionAt`, otherwise `PROSPECTIVE_POST_DECISION`. Authenticated research
+endpoints are `/api/research/external/current`, `/history`, `/status` and `/evaluation`.
+
+CLI revision runs are historical counterfactuals, never prospective evidence. Enable each live
+research channel independently in `.env`; the research Compose profile starts only the optional
+Kronos sidecar. The downloaded external BANKNIFTY CSV remains quarantined and ignored by Git;
+see `data/external/banknifty/sandeepkapri/SOURCE.md`. No import or backtest has used it.
 
 
 ## Research development status (G2B–J)

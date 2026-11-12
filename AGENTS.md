@@ -34,6 +34,12 @@ run broad unrelated legacy suites by default.
   is only available when `availableAt <= decisionAt`.
 - Persist to `experimental_model_outputs` with explicit model names:
   `KRONOS_MINI_ZERO_SHOT_V1` and `BANKNIFTY_TIME_MACHINE_V1`.
+- Apply `022_experimental_research_identity.sql` before live capture. Live rows bind to the
+  production prediction/decision and never stamp a V2 training revision; Time Machine replay uses
+  an explicitly selected accepted replay-pool revision.
+- Preserve immutable identity and PIT: upstream/model/tokenizer revisions, reference minute,
+  replay pool, input/configuration checksums, seed, path count, sampling and threshold policy.
+  Exclude `computedAt` from identity. Post-decision rows are not decision-ready evidence.
 - Never infer model benefit from code availability; evaluation requires real chronological evidence.
 
 ## Vendored and Docker sources

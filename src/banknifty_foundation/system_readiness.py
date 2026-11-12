@@ -194,6 +194,43 @@ class SystemReadinessService:
                 'lastResolvedOutcome': db.execute('SELECT max(attached_at) AS at FROM big_move_prediction_outcomes').fetchone()['at'],
                 'journalCount': db.execute('SELECT count(*) AS n FROM big_move_evidence_journal').fetchone()['n']}
 
+    def external_research(self, db):
+        from .kronos_experiment import KronosForecastAdapter
+        kronos_enabled = enabled('KRONOS_RESEARCH_ENABLED')
+        time_machine_enabled = enabled('TIME_MACHINE_ENABLED')
+        replay_pool = os.getenv('TIME_MACHINE_REPLAY_POOL_REVISION_ID') or None
+        replay_accepted = False
+        if replay_pool:
+            replay_accepted = db.execute(
+                "SELECT 1 AS ok FROM dataset_revisions WHERE id=%s AND status='ACCEPTED'",
+                (replay_pool,)).fetchone() is not None
+        counts = db.execute("""
+            SELECT model_name, count(*) AS n, max(computed_at) AS latest
+            FROM experimental_model_outputs GROUP BY model_name
+        """).fetchall()
+        latest_capture = db.execute("""
+            SELECT max(computed_at) AS at FROM experimental_model_outputs
+            WHERE point_in_time_status IN ('PROSPECTIVE_DECISION_AVAILABLE',
+                                           'PROSPECTIVE_POST_DECISION')
+        """).fetchone()['at']
+        return {
+            'kronos': {'enabled': kronos_enabled,
+                       'service': KronosForecastAdapter().health() if kronos_enabled else None},
+            'timeMachine': {'enabled': time_machine_enabled, 'replayPoolRevisionId': replay_pool,
+                            'replayPoolAccepted': replay_accepted,
+                            'status': ('DISABLED' if not time_machine_enabled else
+                                       'READY' if replay_accepted else
+                                       'REPLAY_POOL_NOT_CONFIGURED')},
+            'outputCounts': {row['model_name']: row['n'] for row in counts},
+            'latestOutputReferences': [dict(row) for row in db.execute("""
+                SELECT DISTINCT ON (model_name) output_id, model_name, identity_checksum,
+                    input_checksum, configuration_checksum, point_in_time_status, available_at
+                FROM experimental_model_outputs
+                ORDER BY model_name, computed_at DESC, output_id DESC
+            """).fetchall()],
+            'latestProspectiveCapture': latest_capture,
+        }
+
     def live(self, now):
         from .live_product_reader import LiveProductDataReader
         state = LiveProductDataReader(self.url).current_state(now)
@@ -307,6 +344,17 @@ class SystemReadinessService:
         from .shadow_observations import ShadowRepository
         inspect_section('microstructure',lambda: MicrostructureRuntimeService().snapshot(now))
         inspect_section('shadow',lambda: ShadowRepository(self.url).summary())
+        if application['postgres'] == 'UP':
+            try:
+                import psycopg
+                from psycopg.rows import dict_row
+                with psycopg.connect(self.url, row_factory=dict_row) as db:
+                    result['externalResearch'] = self.external_research(db)
+            except Exception:
+                result['externalResearch'] = {'status': 'UNAVAILABLE'}
+                blockers.append('EXTERNAL_RESEARCH_INSPECTION_UNAVAILABLE')
+        else:
+            result['externalResearch'] = {'status': 'UNAVAILABLE'}
         research_states=['CONTEXT_V3_IMPLEMENTATION_AVAILABLE','CONTEXT_V3_G3_FRAMEWORK_READY']
         profiles=result['contextV3'].get('profiles',[])
         for profile in profiles:
@@ -387,5 +435,21 @@ class SystemReadinessService:
         categories['EVIDENCE'] = 'BLOCKED' if count is None else 'READY' if count >= max(1, int(os.getenv('EVIDENCE_MINIMUM_SAMPLE', '20'))) else 'PARTIAL'
         if not count: blockers.append('NO_PROSPECTIVE_EVIDENCE_OBSERVATIONS')
         result['evidence'] = {'journalCount': count, 'minimumSample': max(1, int(os.getenv('EVIDENCE_MINIMUM_SAMPLE', '20'))), 'scope': 'Prospective observations; counts do not establish predictive value'}
+        external = result.get('externalResearch', {})
+        kronos = external.get('kronos') or {}
+        time_machine = external.get('timeMachine') or {}
+        kronos_enabled = bool(kronos.get('enabled'))
+        tm_enabled = bool(time_machine.get('enabled'))
+        if not kronos_enabled and not tm_enabled:
+            categories['EXTERNAL_RESEARCH'] = 'DISABLED'
+        elif ((not kronos_enabled or (kronos.get('service') or {}).get('status') == 'READY')
+              and (not tm_enabled or time_machine.get('status') == 'READY')):
+            categories['EXTERNAL_RESEARCH'] = 'READY'
+        else:
+            categories['EXTERNAL_RESEARCH'] = 'PARTIAL'
+        if kronos_enabled and (kronos.get('service') or {}).get('status') != 'READY':
+            blockers.append('KRONOS_RESEARCH_SERVICE_NOT_READY')
+        if tm_enabled and time_machine.get('status') != 'READY':
+            blockers.append('TIME_MACHINE_' + str(time_machine.get('status')))
         result['blockers'] = list(dict.fromkeys(blockers))
         return result

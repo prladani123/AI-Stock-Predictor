@@ -58,8 +58,13 @@ def _now() -> str:
 
 def _time_machine_availability() -> dict[str, Any]:
     enabled = os.getenv("TIME_MACHINE_ENABLED", "false").strip().lower() == "true"
-    return {"available": enabled, "status": "READY" if enabled else "DISABLED",
-            "reason": None if enabled else "TIME_MACHINE_DISABLED",
+    replay_pool = os.getenv("TIME_MACHINE_REPLAY_POOL_REVISION_ID")
+    status = "READY" if enabled and replay_pool else ("DISABLED" if not enabled
+                                                       else "REPLAY_POOL_NOT_CONFIGURED")
+    reason = (None if status == "READY" else
+              "TIME_MACHINE_DISABLED" if not enabled else "REPLAY_POOL_NOT_CONFIGURED")
+    return {"available": status == "READY", "status": status, "reason": reason,
+            "replayPoolRevisionId": replay_pool,
             "model": "BANKNIFTY_TIME_MACHINE_V1", "researchOnly": True,
             "usedByPriceCoreV2": False}
 
@@ -853,7 +858,7 @@ def external_research_current(instrument_id: int | None = None, as_of: datetime 
 
 
 @app.get('/internal/research/external/history', dependencies=[Depends(require_internal_token)])
-def external_research_history(revision_id: str, instrument_id: int,
+def external_research_history(instrument_id: int, revision_id: str | None = None,
                               model: str | None = Query(None, pattern="^(KRONOS_MINI_ZERO_SHOT_V1|BANKNIFTY_TIME_MACHINE_V1)$"),
                               limit: int = Query(50, ge=1, le=200)):
     from .repository import PostgresRepository
@@ -868,7 +873,11 @@ def external_research_history(revision_id: str, instrument_id: int,
         "model": row["model_name"], "modelVersion": row["model_version"],
         "status": (row["summary"] or {}).get("researchStatus"),
         "referenceMinute": (row["summary"] or {}).get("referenceMinute"),
-        "pointInTimeStatus": (row["summary"] or {}).get("pointInTimeStatus"),
+        "pointInTimeStatus": row["point_in_time_status"],
+        "decisionAt": (row["summary"] or {}).get("decisionAt"),
+        "predictionIds": row["prediction_ids"],
+        "replayPoolRevisionId": row["replay_pool_revision_id"],
+        "inputChecksum": row["input_checksum"],
         "horizons": (row["summary"] or {}).get("horizons", {}),
         "forecastPath": row["forecast_path"], "summary": row["summary"],
         "researchOnly": True, "usedByPriceCoreV2": False,

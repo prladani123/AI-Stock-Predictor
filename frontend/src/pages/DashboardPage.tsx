@@ -25,7 +25,9 @@ export function DashboardPage() {
   const data = dashboard.data;
   const intelligence = data?.intelligence;
   const change = data?.priceChange;
-  const kronosAvailable = Boolean(intelligence?.kronosExperimental.available && intelligence.kronosExperimental.forecastPath?.length);
+  const kronosAvailable = Boolean(intelligence?.kronosExperimental.available
+    && intelligence.kronosExperimental.forecastPath?.length
+    && (intelligence.kronosExperimental.referenceMinute ?? intelligence.kronosExperimental.asOf) === intelligence.asOf);
   return <div className="page workstation">
     <PageTitle eyebrow="BANKNIFTY DECISION WORKSTATION" title="Market Intelligence" detail="Meaningful-move probability, direction and live derivatives context. Analysis only." actions={<button onClick={() => { void dashboard.refresh(); void candles.refresh(); }}><RefreshCw size={15}/>Refresh</button>}/>
     <section className="market-hero">

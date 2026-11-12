@@ -13,6 +13,10 @@ No duplicate outcome storage, broker execution, feed, model promotion or probabi
 Read-only microstructure/shadow endpoints and Settings sections fail independently. Missing Greeks are explicitly unavailable.
 Runtime/SQL deployment validation and sufficient real prospective samples remain operator work.
 
+Kronos and BANKNIFTY Time Machine are implemented as isolated research. Vendored upstream snapshots,
+local model cache hashes, Docker build provenance and the 10/20/30 research contract are documented in
+`docs/KRONOS_TIME_MACHINE_INTEGRATION.md`. Their implementation is not evidence of predictive benefit.
+
 **CODE IMPLEMENTED ≠ DATA ACTIVATED ≠ EMPIRICALLY VALIDATED.** No V3 performance improvement is claimed.
 
 ```text
@@ -24,10 +28,19 @@ React workstation
        |-- news/event Market Memory V2
        |-- market confirmation
        |-- guarded LiveMarketWorker -> stored sessions/master -> full-mode ticker -> finalized minutes
-       `-- experimental Kronos comparison
-         -> PostgreSQL
+       |-- experimental Kronos client -> local Docker CPU sidecar (best-effort only)
+       `-- experimental BANKNIFTY Time Machine (prior complete sessions only)
+         -> PostgreSQL experimental_model_outputs
          -> read-only market/news sources
 ```
+
+Kronos and Time Machine are optional research channels. They are persisted with explicit model names
+`KRONOS_MINI_ZERO_SHOT_V1` and `BANKNIFTY_TIME_MACHINE_V1`, returned separately as
+`kronosExperimental` and `timeMachineExperimental`, and labelled experimental in the UI. Kronos runs in a
+local CPU sidecar built from committed `third_party/Kronos/` sources; Docker never clones upstream.
+Time Machine uses complete sessions strictly before the reference date and keeps Market Memory separate.
+No research output mutates PRICE_CORE_V2 probabilities or production artifacts. See
+`docs/KRONOS_TIME_MACHINE_INTEGRATION.md`.
 
 The numerical channel is:
 

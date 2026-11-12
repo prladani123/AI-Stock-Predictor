@@ -30,6 +30,7 @@ from .research_models import (
 )
 from .ml_records import MLPrediction, MLPredictionOutcome, validate_prediction
 from .big_move_labels import BigMoveLabel, BigMoveThresholdPolicy
+from .external_research import ExternalForecastResult, KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME
 
 
 @dataclass
@@ -96,6 +97,10 @@ class Repository(Protocol):
     def save_big_move_policy(self, policy: BigMoveThresholdPolicy) -> None: ...
     def save_big_move_labels(self, labels: list[BigMoveLabel]) -> int: ...
     def big_move_labels(self, revision_id: str, instrument_id: int) -> list[BigMoveLabel]: ...
+    def save_experimental_output(self, output: ExternalForecastResult,
+                                 dataset_revision_id: str, instrument_id: int) -> bool: ...
+    def experimental_outputs_for(self, revision_id: str, instrument_id: int, *,
+                                 model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]: ...
 
 
 def canonical_json(value: Any) -> str:
@@ -147,6 +152,7 @@ class MemoryRepository:
         self.ml_prediction_outcomes: dict[str, MLPredictionOutcome] = {}
         self.big_move_threshold_policies: dict[str, BigMoveThresholdPolicy] = {}
         self.big_move_label_rows: dict[tuple[str, int, datetime, int, str], BigMoveLabel] = {}
+        self.experimental_outputs: dict[str, dict[str, Any]] = {}
         self._next_snapshot = 1
         self._next_instrument = 1
         self._next_job = 1
@@ -376,6 +382,33 @@ class MemoryRepository:
         return sorted((deepcopy(item) for item in self.big_move_label_rows.values()
                        if item.dataset_revision_id == revision_id and item.instrument_id == instrument_id),
                       key=lambda item: (item.as_of, item.horizon_minutes))
+
+    def save_experimental_output(self, output: ExternalForecastResult,
+                                 dataset_revision_id: str, instrument_id: int) -> bool:
+        if output.model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
+            raise ValueError("unknown experimental research model")
+        if output.reference_minute.tzinfo is None:
+            raise ValueError("experimental output reference minute must be timezone-aware")
+        record = output.to_record(dataset_revision_id=dataset_revision_id,
+                                  instrument_id=instrument_id)
+        existing = self.experimental_outputs.get(record["output_id"])
+        if existing is not None:
+            if canonical_json(existing) != canonical_json(record):
+                raise ValueError("experimental model outputs are immutable")
+            return False
+        self.experimental_outputs[record["output_id"]] = deepcopy(record)
+        return True
+
+    def experimental_outputs_for(self, revision_id: str, instrument_id: int, *,
+                                 model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]:
+        if model_name is not None and model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
+            raise ValueError("unknown experimental research model")
+        rows = [deepcopy(item) for item in self.experimental_outputs.values()
+                if item["dataset_revision_id"] == revision_id
+                and item["instrument_id"] == instrument_id
+                and (model_name is None or item["model_name"] == model_name)]
+        rows.sort(key=lambda item: (item["as_of"], item["output_id"]), reverse=True)
+        return rows[:max(0, min(limit, 5000))]
 
     def save_feature_set(self, definition: FeatureSetDefinition) -> None:
         existing = self.feature_sets.get(definition.version)
@@ -1264,6 +1297,61 @@ class PostgresRepository:
                 ORDER BY as_of, horizon_minutes
             """, (revision_id, instrument_id)).fetchall()
         return [BigMoveLabel(str(row[0]), *row[1:]) for row in rows]
+
+    def save_experimental_output(self, output: ExternalForecastResult,
+                                 dataset_revision_id: str, instrument_id: int) -> bool:
+        from psycopg.types.json import Jsonb
+        if output.model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
+            raise ValueError("unknown experimental research model")
+        record = output.to_record(dataset_revision_id=dataset_revision_id,
+                                  instrument_id=instrument_id)
+        with self._connection() as connection:
+            row = connection.execute("""
+                INSERT INTO experimental_model_outputs(
+                  output_id, dataset_revision_id, instrument_id, as_of, model_name,
+                  model_version, pred_len, forecast_path, summary, status
+                ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s)
+                ON CONFLICT(output_id) DO NOTHING RETURNING 1
+            """, (record["output_id"], dataset_revision_id, instrument_id, record["as_of"],
+                record["model_name"], record["model_version"], record["pred_len"],
+                canonical_json(record["forecast_path"]), canonical_json(record["summary"]),
+                record["status"])).fetchone()
+            if row is not None:
+                return True
+            existing = connection.execute(
+                "SELECT summary FROM experimental_model_outputs WHERE output_id=%s",
+                (record["output_id"],)).fetchone()
+        if existing is None:
+            raise ValueError("experimental output could not be persisted")
+        if canonical_json(existing[0]) != canonical_json(record["summary"]):
+            raise ValueError("experimental model outputs are immutable")
+        return False
+
+    def experimental_outputs_for(self, revision_id: str, instrument_id: int, *,
+                                 model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]:
+        if model_name is not None and model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
+            raise ValueError("unknown experimental research model")
+        selected_limit = max(0, min(limit, 5000))
+        with self._connection() as connection:
+            if model_name is None:
+                rows = connection.execute("""
+                    SELECT output_id, dataset_revision_id, instrument_id, as_of, model_name,
+                           model_version, pred_len, forecast_path, summary, status, created_at
+                    FROM experimental_model_outputs
+                    WHERE dataset_revision_id=%s AND instrument_id=%s
+                    ORDER BY as_of DESC, output_id DESC LIMIT %s
+                """, (revision_id, instrument_id, selected_limit)).fetchall()
+            else:
+                rows = connection.execute("""
+                    SELECT output_id, dataset_revision_id, instrument_id, as_of, model_name,
+                           model_version, pred_len, forecast_path, summary, status, created_at
+                    FROM experimental_model_outputs
+                    WHERE dataset_revision_id=%s AND instrument_id=%s AND model_name=%s
+                    ORDER BY as_of DESC, output_id DESC LIMIT %s
+                """, (revision_id, instrument_id, model_name, selected_limit)).fetchall()
+        keys = ("output_id", "dataset_revision_id", "instrument_id", "as_of", "model_name",
+                "model_version", "pred_len", "forecast_path", "summary", "status", "created_at")
+        return [dict(zip(keys, row, strict=True)) for row in rows]
 
     def save_feature_set(self, definition: FeatureSetDefinition) -> None:
         with self._connection() as connection:

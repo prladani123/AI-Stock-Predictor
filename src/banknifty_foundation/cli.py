@@ -8,6 +8,7 @@ from pathlib import Path
 import signal
 import sys
 import threading
+from typing import Any
 from uuid import NAMESPACE_URL, uuid5
 
 from .calendar import IST, TradingCalendar, to_utc
@@ -22,6 +23,9 @@ from .labels import LabelGenerationService
 from .big_move_labels import BigMoveLabelGenerationService
 from .big_move_features import BigMoveFeatureGenerationService
 from .kronos_experiment import KronosForecastAdapter
+from .banknifty_time_machine import BankniftyTimeMachine
+from .external_research import (HISTORICAL_COUNTERFACTUAL, KRONOS_MODEL_NAME, PROSPECTIVE,
+                                TIME_MACHINE_MODEL_NAME)
 from .models import Candle, TradingSession
 from .rate_limit import RateLimiter
 from .repository import MemoryRepository, PostgresRepository
@@ -265,10 +269,175 @@ def command_kronos_experiment(args: argparse.Namespace) -> int:
     adapter = KronosForecastAdapter(model_name=args.model)
     payload = {"status": "EXPERIMENT_NOT_RUN", "as_of": args.as_of,
                "lookback": args.lookback, "pred_len": 30, **adapter.availability(),
-               "message": "Configure an explicit predictor factory on the target research machine; no model is loaded or downloaded by this command."}
+               "message": "Use kronos-research-run with the local Docker research service."}
     _write_json(Path(args.output), payload)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0
+
+
+def _research_repository():
+    settings = Settings.from_env(require_database=True)
+    return PostgresRepository(settings.database_url, ROOT / "migrations")
+
+
+def _research_timestamp(value: str) -> datetime:
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        raise ValueError("research timestamps must be timezone-aware")
+    return parsed
+
+
+def command_external_research_preflight(args: argparse.Namespace) -> int:
+    third_party = ROOT / "third_party"
+    kronos_root = third_party / "Kronos"
+    india_root = third_party / "india-trader-skill"
+    model_root = Path(args.models_dir) if args.models_dir else kronos_root / "models"
+    required = {
+        "kronosSource": kronos_root / "model" / "__init__.py",
+        "kronosServer": kronos_root / "kronos_research_server.py",
+        "kronosUpstream": kronos_root / "UPSTREAM.md",
+        "kronosMini": model_root / "Kronos-mini" / "model.safetensors",
+        "kronosTokenizer": model_root / "Kronos-Tokenizer-2k" / "model.safetensors",
+        "indiaTraderSource": india_root / "bharat-timemachine" / "timemachine.py",
+        "indiaTraderUpstream": india_root / "UPSTREAM.md",
+    }
+    checks = {name: path.is_file() for name, path in required.items()}
+    service = KronosForecastAdapter(service_url=args.service_url or None).health()
+    payload = {
+        "downloadsPerformed": False,
+        "thirdPartySources": {"kronos": str(kronos_root), "indiaTrader": str(india_root)},
+        "checks": checks,
+        "kronosService": service,
+        "timeMachine": {"available": checks["indiaTraderSource"], "minimumPriorSessions": 20,
+                        "slotWindowMinutes": 2, "pathCount": 10_000},
+        "status": "READY" if all(checks.values()) and service.get("status") == "READY"
+                  else "DEGRADED",
+    }
+    _write_json(Path(args.output), payload)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0
+
+
+def command_kronos_research_run(args: argparse.Namespace) -> int:
+    repository = _research_repository()
+    reference = _research_timestamp(args.as_of)
+    candles = repository.revision_candles(args.revision, args.instrument_id)
+    adapter = KronosForecastAdapter(service_url=args.service_url or None,
+                                    sample_paths=args.paths, seed=args.seed,
+                                    timeout_seconds=args.timeout)
+    result = adapter.forecast(candles, as_of=reference, lookback=args.lookback,
+        sample_count=args.paths,
+        point_in_time_status=PROSPECTIVE if args.prospective else HISTORICAL_COUNTERFACTUAL)
+    persisted = repository.save_experimental_output(result, args.revision,
+        args.instrument_id) if result.status == "COMPLETED" else False
+    payload = result.to_dict()
+    payload["persisted"] = persisted
+    payload["modelName"] = KRONOS_MODEL_NAME
+    payload["researchOnly"] = True
+    payload["usedByPriceCoreV2"] = False
+    _write_json(Path(args.output), payload)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0 if result.status == "COMPLETED" else 1
+
+
+def command_time_machine_run(args: argparse.Namespace) -> int:
+    repository = _research_repository()
+    reference = _research_timestamp(args.as_of)
+    machine = BankniftyTimeMachine(repository, sample_paths=args.paths,
+        slot_window_minutes=args.slot_window, minimum_prior_sessions=args.min_prior_sessions,
+        seed=args.seed)
+    result = machine.run(revision_id=args.revision, instrument_id=args.instrument_id,
+        reference_minute=reference,
+        point_in_time_status=PROSPECTIVE if args.prospective else HISTORICAL_COUNTERFACTUAL)
+    persisted = repository.save_experimental_output(result, args.revision,
+        args.instrument_id) if result.status == "COMPLETED" else False
+    payload = result.to_dict()
+    payload["persisted"] = persisted
+    payload["modelName"] = TIME_MACHINE_MODEL_NAME
+    payload["researchOnly"] = True
+    payload["usedByPriceCoreV2"] = False
+    _write_json(Path(args.output), payload)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0 if result.status == "COMPLETED" else 1
+
+
+def command_external_research_backfill(args: argparse.Namespace) -> int:
+    repository = _research_repository()
+    from_date = date.fromisoformat(args.from_date)
+    to_date = date.fromisoformat(args.to_date)
+    if to_date < from_date:
+        raise ValueError("--from must not be after --to")
+    revision = repository.get_revision(args.revision)
+    sessions = {item.session_date: item for item in repository.sessions_between(from_date, to_date)
+                if item.status in {"OPEN", "SPECIAL"}}
+    candles = sorted(repository.revision_candles(args.revision, args.instrument_id),
+                     key=lambda item: item.timestamp)
+    candidates: list[datetime] = []
+    last_by_date: dict[date, datetime] = {}
+    for candle in candles:
+        day = candle.timestamp.astimezone(IST).date()
+        session = sessions.get(day)
+        if session is None or candle.timestamp + timedelta(minutes=30) >= session.close_at:
+            continue
+        prior = last_by_date.get(day)
+        if prior is not None and (candle.timestamp - prior).total_seconds() < args.stride * 60:
+            continue
+        last_by_date[day] = candle.timestamp
+        candidates.append(candle.timestamp)
+    if args.max_references > 0:
+        candidates = candidates[-args.max_references:]
+    machine = BankniftyTimeMachine(repository, sample_paths=args.paths,
+        slot_window_minutes=args.slot_window, minimum_prior_sessions=args.min_prior_sessions,
+        seed=args.seed)
+    adapters: list[tuple[str, Any]] = [("time_machine", machine)]
+    kronos = None
+    kronos_available = False
+    if args.include_kronos:
+        kronos = KronosForecastAdapter(service_url=args.service_url or None,
+                                       sample_paths=args.kronos_paths, seed=args.seed)
+        kronos_health = kronos.health()
+        kronos_available = kronos_health.get("status") == "READY"
+        if kronos_available:
+            adapters.append(("kronos", kronos))
+    outcomes: list[dict[str, Any]] = []
+    counts = {name: 0 for name, _ in adapters}
+    failures = 0
+    for reference in candidates:
+        for name, service in adapters:
+            try:
+                if name == "time_machine":
+                    result = service.run(revision_id=args.revision,
+                        instrument_id=args.instrument_id, reference_minute=reference,
+                        point_in_time_status=HISTORICAL_COUNTERFACTUAL)
+                else:
+                    result = service.forecast(candles, as_of=reference,
+                        sample_count=args.kronos_paths,
+                        point_in_time_status=HISTORICAL_COUNTERFACTUAL)
+                persisted = repository.save_experimental_output(
+                    result, args.revision, args.instrument_id) if result.status == "COMPLETED" else False
+                counts[name] += int(persisted)
+                if result.status != "COMPLETED":
+                    failures += 1
+                outcomes.append({"referenceMinute": reference.isoformat(), "model": name,
+                                 "status": result.status, "persisted": persisted})
+            except Exception as error:
+                failures += 1
+                outcomes.append({"referenceMinute": reference.isoformat(), "model": name,
+                                 "status": "FAILED",
+                                 "detail": f"{type(error).__name__}: {error}"})
+    payload = {
+        "revision": revision.id, "instrumentId": args.instrument_id,
+        "from": from_date.isoformat(), "to": to_date.isoformat(),
+        "strideMinutes": args.stride, "referenceCount": len(candidates),
+        "kronosRequested": bool(args.include_kronos),
+        "kronosServiceAvailable": kronos_available,
+        "completedByModel": counts, "failureCount": failures,
+        "results": outcomes[-args.max_output:],
+        "researchOnly": True, "usedByPriceCoreV2": False,
+    }
+    _write_json(Path(args.output), payload)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0 if failures == 0 else 1
 
 
 def _replay_manifest(args: argparse.Namespace) -> ReplayManifest:
@@ -1173,6 +1342,62 @@ def build_parser() -> argparse.ArgumentParser:
     kronos.add_argument("--model", choices=("Kronos-mini", "Kronos-small"), default="Kronos-mini")
     kronos.add_argument("--output", default="artifacts/kronos-experimental-output.json")
     kronos.set_defaults(func=command_kronos_experiment)
+
+    external_preflight = sub.add_parser("external-research-preflight",
+        help="check vendored Kronos/India Trader sources and local model cache without downloading")
+    external_preflight.add_argument("--models-dir")
+    external_preflight.add_argument("--service-url")
+    external_preflight.add_argument("--output", default="artifacts/external-research-preflight.json")
+    external_preflight.set_defaults(func=command_external_research_preflight)
+
+    kronos_run = sub.add_parser("kronos-research-run",
+        help="run one local Kronos research forecast and persist accepted output")
+    kronos_run.add_argument("--revision", required=True)
+    kronos_run.add_argument("--instrument-id", type=int, required=True)
+    kronos_run.add_argument("--as-of", required=True, help="aware ISO-8601 reference minute")
+    kronos_run.add_argument("--lookback", type=int, default=400)
+    kronos_run.add_argument("--paths", type=int, default=8)
+    kronos_run.add_argument("--seed", type=int, default=1729)
+    kronos_run.add_argument("--timeout", type=float, default=90.0)
+    kronos_run.add_argument("--service-url")
+    kronos_run.add_argument("--prospective", action="store_true",
+        help="mark decision-available prospective research instead of historical counterfactual")
+    kronos_run.add_argument("--output", default="artifacts/kronos-research-output.json")
+    kronos_run.set_defaults(func=command_kronos_research_run)
+
+    time_machine_run = sub.add_parser("time-machine-run",
+        help="run one BANKNIFTY time-of-day Monte Carlo research forecast")
+    time_machine_run.add_argument("--revision", required=True)
+    time_machine_run.add_argument("--instrument-id", type=int, required=True)
+    time_machine_run.add_argument("--as-of", required=True, help="aware ISO-8601 reference minute")
+    time_machine_run.add_argument("--paths", type=int, default=10_000)
+    time_machine_run.add_argument("--seed", type=int, default=1729)
+    time_machine_run.add_argument("--slot-window", type=int, default=2)
+    time_machine_run.add_argument("--min-prior-sessions", type=int, default=20)
+    time_machine_run.add_argument("--prospective", action="store_true",
+        help="mark decision-available prospective research instead of historical counterfactual")
+    time_machine_run.add_argument("--output", default="artifacts/time-machine-output.json")
+    time_machine_run.set_defaults(func=command_time_machine_run)
+
+    backfill_external = sub.add_parser("external-research-backfill",
+        help="bounded deterministic historical research backfill; never samples future data")
+    backfill_external.add_argument("--revision", required=True)
+    backfill_external.add_argument("--instrument-id", type=int, required=True)
+    backfill_external.add_argument("--from", dest="from_date", required=True)
+    backfill_external.add_argument("--to", dest="to_date", required=True)
+    backfill_external.add_argument("--stride", type=int, default=30)
+    backfill_external.add_argument("--max-references", type=int, default=50)
+    backfill_external.add_argument("--paths", type=int, default=10_000)
+    backfill_external.add_argument("--seed", type=int, default=1729)
+    backfill_external.add_argument("--slot-window", type=int, default=2)
+    backfill_external.add_argument("--min-prior-sessions", type=int, default=20)
+    backfill_external.add_argument("--include-kronos", action="store_true")
+    backfill_external.add_argument("--kronos-paths", type=int, default=8)
+    backfill_external.add_argument("--service-url")
+    backfill_external.add_argument("--max-output", type=int, default=200)
+    backfill_external.add_argument("--output", default="artifacts/external-research-backfill.json")
+    backfill_external.set_defaults(func=command_external_research_backfill)
+
     replay = sub.add_parser("run-walk-forward", help="run deterministic chronological replay")
     replay.add_argument("--revision", required=True)
     replay.add_argument("--instrument-id", type=int, required=True)

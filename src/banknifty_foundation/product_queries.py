@@ -246,6 +246,30 @@ class ProductDataReader:
             "resolved": row.get("actual_label") is not None,
         }
 
+    def _experimental_payload(self, row) -> dict[str, Any]:
+        if row is None:
+            return {"available": False, "reason": "NO_EXPERIMENTAL_OUTPUT",
+                    "researchOnly": True, "usedByPriceCoreV2": False}
+        summary = row["summary"] or {}
+        return {
+            "available": True,
+            "id": row["output_id"],
+            "asOf": row["as_of"].isoformat(),
+            "referenceMinute": summary.get("referenceMinute"),
+            "computedAt": summary.get("computedAt"),
+            "availableAt": summary.get("availableAt"),
+            "sourceMaxTimestamp": summary.get("sourceMaxTimestamp"),
+            "pointInTimeStatus": summary.get("pointInTimeStatus"),
+            "status": summary.get("researchStatus"),
+            "model": row["model_name"],
+            "modelVersion": row["model_version"],
+            "horizons": summary.get("horizons", {}),
+            "forecastPath": row["forecast_path"],
+            "summary": summary,
+            "researchOnly": True,
+            "usedByPriceCoreV2": False,
+        }
+
     def current_intelligence(self, *, as_of=None, instrument_id=None) -> dict[str, Any]:
         if not self.database_url:
             return {"available": False, "reason": "DATABASE_NOT_CONFIGURED", "horizons": []}
@@ -277,10 +301,24 @@ class ProductDataReader:
                       AND prediction.expires_at + interval '1 minute' > now()
                     ORDER BY prediction.horizon_minutes, prediction.as_of DESC
                 """,(as_of,as_of,instrument_id,instrument_id)).fetchall()
-                experimental = connection.execute("""
+                kronos = connection.execute("""
                     SELECT output_id, as_of, model_name, model_version, forecast_path, summary
-                    FROM experimental_model_outputs ORDER BY as_of DESC LIMIT 1
-                """).fetchone()
+                    FROM experimental_model_outputs
+                    WHERE model_name='KRONOS_MINI_ZERO_SHOT_V1'
+                      AND (%s::bigint IS NULL OR instrument_id=%s)
+                      AND as_of <= now()
+                      AND summary->>'pointInTimeStatus'='PROSPECTIVE'
+                    ORDER BY as_of DESC LIMIT 1
+                """, (instrument_id, instrument_id)).fetchone()
+                time_machine = connection.execute("""
+                    SELECT output_id, as_of, model_name, model_version, forecast_path, summary
+                    FROM experimental_model_outputs
+                    WHERE model_name='BANKNIFTY_TIME_MACHINE_V1'
+                      AND (%s::bigint IS NULL OR instrument_id=%s)
+                      AND as_of <= now()
+                      AND summary->>'pointInTimeStatus'='PROSPECTIVE'
+                    ORDER BY as_of DESC LIMIT 1
+                """, (instrument_id, instrument_id)).fetchone()
             rows = sorted(rows, key=lambda item: item["horizon_minutes"])
             latest = max(rows, key=lambda item: item["as_of"]) if rows else None
             return {"available": bool(rows), "reason": None if rows else "NO_BIG_MOVE_PREDICTIONS",
@@ -292,11 +330,8 @@ class ProductDataReader:
                 "featureValues": (latest['session_bias'].get('runtime_lineage') or {}).get('feature_values') if latest else None,
                 "featureAsOf": latest['as_of'].isoformat() if latest else None,
                 "featureQualityStatus": latest['quality_status'] if latest else None,
-                "kronosExperimental": ({"available": True, "id": experimental["output_id"],
-                    "asOf": experimental["as_of"].isoformat(), "model": experimental["model_name"],
-                    "modelVersion": experimental["model_version"], "forecastPath": experimental["forecast_path"],
-                    "summary": experimental["summary"]}
-                    if experimental else {"available": False, "reason": "NO_EXPERIMENTAL_OUTPUT"})}
+                "kronosExperimental": self._experimental_payload(kronos),
+                "timeMachineExperimental": self._experimental_payload(time_machine)}
         except Exception:
             return {"available": False, "reason": "DATABASE_UNAVAILABLE", "horizons": []}
 

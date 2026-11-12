@@ -65,10 +65,37 @@ services:
       OPENBLAS_NUM_THREADS: "2"
       MKL_NUM_THREADS: "2"
       NUMEXPR_NUM_THREADS: "2"
+      KRONOS_RESEARCH_ENABLED: ${KRONOS_RESEARCH_ENABLED:-false}
+      KRONOS_SERVICE_URL: ${KRONOS_SERVICE_URL:-http://kronos-research:8010}
+      KRONOS_SAMPLE_PATHS: ${KRONOS_SAMPLE_PATHS:-8}
+      KRONOS_SEED: ${KRONOS_SEED:-1729}
+      KRONOS_TIMEOUT_SECONDS: ${KRONOS_TIMEOUT_SECONDS:-90}
+      TIME_MACHINE_ENABLED: ${TIME_MACHINE_ENABLED:-false}
+      TIME_MACHINE_PATHS: ${TIME_MACHINE_PATHS:-10000}
+      TIME_MACHINE_SLOT_WINDOW_MINUTES: ${TIME_MACHINE_SLOT_WINDOW_MINUTES:-2}
+      TIME_MACHINE_MIN_PRIOR_SESSIONS: ${TIME_MACHINE_MIN_PRIOR_SESSIONS:-20}
+      TIME_MACHINE_SEED: ${TIME_MACHINE_SEED:-1729}
     expose: ["8000"]
     depends_on: {postgres: {condition: service_healthy}}
     volumes: ["./artifacts:/app/artifacts", "./model_artifacts:/app/model_artifacts", "./market_memory:/app/market_memory"]
     healthcheck: {test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/internal/health', timeout=2)"], interval: 10s, timeout: 3s, retries: 10}
+    init: true
+    restart: unless-stopped
+  kronos-research:
+    profiles: ["research"]
+    build: {context: ./third_party/Kronos, dockerfile: Dockerfile.research}
+    environment:
+      KRONOS_THREADS: ${KRONOS_THREADS:-2}
+      KRONOS_PORT: "8010"
+      OMP_NUM_THREADS: ${KRONOS_THREADS:-2}
+      OPENBLAS_NUM_THREADS: ${KRONOS_THREADS:-2}
+      MKL_NUM_THREADS: ${KRONOS_THREADS:-2}
+      NUMEXPR_NUM_THREADS: ${KRONOS_THREADS:-2}
+    expose: ["8010"]
+    volumes: ["./third_party/Kronos/models:/app/models:ro"]
+    cpus: "2.0"
+    mem_limit: 3g
+    healthcheck: {test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/health', timeout=3)"], interval: 20s, timeout: 5s, retries: 5, start_period: 90s}
     init: true
     restart: unless-stopped
   backend:

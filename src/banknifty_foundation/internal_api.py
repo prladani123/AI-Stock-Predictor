@@ -56,6 +56,14 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def _time_machine_availability() -> dict[str, Any]:
+    enabled = os.getenv("TIME_MACHINE_ENABLED", "false").strip().lower() == "true"
+    return {"available": enabled, "status": "READY" if enabled else "DISABLED",
+            "reason": None if enabled else "TIME_MACHINE_DISABLED",
+            "model": "BANKNIFTY_TIME_MACHINE_V1", "researchOnly": True,
+            "usedByPriceCoreV2": False}
+
+
 def _json_value(value: Any) -> Any:
     if isinstance(value, datetime):
         return value.isoformat()
@@ -413,7 +421,8 @@ class ProductRuntime:
             'why':bias['drivers'],**context,
             'memory':{'numerical':self._memory_summary(self.memory_similarity(values,as_of)),
                       'news':self._news_summary(self.news.current_memory(values))},
-            'kronosExperimental':stored.get('kronosExperimental',KronosForecastAdapter().availability())})
+            'kronosExperimental':stored.get('kronosExperimental',KronosForecastAdapter().availability()),
+            'timeMachineExperimental':stored.get('timeMachineExperimental', _time_machine_availability())})
 
     @market_view
     def options(self, expiry_value: str | None = None) -> dict[str, Any]:
@@ -829,6 +838,63 @@ def intelligence_history(
         raise HTTPException(status_code=422, detail="unsupported intelligence horizon")
     return ProductDataReader().intelligence_history(page=page, page_size=page_size,
         date_value=date, horizon=horizon, direction=direction, resolved=resolved)
+
+
+@app.get('/internal/research/external/current', dependencies=[Depends(require_internal_token)])
+def external_research_current(instrument_id: int | None = None, as_of: datetime | None = None):
+    stored = ProductDataReader().current_intelligence(as_of=as_of, instrument_id=instrument_id)
+    return _json_value({
+        "available": bool(stored.get("kronosExperimental", {}).get("available")
+                          or stored.get("timeMachineExperimental", {}).get("available")),
+        "kronosExperimental": stored.get("kronosExperimental"),
+        "timeMachineExperimental": stored.get("timeMachineExperimental"),
+        "researchOnly": True, "usedByPriceCoreV2": False,
+    })
+
+
+@app.get('/internal/research/external/history', dependencies=[Depends(require_internal_token)])
+def external_research_history(revision_id: str, instrument_id: int,
+                              model: str | None = Query(None, pattern="^(KRONOS_MINI_ZERO_SHOT_V1|BANKNIFTY_TIME_MACHINE_V1)$"),
+                              limit: int = Query(50, ge=1, le=200)):
+    from .repository import PostgresRepository
+    try:
+        repository = PostgresRepository(os.getenv('DATABASE_URL', ''))
+        rows = repository.experimental_outputs_for(revision_id, instrument_id,
+            model_name=model, limit=limit)
+    except Exception:
+        raise HTTPException(status_code=503, detail='EXTERNAL_RESEARCH_STORAGE_UNAVAILABLE') from None
+    items = [{
+        "id": row["output_id"], "asOf": row["as_of"].isoformat(),
+        "model": row["model_name"], "modelVersion": row["model_version"],
+        "status": (row["summary"] or {}).get("researchStatus"),
+        "referenceMinute": (row["summary"] or {}).get("referenceMinute"),
+        "pointInTimeStatus": (row["summary"] or {}).get("pointInTimeStatus"),
+        "horizons": (row["summary"] or {}).get("horizons", {}),
+        "forecastPath": row["forecast_path"], "summary": row["summary"],
+        "researchOnly": True, "usedByPriceCoreV2": False,
+    } for row in rows]
+    return {"available": bool(items), "items": items,
+            "reason": None if items else "NO_EXTERNAL_RESEARCH_OUTPUTS",
+            "researchOnly": True, "usedByPriceCoreV2": False}
+
+
+@app.get('/internal/research/external/status', dependencies=[Depends(require_internal_token)])
+def external_research_status():
+    return _json_value({"kronos": KronosForecastAdapter().health(),
+                        "timeMachine": _time_machine_availability(),
+                        "researchOnly": True, "usedByPriceCoreV2": False})
+
+
+@app.get('/internal/research/external/evaluation', dependencies=[Depends(require_internal_token)])
+def external_research_evaluation(revision_id: str, instrument_id: int):
+    from .external_research_evaluation import ExternalResearchEvaluationService
+    from .repository import PostgresRepository
+    try:
+        service = ExternalResearchEvaluationService(
+            PostgresRepository(os.getenv('DATABASE_URL', '')))
+        return _json_value(service.evaluate(revision_id, instrument_id))
+    except Exception:
+        raise HTTPException(status_code=503, detail='EXTERNAL_RESEARCH_EVALUATION_UNAVAILABLE') from None
 
 
 @app.get("/internal/memory/current-similarity", dependencies=[Depends(require_internal_token)])

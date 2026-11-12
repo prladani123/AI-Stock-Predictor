@@ -267,3 +267,12 @@ The biggest missing component is a trustworthy, point-in-time BANKNIFTY datasetâ
 - Exclude all OpenAlgo brokers other than Zerodha and all order/GTT/strategy/MCP/messaging surfaces.
 - Do not load Lightweight Charts internals during app work; use its public v5 API documentation and npm package.
 
+
+## Vendored external research sources
+
+| Source | Commit | Local path | Decision |
+|---|---|---|---|
+| Kronos | 67b630e67f6a18c9e9be918d9b4337c960db1e9a | third_party/Kronos | Vendor complete MIT source; adapt research client; local CPU Docker only |
+| India Trader skill | cd9767f40241ac914cd13e2a06fd3a60b3af42d4 | third_party/india-trader-skill | Vendor complete MIT source; adapt bharat-timemachine time-of-day replay concept only |
+
+The vendored snapshots are provenance inputs, not production dependencies. Kronos model weights are limited to Kronos-mini and Kronos-Tokenizer-2k with documented MIT terms, sizes and SHA-256 hashes in third_party/Kronos/models/README.md. Time Machine uses accepted BANKNIFTY candles and complete prior sessions only; no Yahoo, broker, order, position-sizing, stop, target or execution code is carried forward. See docs/KRONOS_TIME_MACHINE_INTEGRATION.md.

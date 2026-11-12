@@ -170,6 +170,41 @@ final class ApiController extends AbstractController
         ]);
     }
 
+    #[Route('/research/external/current', methods: ['GET'])]
+    public function externalResearchCurrent(Request $request): JsonResponse
+    {
+        return $this->proxy('/internal/research/external/current', [
+            'instrument_id' => $request->query->get('instrument_id'),
+            'as_of' => $request->query->get('as_of'),
+        ]);
+    }
+
+    #[Route('/research/external/history', methods: ['GET'])]
+    public function externalResearchHistory(Request $request): JsonResponse
+    {
+        return $this->proxy('/internal/research/external/history', [
+            'revision_id' => $request->query->get('revision_id'),
+            'instrument_id' => $request->query->get('instrument_id'),
+            'model' => $request->query->get('model'),
+            'limit' => min(200, max(1, $request->query->getInt('limit', 50))),
+        ]);
+    }
+
+    #[Route('/research/external/status', methods: ['GET'])]
+    public function externalResearchStatus(): JsonResponse
+    {
+        return $this->proxy('/internal/research/external/status');
+    }
+
+    #[Route('/research/external/evaluation', methods: ['GET'])]
+    public function externalResearchEvaluation(Request $request): JsonResponse
+    {
+        return $this->proxy('/internal/research/external/evaluation', [
+            'revision_id' => $request->query->get('revision_id'),
+            'instrument_id' => $request->query->get('instrument_id'),
+        ]);
+    }
+
     #[Route('/memory/current-similarity', methods: ['GET'])]
     public function currentMemorySimilarity(): JsonResponse { return $this->proxy('/internal/memory/current-similarity'); }
     #[Route('/memory/similar', methods: ['GET'])]

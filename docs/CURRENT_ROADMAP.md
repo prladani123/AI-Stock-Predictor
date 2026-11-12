@@ -21,4 +21,5 @@ then explicitly activate historical research and collect prospective evidence. D
 - **Stage H - implemented:** Prospective local Zerodha top-five depth, spread, imbalance, OI/volume deltas and option aggregates. Missing Greeks remain unavailable. No historical synthetic books or new feed.
 - **Stage I - implemented:** Immutable prospective shadow capture after the production prediction/journal commit; existing resolved outcomes join descriptively. Migration 021 and genuine live evidence are prerequisites.
 - **Stage J - implemented integration:** Authenticated research endpoints, typed compact Settings sections and evidence-based readiness. Runtime deployment validation remains pending.
-- Optional later experiments: Kronos and local LLM/RAG, only if justified by evidence.
+- **External research - implemented, not validated:** Complete vendored Kronos and India Trader sources, local CPU Kronos Docker sidecar, Kronos 10/20/30 zero-shot research, deterministic BANKNIFTY Time Machine, bounded CLI backfill, separate persistence/API/UI and matched-cohort chronological evaluation. `PRICE_CORE_V2` is unchanged. Model availability, real historical cohorts and prospective samples remain operator work. See `docs/KRONOS_TIME_MACHINE_INTEGRATION.md`.
+- Optional later experiments: local LLM/RAG, only if justified by evidence.

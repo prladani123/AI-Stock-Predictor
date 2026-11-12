@@ -1,6 +1,6 @@
 # AI BANKNIFTY Intelligence Workstation
 
-Analysis-only BANKNIFTY workstation. Big Move V2 is the primary signal; Market Memory V2 provides separate numerical and timestamped news/event evidence. Kronos remains experimental. No order, position, holding, margin, GTT, or paper-trading endpoint is exposed.
+Analysis-only BANKNIFTY workstation. Big Move V2 is the primary signal; Market Memory V2 provides separate numerical and timestamped news/event evidence. Kronos and BANKNIFTY Time Machine are optional experimental research and are never used by PRICE_CORE_V2. No order, position, holding, margin, GTT, or paper-trading endpoint is exposed. Vendored research sources and the local Kronos model cache are documented in [docs/KRONOS_TIME_MACHINE_INTEGRATION.md](docs/KRONOS_TIME_MACHINE_INTEGRATION.md).
 
 ## Stack
 
@@ -8,6 +8,26 @@ Analysis-only BANKNIFTY workstation. Big Move V2 is the primary signal; Market M
 - Symfony thin public API proxy
 - React/Vite workstation UI
 - read-only Zerodha market-data adapters
+- local CPU Kronos research sidecar, built from committed `third_party/Kronos/` sources and model cache
+- deterministic BANKNIFTY Time Machine research using complete prior sessions only
+
+## External research
+
+Kronos and Time Machine are separated from PRICE_CORE_V2 in storage, API and UI:
+
+```powershell
+banknifty-foundation external-research-preflight
+docker compose --profile research up --build
+banknifty-foundation time-machine-run --revision REVISION_UUID --instrument-id 1 --as-of 2026-11-10T10:00:00+05:30
+banknifty-foundation kronos-research-run --revision REVISION_UUID --instrument-id 1 --as-of 2026-11-10T10:00:00+05:30
+banknifty-foundation external-research-backfill --revision REVISION_UUID --instrument-id 1 --from 2026-01-01 --to 2026-03-31 --stride 30 --max-references 50
+```
+
+Preflight performs no downloads. Backfill is bounded and never samples future candles. Live research
+is best-effort after the production prediction and journal commit; failure cannot change V2. Historical
+counterfactuals are labelled `HISTORICAL_COUNTERFACTUAL_RESEARCH`. Authenticated research endpoints are
+`/api/research/external/current`, `/history`, `/status` and `/evaluation`.
+
 
 ## Research development status (G2B–J)
 

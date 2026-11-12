@@ -272,6 +272,14 @@ class BigMoveRuntimeService:
                         result[horizon]='EVIDENCE_JOURNAL_MISSING' if 'EVIDENCE_JOURNAL_MISSING' in str(error) else 'DATA_NOT_READY'
             except Exception:
                 log.exception('big_move_evidence_capture_failed')
+            if any(value == 'PERSISTED' for value in result.values()):
+                # Optional research never blocks or changes the production result.
+                try:
+                    from .external_research_runtime import capture_best_effort
+                    capture_best_effort(self.repository, state, reference.minute_at,
+                        str(pending[0]['dataset_revision_id']), reference.instrument_id)
+                except Exception:
+                    log.exception('EXTERNAL_RESEARCH_UNAVAILABLE')
         return result
 
 

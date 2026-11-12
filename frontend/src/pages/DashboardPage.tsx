@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { api } from '../api';
 import { BigMoveCard } from '../components/dashboard/BigMoveCard';
+import { ExternalResearch } from '../components/dashboard/ExternalResearch';
 import { ImportantLevels } from '../components/dashboard/ImportantLevels';
 import { IntelligenceDrawer } from '../components/dashboard/IntelligenceDrawer';
 import { MarketEvidence } from '../components/dashboard/MarketEvidence';
@@ -37,6 +38,7 @@ export function DashboardPage() {
       {candles.error ? <ErrorState message={candles.error} retry={candles.refresh}/> : <MarketChart candles={candles.data?.candles ?? []} intelligence={intelligence} showExperimental={showKronos}/>}
     </Panel>
     <section className="big-move-grid">{(intelligence?.horizons ?? []).map(signal => <BigMoveCard key={signal.minutes} signal={signal} regime={intelligence?.marketRegime ?? 'UNKNOWN'} onOpen={() => setSelected(signal)}/>)}</section>
+    <ExternalResearch intelligence={intelligence}/>
     <SessionSummary intelligence={intelligence}/>
     <div><h2 className="section-label">MARKET EVIDENCE</h2><MarketEvidence intelligence={intelligence}/></div>
     <SimilarMarkets memory={intelligence?.memory?.numerical}/>

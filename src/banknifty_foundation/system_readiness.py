@@ -7,7 +7,7 @@ from pathlib import Path
 
 from .calendar import IST
 from .calendar_bootstrap import TradingCalendarBootstrapService
-from .paths import memory_root
+from .paths import memory_root, migration_files
 
 
 def enabled(name, default='false'):
@@ -286,7 +286,7 @@ class SystemReadinessService:
         now = datetime.now(timezone.utc)
         blockers = []
         result = {'observedAt': now.isoformat(), 'categories': {}, 'blockers': blockers}
-        expected = sorted(path.stem for path in (Path(__file__).resolve().parents[2] / 'migrations').glob('*.sql'))
+        expected = sorted(path.stem for path in migration_files())
         application = {'postgres': database_health(self.url), 'api': 'UP', 'latestAppliedMigration': None,
                        'expectedLatestMigration': expected[-1] if expected else None, 'missingMigrations': expected}
         result['application'] = application

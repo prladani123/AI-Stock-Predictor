@@ -21,6 +21,7 @@ services:
       ZERODHA_API_KEY: ${ZERODHA_API_KEY:-}
       ZERODHA_ACCESS_TOKEN: ${ZERODHA_ACCESS_TOKEN:-}
       MARKET_MEMORY_ROOT: /app/market_memory
+      MIGRATIONS_DIR: /app/migrations
       NEWS_POLLING_ENABLED: ${NEWS_POLLING_ENABLED:-true}
       NEWS_POLL_INTERVAL_SECONDS: ${NEWS_POLL_INTERVAL_SECONDS:-90}
       NEWS_REACTION_INTERVAL_SECONDS: ${NEWS_REACTION_INTERVAL_SECONDS:-30}
@@ -78,7 +79,7 @@ services:
       TIME_MACHINE_SEED: ${TIME_MACHINE_SEED:-1729}
     expose: ["8000"]
     depends_on: {postgres: {condition: service_healthy}}
-    volumes: ["./artifacts:/app/artifacts", "./model_artifacts:/app/model_artifacts", "./market_memory:/app/market_memory"]
+    volumes: ["./artifacts:/app/artifacts", "./model_artifacts:/app/model_artifacts", "market_memory_data:/app/market_memory"]
     healthcheck: {test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/internal/health', timeout=2)"], interval: 10s, timeout: 3s, retries: 10}
     init: true
     restart: unless-stopped
@@ -121,3 +122,4 @@ services:
     restart: unless-stopped
 volumes:
   postgres_data:
+  market_memory_data:

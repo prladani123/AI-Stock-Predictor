@@ -45,9 +45,11 @@ from .market_memory import FileMarketMemoryRepository, PostgresMarketMemoryRepos
 from .memory_builder import build_episodes, build_events
 from .daily_rollup import finalize_day
 from .news.service import NewsIntelligenceService
+from .paths import migrations_dir
 
 
 ROOT = Path.cwd() if (Path.cwd() / "fixtures").is_dir() else Path(__file__).resolve().parents[2]
+MIGRATIONS_ROOT = migrations_dir(ROOT / "migrations")
 
 
 def _fixture_session() -> TradingSession:
@@ -126,7 +128,7 @@ def command_fixture(args: argparse.Namespace) -> int:
 
 def command_migrate(_: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    applied = PostgresRepository(settings.database_url, ROOT / "migrations").apply_migrations()
+    applied = PostgresRepository(settings.database_url, MIGRATIONS_ROOT).apply_migrations()
     print(json.dumps({"applied": applied}))
     return 0
 
@@ -162,7 +164,7 @@ def command_memory_finalize_day(args: argparse.Namespace) -> int:
 
 def command_calendar_load(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     rows = json.loads(Path(args.file).read_text(encoding="utf-8"))
     stored = 0
     for row in rows:
@@ -188,7 +190,7 @@ def _write_json(output: Path, payload: dict | list) -> None:
 
 def command_dataset_validate(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     revision, report = DatasetValidationService(repository).create_candidate(
         args.instrument_id,
         date.fromisoformat(args.from_date),
@@ -201,7 +203,7 @@ def command_dataset_validate(args: argparse.Namespace) -> int:
 
 def command_dataset_decide(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     revision = DatasetValidationService(repository).decide(args.revision, args.decision, args.reason)
     print(json.dumps(revision.to_dict(), indent=2, sort_keys=True))
     return 0
@@ -209,7 +211,7 @@ def command_dataset_decide(args: argparse.Namespace) -> int:
 
 def command_generate_labels(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     labels, inserted = LabelGenerationService(
         repository, settings.threshold_policy_version, settings.label_thresholds()
     ).generate(args.revision, args.instrument_id)
@@ -226,7 +228,7 @@ def command_generate_labels(args: argparse.Namespace) -> int:
 
 def command_generate_features(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     rows, inserted = FeatureGenerationService(repository).generate(
         args.revision, args.instrument_id, args.feature_set_version
     )
@@ -244,7 +246,7 @@ def command_generate_features(args: argparse.Namespace) -> int:
 
 def command_generate_big_move_labels(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     labels, inserted = BigMoveLabelGenerationService(repository).generate(args.revision, args.instrument_id)
     payload = {"revision_id": args.revision, "schema": "BIG_MOVE_V2",
                "generated": len(labels), "inserted": inserted,
@@ -256,7 +258,7 @@ def command_generate_big_move_labels(args: argparse.Namespace) -> int:
 
 def command_generate_big_move_features(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     rows, inserted = BigMoveFeatureGenerationService(repository).generate(args.revision, args.instrument_id)
     payload = {"revision_id": args.revision, "feature_set_version": "banknifty-bigmove-v2",
                "generated": len(rows), "inserted": inserted,
@@ -278,7 +280,7 @@ def command_kronos_experiment(args: argparse.Namespace) -> int:
 
 def _research_repository():
     settings = Settings.from_env(require_database=True)
-    return PostgresRepository(settings.database_url, ROOT / "migrations")
+    return PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
 
 
 def _research_timestamp(value: str) -> datetime:
@@ -493,7 +495,7 @@ def _replay_manifest(args: argparse.Namespace) -> ReplayManifest:
 
 def command_run_walk_forward(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     run_id, report = WalkForwardReplay(repository).run(_replay_manifest(args))
     _write_json(Path(args.output), report)
     print(json.dumps({"run_id": run_id, "report": args.output}, indent=2))
@@ -503,7 +505,7 @@ def command_run_walk_forward(args: argparse.Namespace) -> int:
 def command_show_run_report(args: argparse.Namespace) -> int:
     settings = Settings.from_env(require_database=True)
     report = PostgresRepository(
-        settings.database_url, ROOT / "migrations"
+        settings.database_url, MIGRATIONS_ROOT
     ).run_report(args.run_id)
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
@@ -730,7 +732,7 @@ def command_audit_phase05(args: argparse.Namespace) -> int:
         "holdings", "margins", "place_gtt", "modify_gtt", "delete_gtt",
     }
     forbidden_calls: list[str] = []
-    for path in (ROOT / "src" / "banknifty_foundation").glob("*.py"):
+    for path in (ROOT / "src" / "banknifty_foundation").rglob("*.py"):
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         for node in ast.walk(tree):
             if (
@@ -740,7 +742,7 @@ def command_audit_phase05(args: argparse.Namespace) -> int:
             ):
                 forbidden_calls.append(f"{path.name}:{node.lineno}:{node.func.attr}")
     required_migrations = [
-        ROOT / "migrations" / f"{number:03d}_{name}.sql"
+        MIGRATIONS_ROOT / f"{number:03d}_{name}.sql"
         for number, name in (
             (1, "phase_0_1"), (2, "accepted_datasets"), (3, "target_labels"),
             (4, "point_in_time_features"), (5, "walk_forward_replay"),
@@ -1027,7 +1029,7 @@ def command_import_history(args: argparse.Namespace) -> int:
         raise RuntimeError("--confirm-read-only is required")
     settings = Settings.from_env(require_database=True)
     api_key, access_token = settings.require_live_credentials()
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     adapter = create_read_only_zerodha_adapter(
         api_key,
         access_token,
@@ -1094,7 +1096,7 @@ def command_service(args: argparse.Namespace) -> int:
 
 def _accepted_ml_command(args: argparse.Namespace, operation: str) -> int:
     settings = Settings.from_env(require_database=True)
-    repository = PostgresRepository(settings.database_url, ROOT / "migrations")
+    repository = PostgresRepository(settings.database_url, MIGRATIONS_ROOT)
     revision = repository.get_revision(args.revision)
     if revision.status != "ACCEPTED":
         raise ValueError("production ML commands require an ACCEPTED dataset revision")

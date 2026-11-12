@@ -283,15 +283,94 @@ class ProductDataReader:
             "usedByPriceCoreV2": False,
         }
 
+    @staticmethod
+    def _external_family(row: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "configurationChecksum": row.get("configuration_checksum"),
+            "seed": row.get("seed"),
+            "modelRevision": row.get("model_revision"),
+            "replayPoolRevisionId": row.get("replay_pool_revision_id"),
+        }
+
+    @staticmethod
+    def _active_family(model_name: str) -> dict[str, Any]:
+        if model_name == "KRONOS_MINI_ZERO_SHOT_V1":
+            return {
+                "seed": int(os.getenv("KRONOS_SEED", "1729")),
+                "replayPoolRevisionId": None,
+            }
+        return {
+            "seed": int(os.getenv("TIME_MACHINE_SEED", "1729")),
+            "replayPoolRevisionId": os.getenv("TIME_MACHINE_REPLAY_POOL_REVISION_ID") or None,
+        }
+
+    def _select_external_output(
+        self,
+        rows: list[dict[str, Any]],
+        model_name: str,
+    ) -> tuple[dict[str, Any] | None, str | None]:
+        if not rows:
+            return None, "NO_EXPERIMENTAL_OUTPUT"
+        active = self._active_family(model_name)
+        filtered = [row for row in rows if row.get("seed") == active["seed"]]
+        if active["replayPoolRevisionId"] is not None:
+            filtered = [row for row in filtered
+                        if row.get("replay_pool_revision_id") == active["replayPoolRevisionId"]]
+        if not filtered:
+            return None, "NO_MATCHING_RUNTIME_CONFIGURATION"
+        families = {}
+        for row in filtered:
+            key = (
+                row.get("configuration_checksum"),
+                row.get("seed"),
+                row.get("model_revision"),
+                row.get("replay_pool_revision_id"),
+            )
+            families.setdefault(key, self._external_family(row))
+        if len(families) > 1:
+            return {
+                "available": False,
+                "reason": "AMBIGUOUS_EXTERNAL_CONFIGURATION",
+                "availableFamilies": sorted(
+                    families.values(),
+                    key=lambda item: (
+                        str(item.get("configurationChecksum")),
+                        str(item.get("seed")),
+                        str(item.get("modelRevision")),
+                        str(item.get("replayPoolRevisionId")),
+                    ),
+                ),
+                "researchOnly": True,
+                "usedByPriceCoreV2": False,
+            }, None
+        selected = max(filtered, key=lambda item: (item.get("available_at"), item.get("identity_checksum")))
+        return selected, None
+
     def current_intelligence(self, *, as_of=None, instrument_id=None) -> dict[str, Any]:
         if not self.database_url:
             return {"available": False, "reason": "DATABASE_NOT_CONFIGURED", "horizons": []}
         try:
             with self._connection() as connection:
-                rows = connection.execute("""
-                    SELECT DISTINCT ON (prediction.horizon_minutes)
-                           prediction.prediction_id, prediction.horizon_minutes,
-                           prediction.as_of, prediction.expires_at, prediction.reference_price, prediction.instrument_id,
+                cohort = connection.execute("""
+                    SELECT prediction.instrument_id, prediction.as_of
+                    FROM big_move_predictions prediction
+                    JOIN big_move_model_definitions move_model
+                      ON move_model.model_checksum = prediction.move_model_checksum
+                    JOIN big_move_model_definitions direction_model
+                      ON direction_model.model_checksum = prediction.direction_model_checksum
+                    WHERE move_model.status='APPROVED' AND direction_model.status='APPROVED'
+                      AND (%s::timestamptz IS NULL OR prediction.as_of=%s)
+                      AND (%s::bigint IS NULL OR prediction.instrument_id=%s)
+                      AND (prediction.as_of AT TIME ZONE 'Asia/Kolkata')::date=(now() AT TIME ZONE 'Asia/Kolkata')::date
+                      AND prediction.expires_at + interval '1 minute' > now()
+                    ORDER BY prediction.as_of DESC, prediction.instrument_id DESC
+                    LIMIT 1
+                """, (as_of, as_of, instrument_id, instrument_id)).fetchone()
+                rows = []
+                if cohort:
+                    rows = connection.execute("""
+                        SELECT prediction.prediction_id, prediction.horizon_minutes,
+                               prediction.as_of, prediction.expires_at, prediction.reference_price, prediction.instrument_id,
                            big_move_probability, quiet_probability, state, direction,
                            direction_probability, up_given_big_move_probability,
                            down_given_big_move_probability, expected_move_points,
@@ -308,12 +387,10 @@ class ProductDataReader:
                     LEFT JOIN big_move_prediction_outcomes outcome
                       ON outcome.prediction_id = prediction.prediction_id
                     WHERE move_model.status='APPROVED' AND direction_model.status='APPROVED'
-                      AND (%s::timestamptz IS NULL OR prediction.as_of=%s)
-                      AND (%s::bigint IS NULL OR prediction.instrument_id=%s)
-                      AND (prediction.as_of AT TIME ZONE 'Asia/Kolkata')::date=(now() AT TIME ZONE 'Asia/Kolkata')::date
-                      AND prediction.expires_at + interval '1 minute' > now()
-                    ORDER BY prediction.horizon_minutes, prediction.as_of DESC
-                """,(as_of,as_of,instrument_id,instrument_id)).fetchall()
+                      AND prediction.as_of=%s
+                      AND prediction.instrument_id=%s
+                    ORDER BY prediction.horizon_minutes
+                """, (cohort["as_of"], cohort["instrument_id"])).fetchall()
                 rows = sorted(rows, key=lambda item: item["horizon_minutes"])
                 latest = max(rows, key=lambda item: item["as_of"]) if rows else None
                 reference_minute = latest["as_of"] if latest else None
@@ -322,7 +399,8 @@ class ProductDataReader:
                 columns = ("output_id, as_of, model_name, model_version, forecast_path, summary, "
                            "replay_pool_revision_id, input_checksum, upstream_revision, "
                            "model_revision, tokenizer_revision, seed, path_count, "
-                           "threshold_policy_version, point_in_time_status")
+                           "threshold_policy_version, point_in_time_status, configuration_checksum, "
+                           "identity_checksum, available_at")
                 external_sql = f"""
                     SELECT {columns}
                     FROM experimental_model_outputs
@@ -333,20 +411,32 @@ class ProductDataReader:
                       AND summary->>'researchStatus'='COMPLETED'
                       AND point_in_time_status IN ('PROSPECTIVE_DECISION_AVAILABLE',
                                                    'PROSPECTIVE_POST_DECISION')
-                    ORDER BY available_at DESC, identity_checksum DESC LIMIT 1
+                    ORDER BY available_at DESC, identity_checksum DESC
                 """
                 def optional_output(model_name):
                     if reference_minute is None:
-                        return None
+                        return None, "NO_EXPERIMENTAL_OUTPUT"
                     try:
                         # A research migration/query failure cannot hide V2 rows.
                         with connection.transaction():
-                            return connection.execute(external_sql, (model_name, selected_instrument,
-                                reference_minute, sorted(prediction_ids))).fetchone()
+                            matches = connection.execute(external_sql, (model_name, selected_instrument,
+                                reference_minute, sorted(prediction_ids))).fetchall()
+                            return self._select_external_output(matches, model_name)
                     except Exception:
-                        return None
-                kronos = optional_output("KRONOS_MINI_ZERO_SHOT_V1")
-                time_machine = optional_output("BANKNIFTY_TIME_MACHINE_V1")
+                        return None, "DATABASE_UNAVAILABLE"
+                kronos, kronos_error = optional_output("KRONOS_MINI_ZERO_SHOT_V1")
+                time_machine, time_machine_error = optional_output("BANKNIFTY_TIME_MACHINE_V1")
+                kronos_payload = kronos if isinstance(kronos, dict) and kronos.get("available") is False else self._experimental_payload(
+                    kronos, reference_minute, prediction_ids
+                )
+                if kronos_error and kronos_payload.get("reason") == "NO_EXPERIMENTAL_OUTPUT":
+                    kronos_payload["reason"] = kronos_error
+                time_machine_payload = (
+                    time_machine if isinstance(time_machine, dict) and time_machine.get("available") is False
+                    else self._experimental_payload(time_machine, reference_minute, prediction_ids)
+                )
+                if time_machine_error and time_machine_payload.get("reason") == "NO_EXPERIMENTAL_OUTPUT":
+                    time_machine_payload["reason"] = time_machine_error
             return {"available": bool(rows), "reason": None if rows else "NO_BIG_MOVE_PREDICTIONS",
                 "asOf": latest["as_of"].isoformat() if latest else None,
                 "marketRegime": latest["market_regime"] if latest else "UNKNOWN",
@@ -356,10 +446,8 @@ class ProductDataReader:
                 "featureValues": (latest['session_bias'].get('runtime_lineage') or {}).get('feature_values') if latest else None,
                 "featureAsOf": latest['as_of'].isoformat() if latest else None,
                 "featureQualityStatus": latest['quality_status'] if latest else None,
-                "kronosExperimental": self._experimental_payload(
-                    kronos, reference_minute, prediction_ids),
-                "timeMachineExperimental": self._experimental_payload(
-                    time_machine, reference_minute, prediction_ids)}
+                "kronosExperimental": kronos_payload,
+                "timeMachineExperimental": time_machine_payload}
         except Exception:
             return {"available": False, "reason": "DATABASE_UNAVAILABLE", "horizons": []}
 

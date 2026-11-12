@@ -1,6 +1,12 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
+import uuid
+
+import pytest
+
+from banknifty_foundation.repository import PostgresRepository
 
 
 def test_phase_migration_contains_all_required_tables_and_utc_types():
@@ -97,3 +103,90 @@ def test_integrity_repair_migration_makes_every_phase67_record_immutable():
         "immutable_ml_prediction_outcomes",
     ):
         assert trigger in migration
+
+
+def test_apply_migrations_fails_when_directory_missing_or_empty(tmp_path):
+    repository = object.__new__(PostgresRepository)
+    repository.migration_dir = tmp_path / "missing"
+    repository._connection = None
+    with pytest.raises(ValueError, match="does not exist"):
+        PostgresRepository.apply_migrations(repository)
+    repository.migration_dir = tmp_path / "empty"
+    repository.migration_dir.mkdir()
+    with pytest.raises(ValueError, match="no .sql files"):
+        PostgresRepository.apply_migrations(repository)
+
+
+def test_migration_022_runtime_constraints_when_postgres_available():
+    database_url = os.getenv("TEST_POSTGRES_URL")
+    if not database_url:
+        pytest.skip("Set TEST_POSTGRES_URL to run migration 022 runtime checks")
+    psycopg = pytest.importorskip("psycopg")
+    migration = (Path(__file__).resolve().parents[1] / "migrations"
+                 / "022_experimental_research_identity.sql").read_text(encoding="utf-8")
+    schema = f"migration022_{uuid.uuid4().hex[:12]}"
+    revision = uuid.uuid4()
+    replay = uuid.uuid4()
+    with psycopg.connect(database_url) as db:
+        db.execute(f'CREATE SCHEMA "{schema}"')
+        db.execute(f'SET search_path TO "{schema}"')
+        db.execute("CREATE TABLE schema_migrations(version text PRIMARY KEY, applied_at timestamptz DEFAULT now())")
+        db.execute("CREATE TABLE dataset_revisions(id uuid PRIMARY KEY, status text NOT NULL)")
+        db.execute("CREATE TABLE big_move_predictions(prediction_id text PRIMARY KEY, instrument_id bigint NOT NULL, as_of timestamptz NOT NULL)")
+        db.execute("""CREATE TABLE big_move_evidence_journal(
+            prediction_id text NOT NULL,
+            market_as_of timestamptz NOT NULL,
+            decision_at timestamptz NOT NULL)""")
+        db.execute("""CREATE TABLE experimental_model_outputs(
+            output_id text PRIMARY KEY,
+            dataset_revision_id uuid NOT NULL,
+            instrument_id bigint NOT NULL,
+            as_of timestamptz NOT NULL,
+            model_name text NOT NULL,
+            model_version text NOT NULL,
+            pred_len integer NOT NULL DEFAULT 30,
+            forecast_path jsonb NOT NULL DEFAULT '[]'::jsonb,
+            summary jsonb NOT NULL DEFAULT '{}'::jsonb,
+            status text NOT NULL DEFAULT 'EXPERIMENTAL_MODEL_OUTPUT')""")
+        db.execute("CREATE OR REPLACE FUNCTION reject_big_move_v2_mutation() RETURNS trigger AS $$ BEGIN RAISE EXCEPTION 'IMMUTABLE'; END; $$ LANGUAGE plpgsql")
+        db.execute(migration)
+        db.execute("INSERT INTO dataset_revisions(id, status) VALUES (%s, 'ACCEPTED'), (%s, 'ACCEPTED')", (revision, replay))
+        as_of = "2026-01-05T04:00:00+00:00"
+        decision_at = "2026-01-05T04:01:00+00:00"
+        db.execute("INSERT INTO big_move_predictions(prediction_id, instrument_id, as_of) VALUES ('p1', 1, %s)", (as_of,))
+        db.execute("INSERT INTO big_move_evidence_journal(prediction_id, market_as_of, decision_at) VALUES ('p1', %s, %s)", (as_of, decision_at))
+
+        db.execute("""INSERT INTO experimental_model_outputs(
+            output_id, dataset_revision_id, instrument_id, as_of, model_name, model_version,
+            forecast_path, summary, status, identity_checksum, prediction_ids, replay_pool_revision_id,
+            input_checksum, configuration_checksum, seed, path_count, sampling, available_at, computed_at,
+            source_max_timestamp, point_in_time_status, decision_at)
+            VALUES ('live-ok', NULL, 1, %s, 'KRONOS_MINI_ZERO_SHOT_V1', 'v', '[]'::jsonb,
+            %s::jsonb, 'EXPERIMENTAL_MODEL_OUTPUT', 'id-live', '["p1"]'::jsonb, NULL, 'in', 'cfg',
+            1, 1, '{}'::jsonb, %s, %s, %s, 'PROSPECTIVE_DECISION_AVAILABLE', %s)""",
+            (as_of, '{"marketAsOf":"2026-01-05T04:00:00+00:00"}', decision_at, decision_at, as_of, decision_at))
+
+        with pytest.raises(psycopg.Error):
+            db.execute("""INSERT INTO experimental_model_outputs(
+                output_id, dataset_revision_id, instrument_id, as_of, model_name, model_version,
+                forecast_path, summary, status, identity_checksum, prediction_ids, replay_pool_revision_id,
+                input_checksum, configuration_checksum, seed, path_count, sampling, available_at, computed_at,
+                source_max_timestamp, point_in_time_status, decision_at)
+                VALUES ('hist-bad', NULL, 1, %s, 'KRONOS_MINI_ZERO_SHOT_V1', 'v', '[]'::jsonb,
+                %s::jsonb, 'EXPERIMENTAL_MODEL_OUTPUT', 'id-hist', '[]'::jsonb, NULL, 'in', 'cfg',
+                1, 1, '{}'::jsonb, %s, %s, %s, 'HISTORICAL_COUNTERFACTUAL_RESEARCH', NULL)""",
+                (as_of, '{"marketAsOf":"2026-01-05T04:00:00+00:00"}', decision_at, decision_at, as_of))
+
+        with pytest.raises(psycopg.Error):
+            db.execute("""INSERT INTO experimental_model_outputs(
+                output_id, dataset_revision_id, instrument_id, as_of, model_name, model_version,
+                forecast_path, summary, status, identity_checksum, prediction_ids, replay_pool_revision_id,
+                input_checksum, configuration_checksum, seed, path_count, sampling, available_at, computed_at,
+                source_max_timestamp, point_in_time_status)
+                VALUES ('tm-bad', %s, 1, %s, 'BANKNIFTY_TIME_MACHINE_V1', 'v', '[]'::jsonb,
+                %s::jsonb, 'EXPERIMENTAL_MODEL_OUTPUT', 'id-tm', '[]'::jsonb, NULL, 'in', 'cfg',
+                1, 1, '{}'::jsonb, %s, %s, %s, 'HISTORICAL_COUNTERFACTUAL_RESEARCH')""",
+                (revision, as_of, '{"marketAsOf":"2026-01-05T04:00:00+00:00"}', decision_at, decision_at, as_of))
+
+        with pytest.raises(psycopg.Error):
+            db.execute("UPDATE experimental_model_outputs SET model_version='changed' WHERE output_id='live-ok'")

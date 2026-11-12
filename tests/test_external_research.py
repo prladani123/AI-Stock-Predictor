@@ -182,10 +182,10 @@ def test_seed_changes_research_identity_and_replay_pool_stays_separate():
         revision_id="revision-1", instrument_id=1, reference_minute=reference)
     second = BankniftyTimeMachine(repository, sample_paths=50, seed=4).run(
         revision_id="revision-1", instrument_id=1, reference_minute=reference)
-    first_record = first.to_record(dataset_revision_id=None, instrument_id=1)
-    second_record = second.to_record(dataset_revision_id=None, instrument_id=1)
+    first_record = first.to_record(dataset_revision_id="revision-1", instrument_id=1)
+    second_record = second.to_record(dataset_revision_id="revision-1", instrument_id=1)
     assert first_record["output_id"] != second_record["output_id"]
-    assert first_record["dataset_revision_id"] is None
+    assert first_record["dataset_revision_id"] == "revision-1"
     assert first_record["replay_pool_revision_id"] == "revision-1"
 
 
@@ -244,7 +244,7 @@ def test_evaluation_uses_external_rows_without_runtime_v2_predictions(monkeypatc
             raise AssertionError("historical scoring must not read production predictions")
         def big_move_labels(self, *_):
             return self.rows
-        def experimental_outputs_for(self, _, __, *, model_name, limit):
+        def experimental_outputs_for_evaluation(self, _, __, *, model_name):
             return [{"as_of": row.as_of, "summary": {
                 "researchStatus": "COMPLETED",
                     "pointInTimeStatus": self.pit,
@@ -252,7 +252,7 @@ def test_evaluation_uses_external_rows_without_runtime_v2_predictions(monkeypatc
                     "pMeaningfulMove": 0.6, "pUpGivenMeaningfulMove": 0.55,
                     "pDownGivenMeaningfulMove": 0.45, "pAmbiguousBarrier": 0.0,
                     "expectedMagnitude": 0.001, "expectedReturn": 0.0}}}}
-                for row in self.rows[:limit]]
+                for row in self.rows]
 
     from banknifty_foundation import big_move_evaluation as evaluation
     repo = Repository()

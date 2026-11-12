@@ -31,6 +31,7 @@ from .research_models import (
 from .ml_records import MLPrediction, MLPredictionOutcome, validate_prediction
 from .big_move_labels import BigMoveLabel, BigMoveThresholdPolicy
 from .external_research import ExternalForecastResult, KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME
+from .paths import migration_files, migrations_dir
 
 
 @dataclass
@@ -102,6 +103,8 @@ class Repository(Protocol):
                                  replay_pool_revision_id: str | None = None) -> bool: ...
     def experimental_outputs_for(self, revision_id: str | None, instrument_id: int, *,
                                  model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]: ...
+    def experimental_outputs_for_evaluation(self, revision_id: str | None, instrument_id: int, *,
+                                            model_name: str) -> list[dict[str, Any]]: ...
 
 
 def canonical_json(value: Any) -> str:
@@ -413,7 +416,18 @@ class MemoryRepository:
                 and item["instrument_id"] == instrument_id
                 and (model_name is None or item["model_name"] == model_name)]
         rows.sort(key=lambda item: (item["as_of"], item["output_id"]), reverse=True)
-        return rows[:max(0, min(limit, 5000))]
+        return rows[:max(0, limit)]
+
+    def experimental_outputs_for_evaluation(self, revision_id: str | None, instrument_id: int, *,
+                                            model_name: str) -> list[dict[str, Any]]:
+        if model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
+            raise ValueError("unknown experimental research model")
+        rows = [deepcopy(item) for item in self.experimental_outputs.values()
+                if item["dataset_revision_id"] == revision_id
+                and item["instrument_id"] == instrument_id
+                and item["model_name"] == model_name]
+        rows.sort(key=lambda item: (item["as_of"], item["output_id"]))
+        return rows
 
     def save_feature_set(self, definition: FeatureSetDefinition) -> None:
         existing = self.feature_sets.get(definition.version)
@@ -774,7 +788,7 @@ class PostgresRepository:
         if not database_url.startswith(("postgresql://", "postgres://")):
             raise ValueError("PostgresRepository requires a PostgreSQL DATABASE_URL")
         self.database_url = database_url
-        self.migration_dir = migration_dir or Path(__file__).resolve().parents[2] / "migrations"
+        self.migration_dir = migrations_dir(migration_dir)
 
     @contextmanager
     def _connection(self) -> Iterator[Any]:
@@ -784,11 +798,16 @@ class PostgresRepository:
             yield connection
 
     def apply_migrations(self) -> list[str]:
+        migration_paths = migration_files(self.migration_dir)
+        if not self.migration_dir.is_dir():
+            raise ValueError(f"migration directory does not exist: {self.migration_dir}")
+        if not migration_paths:
+            raise ValueError(f"migration directory has no .sql files: {self.migration_dir}")
         applied: list[str] = []
         with self._connection() as connection:
             connection.execute("SELECT pg_advisory_xact_lock(8172401)")
             connection.execute("CREATE TABLE IF NOT EXISTS schema_migrations (version text PRIMARY KEY, applied_at timestamptz NOT NULL DEFAULT now())")
-            for path in sorted(self.migration_dir.glob("*.sql")):
+            for path in migration_paths:
                 if connection.execute("SELECT 1 FROM schema_migrations WHERE version=%s", (path.stem,)).fetchone():
                     continue
                 connection.execute(path.read_text(encoding="utf-8"))
@@ -1354,7 +1373,7 @@ class PostgresRepository:
                                  model_name: str | None = None, limit: int = 100) -> list[dict[str, Any]]:
         if model_name is not None and model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
             raise ValueError("unknown experimental research model")
-        selected_limit = max(0, min(limit, 5000))
+        selected_limit = max(0, limit)
         from psycopg import sql
         columns = sql.SQL(",").join(map(sql.Identifier, (*self._EXPERIMENTAL_COLUMNS, "created_at")))
         with self._connection() as connection:
@@ -1378,6 +1397,36 @@ class PostgresRepository:
                                         model_name, selected_limit)).fetchall()
         keys = (*self._EXPERIMENTAL_COLUMNS, "created_at")
         return [dict(zip(keys, row, strict=True)) for row in rows]
+
+    def experimental_outputs_for_evaluation(self, revision_id: str | None, instrument_id: int, *,
+                                            model_name: str) -> list[dict[str, Any]]:
+        if model_name not in {KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME}:
+            raise ValueError("unknown experimental research model")
+        from psycopg import sql
+
+        columns = sql.SQL(",").join(map(sql.Identifier, (*self._EXPERIMENTAL_COLUMNS, "created_at")))
+        keys = (*self._EXPERIMENTAL_COLUMNS, "created_at")
+        page_size = 1000
+        offset = 0
+        result: list[dict[str, Any]] = []
+        with self._connection() as connection:
+            while True:
+                rows = connection.execute(sql.SQL("""
+                    SELECT {} FROM experimental_model_outputs
+                    WHERE ((%s::uuid IS NULL AND dataset_revision_id IS NULL)
+                           OR dataset_revision_id=%s::uuid)
+                      AND instrument_id=%s
+                      AND model_name=%s
+                    ORDER BY as_of ASC, output_id ASC
+                    LIMIT %s OFFSET %s
+                """).format(columns), (
+                    revision_id, revision_id, instrument_id, model_name, page_size, offset
+                )).fetchall()
+                if not rows:
+                    break
+                result.extend(dict(zip(keys, row, strict=True)) for row in rows)
+                offset += len(rows)
+        return result
 
     def save_feature_set(self, definition: FeatureSetDefinition) -> None:
         with self._connection() as connection:

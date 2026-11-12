@@ -106,6 +106,80 @@ def test_display_rejects_stale_or_unlinked_external_output():
     assert not reader._experimental_payload(row, NOW, {"other"})["available"]
 
 
+def test_current_intelligence_uses_one_reference_cohort_without_cross_horizon_borrowing(monkeypatch):
+    from banknifty_foundation.product_queries import ProductDataReader
+
+    cohort_time = NOW
+    older_time = NOW - timedelta(minutes=1)
+    prediction_row = {
+        "prediction_id": "p-10",
+        "horizon_minutes": 10,
+        "as_of": cohort_time,
+        "expires_at": cohort_time + timedelta(minutes=10),
+        "reference_price": 50000.0,
+        "instrument_id": 1,
+        "big_move_probability": 0.5,
+        "quiet_probability": 0.5,
+        "state": "WAIT",
+        "direction": "UP",
+        "direction_probability": 0.6,
+        "up_given_big_move_probability": 0.6,
+        "down_given_big_move_probability": 0.4,
+        "expected_move_points": 10.0,
+        "expected_move_percent": 0.2,
+        "model_version": "v1",
+        "market_regime": "RANGE",
+        "session_bias": {"runtime_lineage": {}},
+        "quality_status": "PASS",
+        "move_algorithm": "algo",
+        "direction_algorithm": "algo",
+        "actual_label": None,
+    }
+
+    class Result:
+        def __init__(self, rows=None, row=None):
+            self._rows = rows or []
+            self._row = row
+
+        def fetchall(self):
+            return self._rows
+
+        def fetchone(self):
+            return self._row
+
+    class Connection:
+        def execute(self, query, params):
+            sql = str(query)
+            if "SELECT prediction.instrument_id, prediction.as_of" in sql:
+                return Result(row={"instrument_id": 1, "as_of": cohort_time})
+            if "AND prediction.as_of=%s" in sql and "AND prediction.instrument_id=%s" in sql:
+                assert params == (cohort_time, 1)
+                return Result(rows=[prediction_row])
+            if "FROM experimental_model_outputs" in sql:
+                return Result(rows=[])
+            raise AssertionError(sql)
+
+        @contextmanager
+        def transaction(self):
+            yield
+
+    @contextmanager
+    def fake_connection():
+        yield Connection()
+
+    reader = ProductDataReader("postgresql://fixture")
+    monkeypatch.setattr(reader, "_connection", fake_connection)
+    monkeypatch.setattr(reader, "_intelligence_horizon", lambda row: {
+        "minutes": row["horizon_minutes"], "asOf": row["as_of"].isoformat()
+    })
+    value = reader.current_intelligence(as_of=older_time, instrument_id=None)
+    assert value["available"] is False
+    value = reader.current_intelligence()
+    assert value["available"] is True
+    assert value["asOf"] == cohort_time.isoformat()
+    assert [item["minutes"] for item in value["horizons"]] == [10]
+
+
 def test_kronos_rejects_old_gap_even_with_enough_recent_candles():
     from banknifty_foundation.kronos_experiment import KronosForecastAdapter
     from banknifty_foundation.models import Candle
@@ -192,3 +266,51 @@ def test_time_machine_excludes_short_and_special_prior_sessions():
         revision_id="revision-1", instrument_id=1, reference_minute=reference)
     assert result.status == "INSUFFICIENT_PRIOR_SESSIONS"
     assert result.summary["priorSessionCount"] == 19
+
+
+def test_historical_identity_requires_dataset_revision():
+    with pytest.raises(ValueError, match="historical research identity"):
+        output().to_record(dataset_revision_id=None, instrument_id=1)
+
+
+def test_external_evaluation_fails_closed_for_multiple_families():
+    from banknifty_foundation.external_research_evaluation import ExternalResearchEvaluationService
+    label = SimpleNamespace(
+        as_of=NOW, horizon_minutes=10, label="BIG_UP", quality_status="VALID",
+        expiry_at=NOW + timedelta(minutes=10), reference_price=50000,
+        maximum_up_excursion=0.01, maximum_down_excursion=0.0, close_return_at_horizon=0.01,
+    )
+
+    class Repository:
+        def big_move_labels(self, *_):
+            return [label]
+
+        def experimental_outputs_for_evaluation(self, *_, model_name):
+            return [{
+                "as_of": NOW,
+                "configuration_checksum": "a",
+                "seed": 1,
+                "model_revision": "r1",
+                "replay_pool_revision_id": "pool-1",
+                "summary": {
+                    "researchStatus": "COMPLETED",
+                    "pointInTimeStatus": HISTORICAL_COUNTERFACTUAL,
+                    "horizons": {"10": {"pMeaningfulMove": 0.5}},
+                },
+            }, {
+                "as_of": NOW,
+                "configuration_checksum": "b",
+                "seed": 2,
+                "model_revision": "r2",
+                "replay_pool_revision_id": "pool-2",
+                "summary": {
+                    "researchStatus": "COMPLETED",
+                    "pointInTimeStatus": HISTORICAL_COUNTERFACTUAL,
+                    "horizons": {"10": {"pMeaningfulMove": 0.5}},
+                },
+            }] if model_name == KRONOS_MODEL_NAME else []
+
+    result = ExternalResearchEvaluationService(Repository()).evaluate("revision", 1)
+    assert result["available"] is False
+    assert result["reason"] == "MULTIPLE_EXTERNAL_CONFIGURATION_FAMILIES"
+    assert len(result["availableFamilies"]) == 2

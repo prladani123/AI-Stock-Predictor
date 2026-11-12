@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from banknifty_foundation.internal_api import app
+from banknifty_foundation.internal_api import app, runtime
 
 
 def test_internal_api_simulation_vertical_slice(monkeypatch):
@@ -30,3 +30,18 @@ def test_internal_api_simulation_vertical_slice(monkeypatch):
     duplicate_stop = client.post("/internal/live/simulation/stop", headers=headers)
     assert duplicate_stop.status_code == 409
     assert duplicate_stop.json()["error"] == "SIMULATION_NOT_RUNNING"
+
+
+def test_health_and_dashboard_report_offline_when_live_worker_disabled(monkeypatch):
+    monkeypatch.setenv("INTERNAL_API_TOKEN", "test-token")
+    monkeypatch.setenv("LIVE_MARKET_ENABLED", "false")
+    monkeypatch.setattr(runtime.live_worker, "status", lambda: {
+        "state": "CONNECTED", "message": None, "connected": True, "collectorMode": "LIVE",
+    })
+    runtime.running = False
+    client = TestClient(app)
+    headers = {"X-Internal-Token": "test-token"}
+    health = client.get("/internal/health").json()
+    dashboard = client.get("/internal/dashboard", headers=headers).json()
+    assert health["collector"]["collectorMode"] == "OFFLINE"
+    assert dashboard["dataMode"] == "OFFLINE"

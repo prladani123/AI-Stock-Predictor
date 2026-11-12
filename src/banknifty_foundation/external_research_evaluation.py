@@ -15,7 +15,7 @@ from .calendar import IST
 from .external_research import (KRONOS_MODEL_NAME, TIME_MACHINE_MODEL_NAME,
                                 HISTORICAL_COUNTERFACTUAL, checksum_payload)
 
-VALID_LABELS = {"BIG_UP", "BIG_DOWN", "NO_BIG_MOVE"}
+VALID_LABELS = {"BIG_UP", "BIG_DOWN", "NO_BIG_MOVE", "AMBIGUOUS"}
 SCORE_MODELS = ("PRICE_CORE_V2", "KRONOS", "TIME_MACHINE",
                 "V2_KRONOS", "V2_TIME_MACHINE", "V2_KRONOS_TIME_MACHINE")
 CLASS_INDEX = {"NO_BIG_MOVE": 0, "BIG_UP": 1, "BIG_DOWN": 2, "AMBIGUOUS": 3}
@@ -131,7 +131,8 @@ class ExternalResearchEvaluationService:
     def __init__(self, repository: Any) -> None:
         self.repository = repository
 
-    def _v2(self, revision_id: str, instrument_id: int) -> dict[tuple[Any, int], dict[str, float | None]]:
+    def _v2(self, revision_id: str, instrument_id: int,
+            required_keys: set[tuple[Any, int]]) -> dict[tuple[Any, int], dict[str, float | None]]:
         # Reuse Stage D's estimator/calibration-fit/calibration-selection/threshold
         # separation. No production predictions, artifact writes or promotion.
         from .big_move_evaluation import EvaluationConfiguration, _load, _fold_fit, _ready, _valid
@@ -139,11 +140,17 @@ class ExternalResearchEvaluationService:
         service = BigMoveTrainingService(self.repository)
         rows, _ = _load(service, revision_id, instrument_id, "LOGISTIC_REGRESSION")
         config = EvaluationConfiguration()
+        required_dates = {key[0].astimezone(IST).date() for key in required_keys}
+        required_horizons = {key[1] for key in required_keys}
         days = sorted({label.as_of.astimezone(IST).date() for _, label in rows})
         result = {}
         self.v2_folds = []
         for day in days[config.minimumTrainingDays:]:
+            if day not in required_dates:
+                continue
             for horizon in BIG_MOVE_HORIZONS:
+                if horizon not in required_horizons:
+                    continue
                 prior = [(f, l) for f, l in rows if l.horizon_minutes == horizon
                          and l.expiry_at.astimezone(IST).date() < day]
                 try:
@@ -167,7 +174,61 @@ class ExternalResearchEvaluationService:
                     }
         return result
 
-    def evaluate(self, revision_id: str, instrument_id: int) -> dict[str, Any]:
+    @staticmethod
+    def _family(row: dict[str, Any]) -> tuple[Any, Any, Any, Any]:
+        return (
+            row.get("configuration_checksum"),
+            row.get("seed"),
+            row.get("model_revision"),
+            row.get("replay_pool_revision_id"),
+        )
+
+    @staticmethod
+    def _family_payload(row: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "configurationChecksum": row.get("configuration_checksum"),
+            "seed": row.get("seed"),
+            "modelRevision": row.get("model_revision"),
+            "replayPoolRevisionId": row.get("replay_pool_revision_id"),
+        }
+
+    @staticmethod
+    def _select_rows(
+        rows: list[dict[str, Any]],
+        *,
+        configuration_checksum: str | None,
+        seed: int | None,
+        model_revision: str | None,
+        replay_pool_revision_id: str | None,
+    ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+        filtered = rows
+        if configuration_checksum is not None:
+            filtered = [row for row in filtered if row.get("configuration_checksum") == configuration_checksum]
+        if seed is not None:
+            filtered = [row for row in filtered if row.get("seed") == seed]
+        if model_revision is not None:
+            filtered = [row for row in filtered if row.get("model_revision") == model_revision]
+        if replay_pool_revision_id is not None:
+            filtered = [row for row in filtered if row.get("replay_pool_revision_id") == replay_pool_revision_id]
+        families = {}
+        for row in filtered:
+            key = ExternalResearchEvaluationService._family(row)
+            families.setdefault(key, ExternalResearchEvaluationService._family_payload(row))
+        return filtered, sorted(
+            families.values(),
+            key=lambda item: (
+                str(item.get("configurationChecksum")),
+                str(item.get("seed")),
+                str(item.get("modelRevision")),
+                str(item.get("replayPoolRevisionId")),
+            ),
+        )
+
+    def evaluate(self, revision_id: str, instrument_id: int, *,
+                 configuration_checksum: str | None = None,
+                 seed: int | None = None,
+                 model_revision: str | None = None,
+                 replay_pool_revision_id: str | None = None) -> dict[str, Any]:
         labels = {(item.as_of, item.horizon_minutes): item for item in
                   self.repository.big_move_labels(revision_id, instrument_id)
                   if item.quality_status == "VALID" and item.label in VALID_LABELS}
@@ -177,8 +238,28 @@ class ExternalResearchEvaluationService:
         time_machine: dict[tuple[Any, int], dict[str, Any]] = {}
         for model_name, target in ((KRONOS_MODEL_NAME, kronos),
                                    (TIME_MACHINE_MODEL_NAME, time_machine)):
-            for row in self.repository.experimental_outputs_for(
-                revision_id, instrument_id, model_name=model_name, limit=5000):
+            raw_rows = self.repository.experimental_outputs_for_evaluation(
+                revision_id, instrument_id, model_name=model_name)
+            selected_rows, available_families = self._select_rows(
+                raw_rows,
+                configuration_checksum=configuration_checksum,
+                seed=seed,
+                model_revision=model_revision,
+                replay_pool_revision_id=replay_pool_revision_id,
+            )
+            if len(available_families) > 1:
+                return {
+                    "available": False,
+                    "reason": "MULTIPLE_EXTERNAL_CONFIGURATION_FAMILIES",
+                    "model": model_name,
+                    "availableFamilies": available_families,
+                    "requiredSelectorFields": [
+                        "configurationChecksum", "seed", "modelRevision", "replayPoolRevisionId",
+                    ],
+                    "researchOnly": True,
+                    "usedByPriceCoreV2": False,
+                }
+            for row in selected_rows:
                 summary = row["summary"] or {}
                 if summary.get("researchStatus") != "COMPLETED":
                     continue
@@ -187,10 +268,11 @@ class ExternalResearchEvaluationService:
                 for key, horizon in (summary.get("horizons") or {}).items():
                     identity = (row["as_of"], int(key))
                     if identity in target:
-                        raise ValueError("Select one external configuration/seed per reference before evaluation")
+                        raise ValueError("duplicate external research output for selected family/reference")
                     target[identity] = horizon
-        v2 = self._v2(revision_id, instrument_id)
-        comparison_keys = sorted(set(labels) & set(kronos) & set(time_machine) & set(v2))
+        comparison_keys = sorted(set(labels) & set(kronos) & set(time_machine))
+        v2 = self._v2(revision_id, instrument_id, set(comparison_keys))
+        comparison_keys = sorted(set(comparison_keys) & set(v2))
         if not comparison_keys:
             return {"available": False, "reason": "NO_MATCHED_REFERENCE_MINUTES",
                     "cohortCounts": {"labels": len(labels), "kronos": len(kronos),

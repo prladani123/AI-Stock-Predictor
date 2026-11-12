@@ -84,7 +84,7 @@ def test_history_is_forced_to_safe_one_minute_shape():
 def test_production_code_has_no_forbidden_kite_method_calls():
     source_root = Path(__file__).resolve().parents[1] / "src" / "banknifty_foundation"
     violations = []
-    for path in source_root.glob("*.py"):
+    for path in source_root.rglob("*.py"):
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         for node in ast.walk(tree):
             if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr in FORBIDDEN:

@@ -24,10 +24,28 @@ ALTER TABLE experimental_model_outputs
 
 DROP TRIGGER IF EXISTS immutable_experimental_model_outputs ON experimental_model_outputs;
 
+CREATE OR REPLACE FUNCTION strict_market_iso_timestamp(value text, legacy_output_id text,
+                                                       field_name text) RETURNS timestamptz AS $$
+BEGIN
+    IF value IS NULL OR btrim(value) = '' THEN
+        RETURN NULL;
+    END IF;
+    IF value !~ '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$' THEN
+        RAISE EXCEPTION 'invalid legacy % timestamp for output %: %',
+            field_name, legacy_output_id, value;
+    END IF;
+    RETURN value::timestamptz;
+EXCEPTION
+    WHEN datetime_field_overflow OR invalid_datetime_format THEN
+        RAISE EXCEPTION 'invalid legacy % timestamp for output %: %',
+            field_name, legacy_output_id, value;
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+
 UPDATE experimental_model_outputs
-SET available_at = COALESCE((summary->>'availableAt')::timestamptz, as_of),
-    computed_at = COALESCE((summary->>'computedAt')::timestamptz, as_of),
-    source_max_timestamp = COALESCE((summary->>'sourceMaxTimestamp')::timestamptz, as_of),
+SET available_at = COALESCE(strict_market_iso_timestamp(summary->>'availableAt', output_id, 'availableAt'), as_of),
+    computed_at = COALESCE(strict_market_iso_timestamp(summary->>'computedAt', output_id, 'computedAt'), as_of),
+    source_max_timestamp = COALESCE(strict_market_iso_timestamp(summary->>'sourceMaxTimestamp', output_id, 'sourceMaxTimestamp'), as_of),
     -- Legacy rows have no committed production identity. Never upgrade them.
     point_in_time_status = 'HISTORICAL_COUNTERFACTUAL_RESEARCH',
     upstream_revision = summary->>'upstreamRevision',
@@ -40,6 +58,8 @@ SET available_at = COALESCE((summary->>'availableAt')::timestamptz, as_of),
     sampling_pool_checksum = summary->>'samplingPoolChecksum'
 WHERE available_at IS NULL OR computed_at IS NULL OR source_max_timestamp IS NULL
    OR point_in_time_status IS NULL;
+
+DROP FUNCTION strict_market_iso_timestamp(text, text, text);
 
 ALTER TABLE experimental_model_outputs
     ALTER COLUMN available_at SET NOT NULL,

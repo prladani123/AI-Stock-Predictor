@@ -137,6 +137,15 @@ class ProductRuntime:
     def _instrument_map(self):
         return self.instruments if self.running else (self._source().instruments if self._source() else {})
 
+    def _collector_mode(self) -> str:
+        if self.running:
+            return "SIMULATED"
+        worker = self.live_worker.status()
+        enabled = os.getenv("LIVE_MARKET_ENABLED", "false").lower() == "true"
+        if worker.get("state") == "DISABLED" or not enabled:
+            return "OFFLINE"
+        return "LIVE"
+
     @market_view
     def candles(self) -> list[dict[str, Any]]:
         return [
@@ -169,9 +178,10 @@ class ProductRuntime:
 
     @market_view
     def live_status(self) -> dict[str, Any]:
+        collector_mode = self._collector_mode()
         if not self.running and self.live_reader.database_url:
             state=self._source()
-            result=state.status or {'connected':False,'state':'UNAVAILABLE','collectorMode':'LIVE',
+            result=state.status or {'connected':False,'state':'UNAVAILABLE','collectorMode':'OFFLINE',
                 'credentialsConfigured':bool(os.getenv('ZERODHA_ACCESS_TOKEN')),'message':state.quality,
                 'lastTick':None,'lastCompletedCandle':None,'receivedTickCount':None,'reconnectCount':0,
                 'gapCount':0,'activeGapCount':0,'desiredSubscriptions':[],'activeSubscriptions':[],
@@ -180,6 +190,7 @@ class ProductRuntime:
             if worker['state']!='DISABLED':
                 result={**result,**worker,'connected':worker['connected'] and result.get('connected',False)}
             elif result['state'] in ('STOPPED','UNAVAILABLE'): result['state']='DISABLED'
+            result["collectorMode"] = collector_mode
             return result
         repo = self.repository if self.running else None
         minutes = self._minutes()
@@ -189,7 +200,7 @@ class ProductRuntime:
         gaps = list(repo.gaps.values()) if repo else []
         return _json_value({
             "connected": self.running, "state": "SIMULATION" if self.running else self.live_worker.status()['state'],
-            "collectorMode": "SIMULATED" if repo else "OFFLINE",
+            "collectorMode": collector_mode,
             "credentialsConfigured": bool(os.getenv("ZERODHA_API_KEY") and os.getenv("ZERODHA_ACCESS_TOKEN")),
             "message": None if self.running else self.live_worker.status()['message'],
             "lastTick": max((item.received_at for item in ticks), default=None),
@@ -218,7 +229,7 @@ class ProductRuntime:
             "priceChangePercent": ((latest["close"] / prior["close"] - 1) * 100) if latest and prior else None,
             "latestCandle": latest,
             "marketState": "SIMULATION" if self.running else ("OPEN" if self._source().quality=='PASS' else self._source().quality) if self._source() else "OFFLINE",
-            "dataMode": "SIMULATED" if self.running else "LIVE" if self.live_reader.database_url else "OFFLINE",
+            "dataMode": self._collector_mode(),
             "zerodhaStatus": "CONNECTED" if live.get('connected') and not self.running else "CONFIGURED_NOT_CONNECTED" if os.getenv("ZERODHA_ACCESS_TOKEN") else "NOT_CONFIGURED",
             "pythonStatus": "UP", "future": self.futures(),
             "selectedOptionExpiry": options.get("expiry"),
@@ -576,10 +587,15 @@ def require_internal_token(x_internal_token: str | None = Header(default=None)) 
 @app.get("/internal/health")
 def health() -> dict[str, Any]:
     from .system_readiness import database_health
+    live = runtime.live_status()
     return {"status": "UP", "service": "python", "version": APP_VERSION,
             "postgres": database_health(),
-            "collector": {'state': 'SIMULATION', 'collectorMode': 'SIMULATED', 'connected': True}
-                if runtime.running else runtime.live_worker.status(), "timestamp": _now()}
+            "collector": {
+                "state": live.get("state"),
+                "collectorMode": live.get("collectorMode"),
+                "connected": live.get("connected"),
+            },
+            "timestamp": _now()}
 
 
 @app.get('/internal/system/readiness', dependencies=[Depends(require_internal_token)])
@@ -895,13 +911,27 @@ def external_research_status():
 
 
 @app.get('/internal/research/external/evaluation', dependencies=[Depends(require_internal_token)])
-def external_research_evaluation(revision_id: str, instrument_id: int):
+def external_research_evaluation(
+    revision_id: str,
+    instrument_id: int,
+    configuration_checksum: str | None = None,
+    seed: int | None = None,
+    model_revision: str | None = None,
+    replay_pool_revision_id: str | None = None,
+):
     from .external_research_evaluation import ExternalResearchEvaluationService
     from .repository import PostgresRepository
     try:
         service = ExternalResearchEvaluationService(
             PostgresRepository(os.getenv('DATABASE_URL', '')))
-        return _json_value(service.evaluate(revision_id, instrument_id))
+        return _json_value(service.evaluate(
+            revision_id,
+            instrument_id,
+            configuration_checksum=configuration_checksum,
+            seed=seed,
+            model_revision=model_revision,
+            replay_pool_revision_id=replay_pool_revision_id,
+        ))
     except Exception:
         raise HTTPException(status_code=503, detail='EXTERNAL_RESEARCH_EVALUATION_UNAVAILABLE') from None
 

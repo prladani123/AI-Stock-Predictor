@@ -248,8 +248,8 @@ def test_shadow_migration_sequence_and_guards():
     from pathlib import Path
     root=Path(__file__).resolve().parents[1]/'migrations'
     # 008a is the existing timestamp-helper prerequisite, not a duplicate migration.
-    assert sorted({int(p.name[:3]) for p in root.glob('*.sql')})==list(range(1,22))
-    assert sorted(p.name for p in root.glob('*.sql'))[-1]=='021_live_shadow_observations.sql'
+    assert sorted({int(p.name[:3]) for p in root.glob('*.sql')})==list(range(1,23))
+    assert sorted(p.name for p in root.glob('*.sql'))[-1]=='022_experimental_research_identity.sql'
     sql=(root/'021_live_shadow_observations.sql').read_text()
     for text in ('BEFORE UPDATE OR DELETE','prediction_id text NOT NULL UNIQUE REFERENCES big_move_predictions',
                  'decision_at >= market_as_of','SHADOW_REQUIRES_VALID_COMMITTED_PREDICTION_AND_JOURNAL'):

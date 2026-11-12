@@ -184,7 +184,8 @@ class ExternalForecastResult:
                     or self.market_as_of > self.decision_at
                     or self.point_in_time_status != prospective_status(self.available_at, self.decision_at)):
                 raise ValueError("invalid live research identity or point-in-time status")
-        elif self.point_in_time_status != HISTORICAL_COUNTERFACTUAL or self.prediction_ids:
+        elif (self.point_in_time_status != HISTORICAL_COUNTERFACTUAL
+              or self.prediction_ids or dataset_revision_id is None):
             raise ValueError("invalid historical research identity")
         identity = self._identity(dataset_revision_id=dataset_revision_id,
                                   instrument_id=instrument_id)

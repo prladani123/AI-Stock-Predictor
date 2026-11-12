@@ -34,7 +34,8 @@ logs/
 *.tmp
 *.temp
 
-# Model artifacts and caches (weights are downloaded explicitly, never committed)
+# Model artifacts and caches. The two vetted MIT-licensed Kronos-mini files
+# below are intentionally committed as a reproducible local research cache.
 model_artifacts/*
 !model_artifacts/.gitkeep
 artifacts/*.json
@@ -43,6 +44,8 @@ artifacts/*.json
 hf_cache/
 huggingface/
 *.safetensors
+!third_party/Kronos/models/Kronos-mini/model.safetensors
+!third_party/Kronos/models/Kronos-Tokenizer-2k/model.safetensors
 *.bin
 *.pt
 *.pth

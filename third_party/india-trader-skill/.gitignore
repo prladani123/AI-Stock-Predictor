@@ -1,0 +1,15 @@
+# working notes: plans, specs and findings stay on the machine that wrote them
+docs/
+# what the skills write when run from the repo root
+trader/
+.superpowers/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+.claude/settings.local.json
+# secrets: a filled-in MCP config or env file never belongs in the repo
+claude_desktop_config.json
+.mcp.json
+.env
+kite-mcp-server.env

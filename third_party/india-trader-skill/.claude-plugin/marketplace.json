@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "india-trader-skill",
+  "description": "The India Trader skill pack for Claude: intraday trading on NSE",
+  "owner": {
+    "name": "Nawed Anjum"
+  },
+  "plugins": [
+    {
+      "name": "india-trader-skill",
+      "description": "11 Claude skills for intraday trading on NSE: scan the market, track announcements, time every entry and exit, and replay every outcome before you risk a rupee.",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/nawed1111/india-trader-skill"
+    }
+  ]
+}

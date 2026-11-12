@@ -1,0 +1,21 @@
+{
+  "name": "india-trader-skill",
+  "description": "11 Claude skills for intraday trading on NSE: scan the market, track announcements, time every entry and exit, and replay every outcome before you risk a rupee.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nawed Anjum"
+  },
+  "homepage": "https://github.com/nawed1111/india-trader-skill",
+  "repository": "https://github.com/nawed1111/india-trader-skill",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "claude-skills",
+    "day-trading",
+    "nse",
+    "india",
+    "opening-range-breakout",
+    "paper-trading"
+  ],
+  "skills": "./"
+}

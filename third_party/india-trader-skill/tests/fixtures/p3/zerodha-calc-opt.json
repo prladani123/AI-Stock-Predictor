@@ -1,0 +1,6 @@
+{"source": "https://zerodha.com/brokerage-calculator (F&O, options, NSE; cal_options run on the page)", "checked": "2026-11-04",
+ "rows": [
+  {"segment": "opt", "qty": 65, "buy": 120, "sell": 150, "brokerage": 40, "stt": 15, "exchange": 6.24, "sebi": 0.02, "stamp": 0, "gst": 8.33, "total": 69.59},
+  {"segment": "opt", "qty": 60, "buy": 400, "sell": 380, "brokerage": 40, "stt": 34, "exchange": 16.62, "sebi": 0.05, "stamp": 1, "gst": 10.2, "total": 101.87},
+  {"segment": "opt", "qty": 65, "buy": 3, "sell": 3.5, "brokerage": 40, "stt": 0, "exchange": 0.15, "sebi": 0, "stamp": 0, "gst": 7.23, "total": 47.38}
+ ]}

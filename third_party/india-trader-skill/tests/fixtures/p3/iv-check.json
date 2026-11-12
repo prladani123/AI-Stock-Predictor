@@ -1,0 +1,39 @@
+{
+ "source": "https://www.nseindia.com/api/option-chain-v3?type=Indices&symbol=NIFTY&expiry=09-Nov-2026",
+ "timestamp": "04-Nov-2026 15:40:00",
+ "note": "NSE's impliedVolatility with its own lastPrice and underlyingValue. Inputs that reproduce it: rate 0.06, no dividend, time = calendar minutes from 15:30 IST on 4 Nov to 15:30 IST on 9 Nov / (365 x 1440) = 5/365.",
+ "now_ist": "2026-11-04 15:30",
+ "expiry": "2026-11-09",
+ "spot": 23960.6,
+ "rate": 0.06,
+ "rows": [
+  {
+   "what": "ATM call",
+   "strike": 23950,
+   "right": "CE",
+   "premium": 146.6,
+   "nse_iv": 11.65
+  },
+  {
+   "what": "2 strikes OTM call",
+   "strike": 24050,
+   "right": "CE",
+   "premium": 106.1,
+   "nse_iv": 12.29
+  },
+  {
+   "what": "2 strikes OTM put",
+   "strike": 23850,
+   "right": "PE",
+   "premium": 136.1,
+   "nse_iv": 17.46
+  },
+  {
+   "what": "ATM put",
+   "strike": 23950,
+   "right": "PE",
+   "premium": 186.35,
+   "nse_iv": 18.04
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+{"source": "https://zerodha.com/brokerage-calculator (intraday equity, NSE)", "checked": "2026-11-04",
+ "rows": [
+  {"segment": "eq_intraday", "qty": 100, "buy": 1400, "sell": 1410, "brokerage": 40, "stt": 35, "exchange": 8.63, "sebi": 0.28, "stamp": 4, "gst": 8.8, "total": 96.71},
+  {"segment": "eq_intraday", "qty": 1, "buy": 50, "sell": 50.5, "brokerage": 0.03, "stt": 0, "exchange": 0, "sebi": 0, "stamp": 0, "gst": 0.01, "total": 0.04},
+  {"segment": "eq_intraday", "qty": 500, "buy": 2000, "sell": 1990, "brokerage": 40, "stt": 249, "exchange": 61.24, "sebi": 1.99, "stamp": 30, "gst": 18.58, "total": 400.81}
+ ]}

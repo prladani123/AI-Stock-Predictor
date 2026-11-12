@@ -1,0 +1,32 @@
+# Local-only Kronos research sidecar. Build context is third_party/Kronos.
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    KRONOS_THREADS=2 \
+    OMP_NUM_THREADS=2 \
+    OPENBLAS_NUM_THREADS=2 \
+    MKL_NUM_THREADS=2 \
+    NUMEXPR_NUM_THREADS=2
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --index-url https://download.pytorch.org/whl/cpu torch==2.7.1 \
+    && pip install numpy==2.2.6 pandas==2.2.2 einops==0.8.1 \
+       huggingface_hub==0.33.1 safetensors==0.6.2 tqdm==4.67.1
+
+COPY model /app/model
+COPY kronos_research_server.py /app/kronos_research_server.py
+COPY models /app/models
+
+EXPOSE 8010
+
+HEALTHCHECK --interval=20s --timeout=5s --start-period=90s --retries=5 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/health', timeout=3)"
+
+CMD ["python", "/app/kronos_research_server.py"]

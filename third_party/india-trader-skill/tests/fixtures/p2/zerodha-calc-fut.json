@@ -1,0 +1,6 @@
+{"source": "https://zerodha.com/brokerage-calculator (F&O, futures, NSE; cal_futures)", "checked": "2026-11-04",
+ "rows": [
+  {"segment": "fut", "qty": 65, "buy": 23500, "sell": 23600, "brokerage": 40, "stt": 767, "exchange": 56.02, "sebi": 3.06, "stamp": 31, "gst": 17.83, "total": 914.91},
+  {"segment": "fut", "qty": 60, "buy": 55000, "sell": 54800, "brokerage": 40, "stt": 1644, "exchange": 120.56, "sebi": 6.59, "stamp": 66, "gst": 30.09, "total": 1907.24},
+  {"segment": "fut", "qty": 65, "buy": 23500, "sell": 23505, "brokerage": 40, "stt": 764, "exchange": 55.92, "sebi": 3.06, "stamp": 31, "gst": 17.82, "total": 911.8}
+ ]}
